@@ -822,24 +822,62 @@ nav{
   align-items:stretch;
 }
 .product-card{
-  background:linear-gradient(180deg,var(--white),#F8FAFD);
-  border:1px solid rgba(6,30,79,0.08);
-  border-radius:28px;
-  overflow:hidden;
+  min-height:410px;
+  perspective:1200px;
+  cursor:pointer;
+  outline:none;
+}
+.product-card-inner{
+  position:relative;
+  min-height:410px;
+  height:100%;
+  transform-style:preserve-3d;
+  transition:transform 680ms cubic-bezier(.2,.7,.2,1),filter 320ms var(--motion-ease);
+  will-change:transform;
+}
+.product-card:hover .product-card-inner,
+.product-card:focus-within .product-card-inner,
+.product-card.is-flipped .product-card-inner{
+  transform:rotateY(180deg) translateY(-4px);
+}
+.product-face{
+  position:absolute;
+  inset:0;
   min-height:410px;
   display:flex;
   flex-direction:column;
+  overflow:hidden;
+  border:1px solid rgba(6,30,79,0.08);
+  border-radius:28px;
+  background:linear-gradient(180deg,var(--white),#F8FAFD);
   box-shadow:0 18px 44px rgba(6,30,79,0.06);
-  transition:transform 320ms var(--motion-ease),box-shadow 320ms var(--motion-ease),border-color 320ms var(--motion-ease);
-  will-change:transform;
+  backface-visibility:hidden;
+  transition:box-shadow 320ms var(--motion-ease),border-color 320ms var(--motion-ease);
 }
-.product-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 26px 58px rgba(6,30,79,0.11);
-  border-color:rgba(18,199,199,0.22);
+.product-card:hover .product-face,
+.product-card.is-flipped .product-face{
+  box-shadow:0 28px 64px rgba(6,30,79,0.12);
+  border-color:rgba(18,199,199,0.24);
+}
+.product-face-back{
+  justify-content:center;
+  transform:rotateY(180deg);
+  background:
+    radial-gradient(circle at 16% 16%,rgba(18,199,199,0.12),transparent 36%),
+    radial-gradient(circle at 84% 84%,rgba(240,6,120,0.09),transparent 40%),
+    linear-gradient(180deg,#fff,#F8FAFD);
+}
+.product-face-back::before{
+  content:'';
+  position:absolute;
+  inset:26px;
+  background:url('../public/brand/impact-fingerprint-scroll-teal.png') center/contain no-repeat;
+  opacity:.045;
+  pointer-events:none;
 }
 .product-media{
   height:260px;
+  flex:1;
   position:relative;
   overflow:hidden;
   background:
@@ -955,6 +993,15 @@ nav{
   font-weight:800;
   color:var(--navy);
 }
+.product-front-title{
+  position:relative;
+  z-index:1;
+  margin-top:8px;
+  font-size:28px;
+  font-weight:950;
+  color:var(--navy);
+  letter-spacing:-.6px;
+}
 .product-status{
   display:inline-flex;
   align-self:center;
@@ -967,10 +1014,12 @@ nav{
   font-weight:900;
 }
 .product-body{
-  padding:28px 28px 30px;
+  position:relative;
+  z-index:1;
+  padding:36px 30px 34px;
   display:grid;
-  grid-template-rows:32px 40px 44px minmax(132px,1fr) 34px;
-  row-gap:10px;
+  grid-template-rows:auto auto auto 1fr auto;
+  row-gap:13px;
   justify-items:center;
   text-align:center;
   flex:1;
@@ -991,7 +1040,7 @@ nav{
 .product-card:nth-child(2) .product-kicker{background:rgba(240,6,120,0.08);color:var(--fuchsia)}
 .product-card:nth-child(3) .product-kicker{background:rgba(244,180,27,0.12);color:#C98600}
 .product-card h3{
-  font-size:21px;
+  font-size:26px;
   font-weight:900;
   color:var(--navy);
   letter-spacing:-.4px;
@@ -1000,11 +1049,12 @@ nav{
   align-self:center;
 }
 .product-card p{
-  font-size:14px;
-  line-height:1.72;
+  max-width:300px;
+  font-size:15px;
+  line-height:1.82;
   color:var(--gray);
   margin:0;
-  align-self:start;
+  align-self:center;
 }
 .product-link{
   margin-top:0;
@@ -1020,6 +1070,11 @@ nav{
 .product-link:hover{
   color:var(--fuchsia);
   transform:translateX(-3px);
+}
+@media (prefers-reduced-motion: reduce){
+  .product-card-inner{transition:none;transform:none!important}
+  .product-face{position:relative;backface-visibility:visible}
+  .product-face-back{transform:none;margin-top:14px}
 }
 
 /* ג”€ג”€ג”€ MANIFESTO ג”€ג”€ג”€ */
@@ -1517,6 +1572,17 @@ footer::after{
   background:#FFFFFF;
   transition:opacity .5s ease, visibility .5s ease;
 }
+#isl-video-stage::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background:
+    radial-gradient(circle at 50% 54%,rgba(18,199,199,.08),transparent 34%),
+    radial-gradient(circle at 58% 62%,rgba(240,6,120,.055),transparent 38%),
+    #FFFFFF;
+  pointer-events:none;
+}
 #isl-video-stage.video-fallback::after{
   content:"";
   position:absolute;
@@ -1547,6 +1613,36 @@ footer::after{
   object-fit:contain;
   background:#FFFFFF;
   image-rendering:auto;
+}
+#isl-load-ui{
+  position:absolute;
+  left:50%;
+  bottom:clamp(26px,7vh,74px);
+  z-index:3;
+  width:min(360px,72vw);
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  pointer-events:none;
+}
+.isl-load-track{
+  width:100%;
+  height:4px;
+  border-radius:999px;
+  overflow:hidden;
+  background:rgba(6,30,79,.08);
+}
+.isl-load-progress{
+  display:block;
+  width:100%;
+  height:100%;
+  transform:scaleX(var(--loader-progress, .04));
+  transform-origin:right center;
+  border-radius:inherit;
+  background:linear-gradient(90deg,var(--fuchsia),var(--teal));
+  box-shadow:0 8px 24px rgba(240,6,120,.22);
+  transition:transform 120ms linear;
 }
 #isl-video-stage.video-fallback #isl-loader-video{
   display:block;
@@ -1645,6 +1741,7 @@ footer::after{
 /* reduced-motion: הצג הכל מיד, רק fade קצר */
 @media(prefers-reduced-motion:reduce){
   #isl-video-stage{display:none}
+  #isl-load-ui{display:none}
   #isl-box{display:none}
   .ilp,.ilp.go{animation:none;stroke-dashoffset:0;opacity:1}
   .ild,.ild.go{animation:none;opacity:1}
@@ -1665,6 +1762,9 @@ footer::after{
   <div id="isl-video-stage" aria-hidden="true">
     <video id="isl-loader-video" src="../public/media/impact-loader-intro.mp4?v=loader-white-20260530-2" autoplay muted playsinline preload="auto"></video>
     <canvas id="isl-loader-canvas"></canvas>
+    <div id="isl-load-ui">
+      <div class="isl-load-track"><span class="isl-load-progress"></span></div>
+    </div>
   </div>
   <div id="isl-box">
 
@@ -2011,58 +2111,76 @@ footer::after{
   </div>
 
   <div class="products-grid">
-    <article class="product-card">
-      <div class="product-media is-adora" aria-hidden="true">
-        <div class="adora-logo"><em>א</em>דורה</div>
-        <div class="product-media-text">המאצ׳ שלך למשרת החינוך</div>
-      </div>
-      <div class="product-body">
-        <span class="product-status">בקרוב</span>
-        <span class="product-kicker">חינוך ותעסוקה</span>
-        <h3>אדורה</h3>
-        <p>לוח מודעות דרושים לעולם החינוך, שמחבר בין אנשי חינוך, בתי ספר וארגונים שמחפשים התאמה מדויקת ומשמעותית.</p>
-        <a class="product-link" href="#contact">לפרטי המוצר
-          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5"/>
-          </svg>
-        </a>
-      </div>
-    </article>
-
-    <article class="product-card">
-      <div class="product-media is-goldfish" aria-hidden="true">
-        <div class="goldfish-icon"></div>
-        <div class="goldfish-logo">Goldfish</div>
-        <div class="product-media-text">דג זהב שדג מענקים מהמים</div>
-      </div>
-      <div class="product-body">
-        <span class="product-status">בקרוב</span>
-        <span class="product-kicker">גיוס משאבים</span>
-        <h3>Goldfish</h3>
-        <p>כלי חכם לגיוס משאבים לעמותות, שמסייע לאתר הזדמנויות, מענקים וקולות קוראים בלי לטבוע בתוך עומס המידע.</p>
-        <a class="product-link" href="#contact">לפרטי המוצר
-          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5"/>
-          </svg>
-        </a>
+    <article class="product-card" tabindex="0" aria-label="אדורה, לחצו כדי לראות מה המוצר עושה">
+      <div class="product-card-inner">
+        <div class="product-face product-face-front">
+          <div class="product-media is-adora" aria-hidden="true">
+            <div class="adora-logo"><em>א</em>דורה</div>
+            <div class="product-front-title">אדורה</div>
+          </div>
+        </div>
+        <div class="product-face product-face-back">
+          <div class="product-body">
+            <span class="product-status">בקרוב</span>
+            <span class="product-kicker">חינוך ותעסוקה</span>
+            <h3>מה זה עושה?</h3>
+            <p>לוח מודעות דרושים לעולם החינוך, שמחבר בין אנשי חינוך, בתי ספר וארגונים שמחפשים התאמה מדויקת ומשמעותית.</p>
+            <a class="product-link" href="#contact">לפרטי המוצר
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5"/>
+              </svg>
+            </a>
+          </div>
+        </div>
       </div>
     </article>
 
-    <article class="product-card">
-      <div class="product-media is-coming" aria-hidden="true">
-        <div class="coming-logo">המוצר הבא</div>
-        <div class="product-media-text">בקרוב</div>
+    <article class="product-card" tabindex="0" aria-label="Goldfish, לחצו כדי לראות מה המוצר עושה">
+      <div class="product-card-inner">
+        <div class="product-face product-face-front">
+          <div class="product-media is-goldfish" aria-hidden="true">
+            <div class="goldfish-icon"></div>
+            <div class="goldfish-logo">Goldfish</div>
+            <div class="product-front-title">Goldfish</div>
+          </div>
+        </div>
+        <div class="product-face product-face-back">
+          <div class="product-body">
+            <span class="product-status">בקרוב</span>
+            <span class="product-kicker">גיוס משאבים</span>
+            <h3>מה זה עושה?</h3>
+            <p>כלי חכם לגיוס משאבים לעמותות, שמסייע לאתר הזדמנויות, מענקים וקולות קוראים בלי לטבוע בתוך עומס המידע.</p>
+            <a class="product-link" href="#contact">לפרטי המוצר
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5"/>
+              </svg>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="product-body">
-        <span class="product-status">בקרוב</span>
-        <span class="product-kicker">דאטה ואימפקט</span>
-        <h3>מוצר נוסף בדרך</h3>
-        <p>מקום שמור למוצר הבא של IMPACT SO. כשתשלחי תמונה, שם ולינק, נכניס אותו לאותה שפה מותגית.</p>
-        <a class="product-link" href="#contact">לפרטי המוצר
-          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5"/>
-          </svg>
-        </a>
+    </article>
+
+    <article class="product-card" tabindex="0" aria-label="מוצר נוסף בדרך, לחצו כדי לראות מה המוצר עושה">
+      <div class="product-card-inner">
+        <div class="product-face product-face-front">
+          <div class="product-media is-coming" aria-hidden="true">
+            <div class="coming-logo">המוצר הבא</div>
+            <div class="product-front-title">בקרוב</div>
+          </div>
+        </div>
+        <div class="product-face product-face-back">
+          <div class="product-body">
+            <span class="product-status">בקרוב</span>
+            <span class="product-kicker">דאטה ואימפקט</span>
+            <h3>מה זה עושה?</h3>
+            <p>מקום שמור למוצר הבא של IMPACT SO. כשתשלחי תמונה, שם ולינק, נכניס אותו לאותה שפה מותגית.</p>
+            <a class="product-link" href="#contact">לפרטי המוצר
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5"/>
+              </svg>
+            </a>
+          </div>
+        </div>
       </div>
     </article>
   </div>
@@ -2313,6 +2431,7 @@ footer::after{
   var done = false;
   var fallbackTimer;
   var frameLoop = 0;
+  var progressLoop = 0;
   var userSkipped = false;
 
   function closeLoader(){
@@ -2320,6 +2439,7 @@ footer::after{
     done = true;
     clearTimeout(fallbackTimer);
     if(frameLoop) cancelAnimationFrame(frameLoop);
+    if(progressLoop) cancelAnimationFrame(progressLoop);
     if(window.location.hash && !userSkipped){
       history.replaceState(null, document.title, window.location.pathname + window.location.search);
     }
@@ -2392,9 +2512,20 @@ footer::after{
     }, 50);
   }
 
+  function updateLoaderProgress(){
+    if(done || !loader || !video) return;
+    var progress = .04;
+    if(isFinite(video.duration) && video.duration > 0){
+      progress = Math.max(.04, Math.min(.985, video.currentTime / video.duration));
+    }
+    loader.style.setProperty('--loader-progress', progress.toFixed(3));
+    progressLoop = requestAnimationFrame(updateLoaderProgress);
+  }
+
   if(video){
     video.muted = true;
     video.defaultMuted = true;
+    video.playbackRate = 1.28;
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
     function ensureVideoPlay(){
@@ -2408,6 +2539,7 @@ footer::after{
       }
       ensureVideoPlay();
       paintWhiteFrame();
+      updateLoaderProgress();
     }, {once:true});
     video.addEventListener('loadeddata', ensureVideoPlay, {once:true});
     video.addEventListener('canplay', paintWhiteFrame, {once:true});
@@ -2544,6 +2676,21 @@ footer::after{
       if(window.innerWidth > 760) setMobileMenu(false);
     });
   }
+
+  document.querySelectorAll('.product-card').forEach(function(card){
+    card.addEventListener('click', function(event){
+      if(event.target.closest('a')) return;
+      document.querySelectorAll('.product-card.is-flipped').forEach(function(openCard){
+        if(openCard !== card) openCard.classList.remove('is-flipped');
+      });
+      card.classList.toggle('is-flipped');
+    });
+    card.addEventListener('keydown', function(event){
+      if(event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      card.click();
+    });
+  });
 
   function setupMobileHoldExperience(){
     if(!holdExperience || !holdButton) return;
