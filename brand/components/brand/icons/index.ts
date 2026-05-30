@@ -1,0 +1,5 @@
+export type { ImpactIconProps } from './types'
+export { ImpactDataIcon } from './ImpactDataIcon'
+export { WorkflowFingerprintIcon } from './WorkflowFingerprintIcon'
+export { EducationFlowIcon } from './EducationFlowIcon'
+export { AiSparkIcon } from './AiSparkIcon'

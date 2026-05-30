@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IMPACT SO Brand Kit</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#061E4F;
+  --fuchsia:#F00678;
+  --teal:#12C7C7;
+  --green:#7BCB52;
+  --yellow:#F4B41B;
+  --orange:#FF7A1A;
+  --slate:#64748B;
+  --soft:#F8FAFC;
+  --white:#FFFFFF;
+  --logo-fingerprint:var(--navy);
+  --logo-heart:var(--fuchsia);
+  --logo-impact:var(--navy);
+  --logo-so:var(--fuchsia);
+  --logo-tagline:var(--navy);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Heebo,Arial,sans-serif;background:var(--soft);color:var(--navy)}
+main{max-width:1120px;margin:0 auto;padding:48px 24px 72px}
+h1{font-size:42px;line-height:1;margin:0 0 12px;font-weight:900}
+p{color:var(--slate);font-size:18px;line-height:1.7;margin:0 0 32px}
+section{background:var(--white);border:1px solid rgba(6,30,79,.08);border-radius:24px;padding:28px;margin-top:22px;box-shadow:0 18px 60px rgba(6,30,79,.08)}
+h2{font-size:22px;margin:0 0 22px;font-weight:900}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.tile{min-height:170px;border:1px solid rgba(6,30,79,.08);border-radius:18px;padding:22px;display:flex;align-items:center;justify-content:center;background:var(--white)}
+.tile.dark{background:var(--navy)}
+.brand-lockup{display:flex;align-items:center;gap:12px;direction:ltr;background:transparent}
+.brand-lockup-mark{width:58px;height:68px;flex:0 0 auto;display:block;overflow:visible}
+.brand-lockup-text{display:flex;flex-direction:column;align-items:flex-start;gap:4px;white-space:nowrap}
+.brand-lockup-name{display:flex;align-items:baseline;gap:8px;line-height:.9}
+.brand-lockup-impact{color:var(--logo-impact);font-size:34px;font-weight:900;letter-spacing:1.5px}
+.brand-lockup-so{color:var(--logo-so);font-size:34px;font-weight:900;letter-spacing:1px}
+.brand-lockup-tagline{color:var(--logo-tagline);direction:rtl;font-size:12px;font-weight:700;letter-spacing:4px;line-height:1}
+.logo-teal{--logo-fingerprint:var(--teal)}
+.logo-green{--logo-fingerprint:var(--green)}
+.logo-white{--logo-fingerprint:var(--white);--logo-impact:var(--white);--logo-tagline:var(--white)}
+.swatches{display:grid;grid-template-columns:repeat(9,1fr);gap:10px}
+.swatch{height:74px;border-radius:16px;border:1px solid rgba(6,30,79,.08)}
+.loader-demo{height:260px;display:flex;align-items:center;justify-content:center;background:var(--soft);border-radius:18px;overflow:hidden}
+.loader-mark path{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.2s ease forwards}
+.loader-mark path:nth-child(2){animation-delay:.08s}.loader-mark path:nth-child(3){animation-delay:.16s}.loader-mark path:nth-child(4){animation-delay:.24s}.loader-mark path:nth-child(5){animation-delay:.32s}
+@keyframes draw{to{stroke-dashoffset:0}}
+.icons{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.icon-card{border:1px solid rgba(6,30,79,.08);border-radius:18px;padding:22px;text-align:center;background:var(--white)}
+.icon-card svg{width:42px;height:42px;margin-bottom:10px}
+.icon-card span{display:block;color:var(--slate);font-weight:700}
+@media(max-width:760px){.grid,.icons{grid-template-columns:1fr}.swatches{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<main>
+  <h1>IMPACT SO Brand Kit</h1>
+  <p>דף בדיקה גלוי למיתוג: לוגו שקוף, וריאציות צבע, Loader ואייקונים בשפת טביעת אצבע.</p>
+
+  <section>
+    <h2>לוגו שקוף ווריאציות צבע</h2>
+    <div class="grid">
+      <div class="tile"><div class="brand-lockup">__LOGO_MARK__<span class="brand-lockup-text"><span class="brand-lockup-name"><span class="brand-lockup-impact">IMPACT</span><span class="brand-lockup-so">SO</span></span><span class="brand-lockup-tagline">טכנולוגיה יוצרת אימפקט</span></span></div></div>
+      <div class="tile"><div class="brand-lockup logo-teal">__LOGO_MARK__<span class="brand-lockup-text"><span class="brand-lockup-name"><span class="brand-lockup-impact">IMPACT</span><span class="brand-lockup-so">SO</span></span><span class="brand-lockup-tagline">טכנולוגיה יוצרת אימפקט</span></span></div></div>
+      <div class="tile dark"><div class="brand-lockup logo-white">__LOGO_MARK__<span class="brand-lockup-text"><span class="brand-lockup-name"><span class="brand-lockup-impact">IMPACT</span><span class="brand-lockup-so">SO</span></span><span class="brand-lockup-tagline">טכנולוגיה יוצרת אימפקט</span></span></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>צבעי מותג</h2>
+    <div class="swatches">
+      <div class="swatch" style="background:#061E4F"></div>
+      <div class="swatch" style="background:#F00678"></div>
+      <div class="swatch" style="background:#12C7C7"></div>
+      <div class="swatch" style="background:#7BCB52"></div>
+      <div class="swatch" style="background:#F4B41B"></div>
+      <div class="swatch" style="background:#FF7A1A"></div>
+      <div class="swatch" style="background:#64748B"></div>
+      <div class="swatch" style="background:#F8FAFC"></div>
+      <div class="swatch" style="background:#FFFFFF"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Loader: טביעה נציירת ואז לוגו מלא</h2>
+    <div class="loader-demo">
+      <svg class="loader-mark" viewBox="0 0 240 284" width="150" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#061E4F" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <path pathLength="1" d="M66 76C88 42 139 35 172 60C197 79 207 111 199 146"/>
+          <path pathLength="1" d="M45 110C57 55 118 26 171 48C212 65 235 107 230 153"/>
+          <path pathLength="1" d="M19 149C16 79 73 23 142 27C199 30 242 77 240 133"/>
+          <path pathLength="1" d="M51 188C35 103 94 32 174 38"/>
+          <path pathLength="1" d="M79 212C52 136 82 70 142 57C180 49 213 72 220 110"/>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <section>
+    <h2>אייקונים בשפת טביעת אצבע</h2>
+    <div class="icons">
+      <div class="icon-card">__ICON_DATA__<span>דאטה</span></div>
+      <div class="icon-card">__ICON_FLOW__<span>תהליך</span></div>
+      <div class="icon-card">__ICON_EDU__<span>חינוך</span></div>
+      <div class="icon-card">__ICON_AI__<span>AI</span></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>
