@@ -2723,14 +2723,33 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
   color:#061E4F!important;
   border:1px solid rgba(6,30,79,.10)!important;
   box-shadow:0 14px 34px rgba(6,30,79,.06)!important;
-  min-height:0!important;
-  aspect-ratio:1.5/1!important;
+  min-height:auto!important;
+  aspect-ratio:auto!important;
   padding:22px 20px!important;
   border-radius:20px!important;
   display:flex!important;
   flex-direction:column!important;
   justify-content:flex-start!important;
   visibility:visible!important;
+  opacity:1!important;
+  overflow:visible!important;
+}
+.slide[data-slide="22"] .proof-card-sor{
+  background:linear-gradient(135deg, rgba(255,107,157,.06), rgba(18,199,199,.04))!important;
+  border:2px solid rgba(255,107,157,.32)!important;
+  box-shadow:0 18px 44px rgba(255,107,157,.12)!important;
+}
+.slide[data-slide="22"] .proof-card-sor .appendix-label{
+  display:inline-block!important;
+  background:linear-gradient(135deg, #ff6b9d, #f06190)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  padding:4px 12px!important;
+  border-radius:999px!important;
+  font-size:.72rem!important;
+  font-weight:700!important;
+  margin-bottom:10px!important;
+  align-self:flex-start!important;
   opacity:1!important;
 }
 .slide[data-slide="22"] .proof-card *,
@@ -2766,12 +2785,20 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
   place-items:center!important;
   text-align:center!important;
 }
+.thanks-slide .slide-shell{
+  grid-template-rows:1fr auto;
+  align-items:center;
+  justify-items:center;
+}
 .thanks-slide .thanks-wrap{
   width:min(920px,86vw);
   margin-inline:auto;
   display:grid;
   place-items:center;
   gap:26px;
+  text-align:center;
+  align-self:center;
+  justify-self:center;
 }
 .thanks-slide .thanks-title{
   margin:0;
@@ -3054,6 +3081,10 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
   flex-direction:column;
   gap:10px;
   padding:28px 26px;
+  cursor:pointer;
+  pointer-events:auto;
+  position:relative;
+  z-index:5;
   border-radius:22px;
   background:linear-gradient(150deg, #ffffff 0%, #f4f8ff 100%);
   border:1px solid rgba(20, 60, 110, .12);
@@ -3079,6 +3110,26 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
   border-radius:999px;
   background:rgba(20, 110, 180, .12);
   color:#0d4a7a;
+}
+.slide.demo-slide .demo-link-preview{
+  width:100%;
+  aspect-ratio:16/10;
+  border-radius:12px;
+  overflow:hidden;
+  background:#eaf3fb;
+  border:1px solid rgba(20, 60, 110, .08);
+  margin-bottom:6px;
+}
+.slide.demo-slide .demo-link-preview img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:top center;
+  display:block;
+  transition:transform .25s ease;
+}
+.slide.demo-slide .demo-link-card:hover .demo-link-preview img{
+  transform:scale(1.03);
 }
 .slide.demo-slide .demo-link-card h3{
   font-size:1.35rem;
@@ -3601,11 +3652,6 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
         </div>
         <div class="slide-num">12</div>
       </div>
-      <figure class="demo-shot clean-shot morning-groups-shot">
-        <div class="demo-frame">
-          <img src="avnei-board-assets/teacher-morning-groups.png" alt="דשבורד מורה — קבוצות בוקר מומלצות, התראות, ותלמידים ללא קבוצה">
-        </div>
-      </figure>
       <div class="mini-dashboard">
         <div class="dashboard-card">
           <h3>תמונת כיתה</h3>
@@ -3926,19 +3972,24 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
       <div class="slide-head">
         <div>
           <div class="kicker">הדגמת מערכת</div>
-          <h2 class="slide-title">לראות במו עיניים. <span class="accent">לא מצגת — מערכת חיה.</span></h2>
-          <p class="lede">שתי הדגמות פעילות בדפדפן: מסלול תלמיד.ה באבני יסוד וחוויית פולס נוני. לחיצה פותחת את המערכת בלשונית חדשה.</p>
+          <h2 class="slide-title"><span class="accent">טעימה קטנה מהמערכת</span></h2>
         </div>
         <div class="slide-num">21</div>
       </div>
       <div class="demo-links-grid">
-        <a class="demo-link-card" href="https://impact-os.app/avnei-yesod/underwater-app/map.html" target="_blank" rel="noopener">
+        <a class="demo-link-card" href="https://impact-os.app/avnei-yesod/underwater-app/map.html?guest=1&presentation=1" target="_blank" rel="noopener">
+          <div class="demo-link-preview">
+            <img src="avnei-board-assets/demo-map-islands.png" alt="תצוגה מקדימה: מפת איים — אבני יסוד">
+          </div>
           <div class="demo-link-tag">אבני יסוד · כיתה א׳</div>
           <h3>מפת איים — מסלול תלמיד.ה</h3>
-          <p>14 איים, מסלול אישי, אותיות וצלילים, משחקים. דמו פעיל.</p>
+          <p>14 איים, מסלול אישי, אותיות וצלילים, משחקים.</p>
           <div class="demo-link-cta">פתח דמו ←</div>
         </a>
         <a class="demo-link-card" href="https://impact-os.app/inclusion/pulse-demo.html" target="_blank" rel="noopener">
+          <div class="demo-link-preview">
+            <img src="avnei-board-assets/demo-pulse-opening.png" alt="תצוגה מקדימה: דף הפתיחה של פולס נוני">
+          </div>
           <div class="demo-link-tag">פולס נוני · כיתה א׳</div>
           <h3>פולס רגשי — שאלון 60 שניות</h3>
           <p>4 מימדים רגש-חברתיים, גרירת נוני בין 3 פנים, דשבורד מחנכת.</p>
@@ -3955,15 +4006,15 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
         <div>
           <div class="kicker">בסיס מחקרי ומקצועי</div>
           <h2 class="slide-title">לא רעיון. <span class="accent">שכבת ביצוע לשיטות שכבר הוכיחו את עצמן.</span></h2>
-          <p class="lede">כל החלטה במערכת נשענת על מסגרת מחקרית מבוססת בעולם הלמידה האדפטיבית, הפסיכומטריקה החינוכית והוראת הקריאה.</p>
+          <p class="lede">אבני יסוד בנויה על <strong>Science of Reading</strong> — המתודולוגיה המבוססת-מחקר ביותר להקניית קריאה היום — ועל המסגרות המובילות בלמידה אדפטיבית ובפסיכומטריקה חינוכית.</p>
         </div>
         <div class="slide-num">22</div>
       </div>
       <div class="proof-grid">
-        <article class="card dark proof-card">
-          <div class="appendix-label">Science of Reading</div>
-          <h3>הקריאה מפורקת לאבני יסוד</h3>
-          <p>פונמיקה, decoding, שטף (fluency), אוצר מילים והבנת הנקרא — חמש העמודות של ה-Reading Rope (Scarborough). המערכת מודדת כל אחת בנפרד, לא "קריאה" כללית.</p>
+        <article class="card dark proof-card proof-card-sor">
+          <div class="appendix-label">⭐ המתודולוגיה המובילה</div>
+          <h3>Science of Reading — השיטה שעובדת</h3>
+          <p>מעל 50 שנות מחקר (NRP 2000, Scarborough's Reading Rope) הוכיחו: explicit phonics + 5 עמודות הקריאה (פונמיקה, decoding, שטף, אוצר, הבנה) משיגים תוצאות עדיפות משמעותית על שיטות whole-language. מיסיסיפי עברה מ-49 ל-21 בדירוג NAEP תוך 6 שנים בזכות מעבר ל-SOR. <strong>אבני יסוד בנויה על המסגרת הזאת.</strong></p>
         </article>
         <article class="card proof-card">
           <div class="appendix-label">Bayesian Knowledge Tracing</div>
@@ -3980,20 +4031,10 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
           <h3>תרגול בקצה הצמיחה</h3>
           <p>Vygotsky: למידה אפקטיבית קורית במרחק הנכון מהיכולת הנוכחית — לא קל מדי, לא קשה מדי. המערכת בוחרת את הפריט הבא שמתאים בדיוק לאזור הזה לכל תלמיד.</p>
         </article>
-        <article class="card proof-card">
-          <div class="appendix-label">Spaced &amp; Interleaved Practice</div>
-          <h3>חזרה מרווחת ומגוונת</h3>
-          <p>אבן יסוד שכבר נרכשה חוזרת במרווחי זמן הולכים וגדלים, בהקשרים שונים. מבוסס על מחקרי Cepeda ו-Bjork ב-desirable difficulties — מה שמרגיש "קצת קשה" נשמר טוב יותר לטווח ארוך.</p>
-        </article>
         <article class="card dark proof-card">
           <div class="appendix-label">MTSS · Tiered Support</div>
           <h3>תמיכה מדורגת בתוך הכיתה</h3>
           <p>Multi-Tiered System of Supports: רוב התלמידים בתרגול שגרתי (Tier 1), חלק בתמיכה ממוקדת (Tier 2), ומיעוט בהתערבות מוגברת (Tier 3) — בלי לצאת מהכיתה הרגילה.</p>
-        </article>
-        <article class="card proof-card">
-          <div class="appendix-label">Formative Assessment</div>
-          <h3>הערכה שמשנה את ההוראה</h3>
-          <p>Black &amp; Wiliam: המדידה האפקטיבית ביותר היא זו שמשנה את הצעד הבא בהוראה. המערכת לא בוחנת — היא מזינה החלטה פדגוגית בזמן אמת.</p>
         </article>
         <article class="card tinted proof-card">
           <div class="appendix-label">Teacher in the Loop</div>
@@ -4222,48 +4263,54 @@ document.addEventListener("keydown", (event) => {
 const initial = Number.parseInt(location.hash.replace("#", ""), 10);
 showSlide(Number.isFinite(initial) ? initial - 1 : 0);
 
-// ===== Image lightbox =====
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightboxImg");
-const lightboxCaption = document.getElementById("lightboxCaption");
-const lightboxCloseBtn = lightbox.querySelector(".lightbox-close");
+// ===== Image lightbox (event delegation) =====
+(function () {
+  const lightbox = document.getElementById("lightbox");
+  if (!lightbox) return;
+  const lightboxImg = document.getElementById("lightboxImg");
+  const lightboxCaption = document.getElementById("lightboxCaption");
+  const lightboxCloseBtn = lightbox.querySelector(".lightbox-close");
 
-function openLightbox(img, caption) {
-  lightboxImg.src = img.src;
-  lightboxImg.alt = img.alt || "";
-  lightboxCaption.textContent = caption || "";
-  lightbox.classList.add("is-open");
-  lightbox.setAttribute("aria-hidden", "false");
-}
-function closeLightbox() {
-  lightbox.classList.remove("is-open");
-  lightbox.setAttribute("aria-hidden", "true");
-  lightboxImg.src = "";
-  lightboxCaption.textContent = "";
-}
+  function openLightbox(img, caption) {
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt || "";
+    lightboxCaption.textContent = caption || "";
+    lightbox.classList.add("is-open");
+    lightbox.setAttribute("aria-hidden", "false");
+  }
+  function closeLightbox() {
+    lightbox.classList.remove("is-open");
+    lightbox.setAttribute("aria-hidden", "true");
+    lightboxImg.src = "";
+    lightboxCaption.textContent = "";
+  }
 
-document.querySelectorAll(".demo-shot, .screen-card").forEach((fig) => {
-  fig.addEventListener("click", (e) => {
+  // Event delegation — survives any DOM weirdness
+  document.addEventListener("click", function (e) {
+    // Lightbox close handling
+    if (lightbox.classList.contains("is-open")) {
+      if (e.target === lightboxImg || e.target === lightboxCaption) return;
+      if (e.target === lightbox || e.target === lightboxCloseBtn || lightboxCloseBtn.contains(e.target)) {
+        closeLightbox();
+        return;
+      }
+    }
+    // Open lightbox on figure click
+    const fig = e.target.closest(".demo-shot, .screen-card");
+    if (!fig) return;
     const img = fig.querySelector("img");
     if (!img) return;
     const cap = fig.querySelector("figcaption, .screen-caption");
     openLightbox(img, cap ? cap.textContent.trim() : "");
-    e.stopPropagation();
+  }, true);
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
+      event.preventDefault();
+      closeLightbox();
+    }
   });
-});
-
-lightbox.addEventListener("click", (e) => {
-  if (e.target === lightboxImg || e.target === lightboxCaption) return;
-  closeLightbox();
-});
-lightboxCloseBtn.addEventListener("click", closeLightbox);
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
-    event.preventDefault();
-    closeLightbox();
-  }
-});
+})();
 </script>
 
 
