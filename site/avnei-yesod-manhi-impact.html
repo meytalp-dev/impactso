@@ -3245,27 +3245,41 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
 
 
 /* ============ NEW · slide 14 full dashboard image ============ */
+.slide.dashboard-full-slide{
+  overflow:hidden;
+}
+.slide.dashboard-full-slide .slide-shell{
+  grid-template-rows:auto 1fr;
+  min-height:0;
+}
 .slide.dashboard-full-slide .dashboard-fullshot{
   display:flex;
   justify-content:center;
-  align-items:center;
+  align-items:flex-start;
   margin:0;
   width:100%;
-  flex:1;
   min-height:0;
+  min-width:0;
+  overflow:hidden;
 }
 .slide.dashboard-full-slide .dashboard-fullshot .demo-frame{
   max-width:min(1240px, 100%);
-  width:100%;
+  max-height:100%;
+  width:auto;
+  height:auto;
   border-radius:18px;
   overflow:hidden;
   box-shadow:0 24px 64px -22px rgba(11,30,52,.38), 0 6px 22px -8px rgba(11,30,52,.20);
   background:#fff;
+  display:flex;
 }
 .slide.dashboard-full-slide .dashboard-fullshot img{
   display:block;
-  width:100%;
+  max-width:100%;
+  max-height:100%;
+  width:auto;
   height:auto;
+  object-fit:contain;
 }
 
 </style>
