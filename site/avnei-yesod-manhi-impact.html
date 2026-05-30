@@ -1,0 +1,3662 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact OS אבני יסוד · מצגת לוועד המנהל מנח״י</title>
+<meta name="description" content="מצגת לוועד המנהל של מנח״י: אבני יסוד כשכבת ביצוע לדיפרנציאליות פרסונלית בתוכנית החומש להכלה.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&amp;family=Rubik:wght@400;500;600;700;800;900&amp;family=Inter:wght@500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════════════════
+   ImpactOS · אבני יסוד · מצגת לוועד המנהל מנח״י
+   סגנון תואם למצגת avnei-yesod-manhi-inclu
+   ═══════════════════════════════════════════════════════ */
+:root {
+  --indigo: #4F46E5;
+  --indigo-dark: #3730A3;
+  --violet: #7C3AED;
+  --violet-soft: #8B5CF6;
+  --magenta: #A21CAF;
+  --sky: #2563EB;
+  --grad: linear-gradient(135deg, #2563EB 0%, #4F46E5 36%, #7C3AED 68%, #A21CAF 100%);
+  --grad-quiet: linear-gradient(135deg, rgba(37,99,235,0.06), rgba(124,58,237,0.06) 60%, rgba(162,28,175,0.05));
+  --ink: #0B1220;
+  --ink-2: #1E293B;
+  --slate: #334155;
+  --slate-2: #475569;
+  --muted: #64748B;
+  --soft: #94A3B8;
+  --hush: #CBD5E1;
+  --line: #E5E9F2;
+  --line-soft: #EFF2F8;
+  --paper: #FCFCFD;
+  --paper-2: #F6F7FB;
+  --paper-3: #EEF1F7;
+  --white: #FFFFFF;
+  --gutter: clamp(40px, 4.5vw, 80px);
+  --spine: 1px;
+  --r-sm: 14px;
+  --r-md: 18px;
+  --sh-1: 0 1px 2px rgba(15,23,42,0.04), 0 0 0 1px rgba(15,23,42,0.03);
+  --sh-2: 0 2px 6px rgba(15,23,42,0.04), 0 0 0 1px rgba(15,23,42,0.04);
+  --sh-3: 0 8px 24px rgba(15,23,42,0.06), 0 0 0 1px rgba(15,23,42,0.04);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Heebo", Arial, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.deck {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.progress {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 2px;
+  z-index: 99;
+  background: transparent;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--grad);
+  transition: width 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.deck-topbar {
+  position: fixed;
+  top: clamp(28px, 3.5vh, 48px);
+  right: var(--gutter);
+  left: var(--gutter);
+  z-index: 75;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.logo-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-row svg.logo-mark {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+}
+
+.logo-row .name {
+  font-family: "Inter", "Rubik", sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0;
+  line-height: 1.1;
+}
+
+.logo-row .product {
+  font-size: 11.5px;
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  margin-top: 2px;
+}
+
+.slide-marker {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-family: "Inter", monospace;
+  font-size: 11.5px;
+  letter-spacing: 2.5px;
+  color: var(--muted);
+  font-weight: 700;
+  direction: ltr;
+}
+
+.slide-marker .current {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 900;
+}
+
+.slide-marker .divider {
+  width: 24px;
+  height: 1px;
+  background: var(--line);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(88px, 11vh, 116px) var(--gutter) clamp(78px, 8vh, 96px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+              transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+              visibility 0s linear 0.7s;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+              transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+              visibility 0s;
+}
+
+.slide::before {
+  content: "";
+  position: absolute;
+  top: clamp(88px, 11vh, 116px);
+  bottom: clamp(78px, 8vh, 96px);
+  right: calc(var(--gutter) * 0.45);
+  width: var(--spine);
+  background: var(--line);
+  z-index: 0;
+}
+
+.slide:first-child::before {
+  display: none;
+}
+
+.slide-shell {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1460px;
+  min-height: 0;
+  flex: 1;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: clamp(18px, 2.5vh, 28px);
+}
+
+.slide-shell.compact {
+  min-height: min(560px, 100%);
+}
+
+.slide-head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: start;
+}
+
+.brand-chip {
+  display: none;
+}
+
+.brand-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--grad);
+}
+
+.slide-num {
+  display: none;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Inter", "Rubik", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin: 0 0 14px;
+}
+
+.kicker::before {
+  content: "";
+  width: 22px;
+  height: 1.5px;
+  background: var(--grad);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: "Rubik", "Heebo", sans-serif;
+  letter-spacing: 0;
+  line-height: 1.05;
+  color: var(--ink);
+}
+
+.title-h1 {
+  font-size: clamp(40px, 5.2vw, 80px);
+  line-height: 0.98;
+  max-width: 1060px;
+  font-weight: 900;
+  letter-spacing: 0;
+  margin-bottom: 22px;
+}
+
+.slide-title {
+  font-size: clamp(26px, 3.2vw, 42px);
+  line-height: 1.05;
+  max-width: 34ch;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.accent {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.quiet {
+  color: var(--ink-2);
+  font-weight: 700;
+}
+
+.lede {
+  margin: 14px 0 0;
+  max-width: 72ch;
+  color: var(--slate);
+  font-size: clamp(15.5px, 1.2vw, 18px);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.lede strong {
+  color: var(--ink);
+  font-weight: 900;
+}
+
+.body-grid {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  align-items: start;
+}
+
+.cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.card,
+.metric,
+.quote-panel,
+.timeline-item,
+.path-card {
+  background: rgba(255,255,255,0.82);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-2);
+  border-radius: var(--r-md);
+}
+
+.card,
+.metric,
+.quote-panel,
+.timeline-item,
+.path-card,
+.dashboard-card,
+.compare-col,
+.flow-step {
+  align-self: start;
+}
+
+.card {
+  padding: 24px;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.card.tinted {
+  background: var(--grad-quiet);
+  border-color: var(--line);
+}
+
+.card.dark {
+  background: var(--ink);
+  color: white;
+  border-color: var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+
+.card.dark::after,
+.quote-panel::after {
+  content: "";
+  position: absolute;
+  top: -100px;
+  right: -50px;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(124,58,237,0.40), transparent 65%);
+  filter: blur(30px);
+}
+
+.card h3 {
+  font-size: clamp(18px, 1.8vw, 24px);
+  line-height: 1.25;
+  font-weight: 800;
+}
+
+.card p,
+.card li,
+.timeline-item p,
+.path-card p {
+  margin: 0;
+  color: var(--slate);
+  font-size: clamp(14px, 1vw, 16px);
+  line-height: 1.55;
+}
+
+.card.dark p,
+.card.dark li {
+  color: rgba(255,255,255,0.84);
+  position: relative;
+  z-index: 1;
+}
+
+.card.dark h3 {
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+
+.card ul,
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.list li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: start;
+}
+
+.check {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  margin-top: 3px;
+  background: rgba(79,70,229,0.12);
+  color: var(--indigo);
+  font-weight: 900;
+  font-size: 13px;
+}
+
+.metric {
+  min-height: 0;
+  padding: 24px;
+  display: grid;
+  gap: 6px;
+}
+
+.metric-value {
+  font-family: "Inter", sans-serif;
+  font-size: clamp(42px, 5vw, 68px);
+  line-height: 0.95;
+  font-weight: 900;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.metric-value,
+.metric-label {
+  color: var(--indigo);
+}
+
+.metric-label {
+  font-size: clamp(17px, 1.4vw, 22px);
+  font-weight: 800;
+  color: var(--ink-2);
+}
+
+.metric-desc {
+  font-size: clamp(13px, 0.95vw, 15px);
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+.compare {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.compare-col {
+  padding: 24px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-2);
+}
+
+.compare-col.good {
+  background: var(--grad-quiet);
+  border-color: var(--line);
+}
+
+.compare-col h3 {
+  font-size: clamp(20px, 1.8vw, 26px);
+  margin-bottom: 16px;
+}
+
+.compare-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.compare-col li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  color: var(--slate);
+  font-size: clamp(14px, 1.05vw, 16px);
+  line-height: 1.35;
+}
+
+.vs {
+  align-self: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-family: "Inter", sans-serif;
+  font-weight: 900;
+  background: var(--white);
+  border: 1px solid var(--line);
+  color: var(--violet);
+  box-shadow: var(--sh-2);
+}
+
+.flow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+.flow-step {
+  position: relative;
+  min-height: 0;
+  padding: 18px;
+  border-radius: var(--r-md);
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-1);
+}
+
+.flow-step::after {
+  content: "";
+  position: absolute;
+  left: -22px;
+  top: 50%;
+  width: 28px;
+  height: 2px;
+  background: rgba(79,70,229,0.35);
+}
+
+.flow-step:first-child::after {
+  display: none;
+}
+
+.flow-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+  background: var(--grad);
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-weight: 900;
+}
+
+.flow-step h3 {
+  font-size: clamp(16px, 1.35vw, 20px);
+  margin-bottom: 8px;
+}
+
+.flow-step p {
+  margin: 0;
+  color: var(--slate);
+  font-size: clamp(13px, 0.95vw, 15px);
+  line-height: 1.38;
+}
+
+.skill-map {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+.skill-cloud {
+  padding: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  gap: 14px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-2);
+}
+
+.skill-map > .skill-cloud,
+.skill-map > .quote-panel {
+  align-self: stretch;
+  min-height: 318px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: rgba(79,70,229,0.1);
+  color: var(--indigo-dark);
+  font-size: clamp(13px, 1vw, 15px);
+  font-weight: 800;
+}
+
+.pill.alt {
+  background: rgba(15,118,110,0.1);
+  color: #0F766E;
+}
+
+.pill.warn {
+  background: rgba(183,121,31,0.12);
+  color: #B7791F;
+}
+
+.quote-panel {
+  padding: 34px;
+  display: grid;
+  align-content: center;
+  gap: 18px;
+  background: var(--ink);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.quote-panel .small {
+  color: rgba(255,255,255,0.72);
+  font-weight: 800;
+  position: relative;
+  z-index: 1;
+}
+
+.quote-panel .quote {
+  font-family: "Rubik", "Heebo", sans-serif;
+  font-size: clamp(24px, 2.7vw, 40px);
+  line-height: 1.15;
+  font-weight: 900;
+  position: relative;
+  z-index: 1;
+}
+
+.quote-panel p {
+  margin: 0;
+  color: rgba(255,255,255,0.84);
+  font-size: clamp(14px, 1.05vw, 17px);
+  line-height: 1.45;
+  position: relative;
+  z-index: 1;
+}
+
+.student-journey {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+.path-card {
+  padding: 20px;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow: hidden;
+}
+
+.path-level {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--indigo);
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.path-card h3 {
+  font-size: clamp(20px, 1.7vw, 26px);
+}
+
+.path-card .tag {
+  align-self: flex-start;
+  width: fit-content;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(79,70,229,0.1);
+  color: var(--indigo-dark);
+  font-weight: 800;
+}
+
+.mini-dashboard {
+  display: grid;
+  grid-template-columns: 0.96fr 1.04fr;
+  gap: 22px;
+  align-items: stretch;
+}
+
+.dashboard-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-2);
+  border-radius: var(--r-md);
+  padding: 26px;
+}
+
+.dashboard-card h3 {
+  font-size: clamp(20px, 2vw, 28px);
+  margin-bottom: 16px;
+}
+
+.student-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  min-height: 54px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(148,163,184,0.2);
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--grad);
+  color: white;
+  font-weight: 900;
+}
+
+.student-name {
+  font-weight: 900;
+  font-size: 18px;
+}
+
+.student-meta {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.status {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(15,118,110,0.1);
+  color: #0F766E;
+  font-weight: 900;
+  font-size: 14px;
+}
+
+.insight-list {
+  display: grid;
+  gap: 12px;
+}
+
+.insight {
+  padding: 16px;
+  border-radius: var(--r-sm);
+  background: rgba(79,70,229,0.08);
+  border: 1px solid rgba(79,70,229,0.14);
+  color: var(--slate);
+  font-size: clamp(13.5px, 1vw, 16px);
+  line-height: 1.35;
+}
+
+.experience-layout {
+  display: grid;
+  gap: 14px;
+  align-items: start;
+}
+
+.screenshot-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+.screen-card,
+.demo-shot {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-2);
+}
+
+.screen-card {
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  max-width: 480px;
+  justify-self: center;
+  margin: 0;
+}
+
+.screen-frame {
+  aspect-ratio: 16 / 8.6;
+  overflow: hidden;
+  border-radius: var(--r-sm);
+  border: 1px solid rgba(148,163,184,0.22);
+  background: #F8FAFC;
+}
+
+.screen-frame img,
+.demo-shot img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.screen-frame img {
+  object-fit: cover;
+  object-position: top center;
+}
+
+.screen-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--ink-2);
+  font-weight: 900;
+  font-size: clamp(13px, 0.95vw, 15px);
+  line-height: 1.15;
+}
+
+.screen-caption span {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.measurement-layout {
+  display: grid;
+  grid-template-columns: 0.88fr 1.12fr;
+  gap: 22px;
+  align-items: start;
+}
+
+.demo-shot {
+  padding: 12px;
+  min-height: 0;
+}
+
+.demo-shot.clean-shot {
+  padding: 8px;
+}
+
+.demo-shot .demo-frame {
+  aspect-ratio: 16 / 10;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  background: #F8FAFC;
+  border: 1px solid rgba(148,163,184,0.22);
+}
+
+.demo-shot img {
+  object-fit: contain;
+  object-position: center;
+}
+
+.teacher-shot .demo-frame {
+  aspect-ratio: 16 / 10;
+}
+
+.teacher-day-layout {
+  grid-template-columns: 1.12fr 0.88fr;
+}
+
+.appendix-label {
+  display: inline-flex;
+  width: fit-content;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(79,70,229,0.1);
+  color: var(--indigo-dark);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.layer-stack {
+  display: grid;
+  gap: 16px;
+}
+
+.layer {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 18px;
+  align-items: center;
+  padding: 22px 24px;
+  border-radius: var(--r-md);
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-1);
+}
+
+.layer-name {
+  font-family: "Rubik", "Heebo", sans-serif;
+  font-size: clamp(18px, 1.7vw, 24px);
+  font-weight: 900;
+  color: var(--indigo);
+}
+
+.layer p {
+  margin: 0;
+  color: var(--slate);
+  font-size: clamp(14px, 1.05vw, 17px);
+  line-height: 1.42;
+}
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+.timeline-item {
+  padding: 24px;
+  min-height: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.timeline-year {
+  font-family: "Inter", sans-serif;
+  color: var(--indigo);
+  font-weight: 900;
+  font-size: clamp(38px, 5vw, 64px);
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.timeline-item h3 {
+  font-size: clamp(18px, 1.7vw, 24px);
+}
+
+.principle-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 22px;
+  align-items: start;
+}
+
+.principle-list {
+  display: grid;
+  gap: 14px;
+}
+
+.principle-note {
+  padding: 18px 20px;
+  border-radius: var(--r-md);
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-1);
+}
+
+.principle-note h3 {
+  font-size: clamp(18px, 1.55vw, 23px);
+  margin-bottom: 8px;
+}
+
+.principle-note p {
+  margin: 0;
+  color: var(--slate);
+  font-size: clamp(14px, 1vw, 16px);
+  line-height: 1.42;
+}
+
+.decision {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 22px;
+  align-items: stretch;
+}
+
+.decision .quote-panel {
+  min-height: 360px;
+}
+
+.closing-slide .slide-head {
+  text-align: center;
+  justify-content: center;
+}
+
+.closing-slide .slide-head > div:first-child {
+  max-width: 920px;
+}
+
+.closing-slide .slide-num {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.closing-wrap {
+  width: min(920px, 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: 22px;
+  text-align: center;
+}
+
+.closing-wrap .quote-panel {
+  min-height: 0;
+  padding: 32px 42px;
+}
+
+.closing-cards {
+  width: min(780px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+.thank-you {
+  font-family: "Rubik", "Heebo", sans-serif;
+  font-size: clamp(24px, 2.8vw, 42px);
+  line-height: 1;
+  font-weight: 900;
+  color: var(--indigo);
+}
+
+.teacher-day-layout {
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  gap: 22px;
+  align-items: start;
+}
+
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.proof-card {
+  padding: 18px;
+  min-height: 0;
+}
+
+.proof-card h3 {
+  font-size: clamp(17px, 1.35vw, 21px);
+}
+
+.proof-card p {
+  font-size: clamp(13px, 0.92vw, 15px);
+  line-height: 1.42;
+}
+
+.footer-note {
+  display: none;
+}
+
+.nav {
+  position: fixed;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.90);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 24px rgba(15,23,42,0.06), 0 0 0 1px rgba(15,23,42,0.03);
+  z-index: 100;
+}
+
+.nav button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  transition: background 0.2s, transform 0.15s;
+}
+
+.nav button:hover {
+  background: var(--paper-2);
+  transform: scale(1.05);
+}
+
+.nav button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.nav button svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.5;
+}
+
+.counter {
+  direction: ltr;
+  min-width: 56px;
+  text-align: center;
+  color: var(--muted);
+  font-family: "Inter", monospace;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.counter .current {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 900;
+}
+
+.logo-mark {
+  width: 60px;
+  height: 60px;
+}
+
+.title-logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: clamp(28px, 4vh, 48px);
+}
+
+.title-logo svg.logo-mark {
+  width: 60px;
+  height: 60px;
+}
+
+.title-logo .name {
+  font-family: "Inter", "Rubik", sans-serif;
+  font-weight: 800;
+  font-size: 32px;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.title-logo .product {
+  font-size: 13px;
+  color: var(--slate-2);
+  margin-top: 6px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.title-slide {
+  justify-content: center;
+  padding-top: clamp(28px, 3.5vh, 48px);
+}
+
+.title-slide::after {
+  content: "";
+  position: absolute;
+  top: -200px;
+  right: -100px;
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(circle, rgba(124,58,237,0.10), transparent 65%);
+  filter: blur(40px);
+  z-index: 0;
+}
+
+.is-title .deck-topbar {
+  display: none;
+}
+
+.title-meta {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 0;
+  width: fit-content;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin-top: 30px;
+}
+
+.title-meta span {
+  display: block;
+  min-height: auto;
+  padding: 14px 28px;
+  border-left: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 0;
+  color: var(--ink);
+  font-family: "Rubik", sans-serif;
+  font-weight: 700;
+  font-size: 14.5px;
+}
+
+.title-meta span:last-child {
+  border-left: none;
+}
+
+@media (max-width: 920px) {
+  body {
+    overflow: auto;
+  }
+
+  .deck {
+    min-height: 100vh;
+    height: auto;
+  }
+
+  .slide {
+    position: relative;
+    min-height: 100vh;
+    display: none;
+    padding: 92px 24px 94px;
+  }
+
+  .slide:first-child {
+    padding-top: 32px;
+  }
+
+  .slide::before {
+    display: none;
+  }
+
+  .deck-topbar {
+    top: 24px;
+    right: 24px;
+    left: 24px;
+  }
+
+  .slide.active {
+    display: grid;
+  }
+
+  .slide-shell {
+    height: auto;
+    min-height: auto;
+  }
+
+  .slide-head,
+  .cols-2,
+  .cols-3,
+  .cols-4,
+  .compare,
+  .skill-map,
+  .mini-dashboard,
+  .decision,
+  .principle-grid,
+  .timeline,
+  .student-journey,
+  .flow,
+  .screenshot-strip,
+  .measurement-layout,
+  .teacher-day-layout,
+  .closing-cards,
+  .proof-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vs,
+  .flow-step::after {
+    display: none;
+  }
+
+  .slide-num {
+    display: none;
+  }
+
+  .layer {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* === IMPACT SO rebrand layer | presentation only === */
+:root{
+  --navy:#061E4F;
+  --teal:#12C7C7;
+  --fuchsia:#F00678;
+  --yellow:#F4B41B;
+  --green:#67C54B;
+  --impact-bg:#F7FAFD;
+  --impact-gray:#66758F;
+  --indigo:var(--navy);
+  --indigo-dark:var(--navy);
+  --violet:var(--teal);
+  --violet-soft:var(--teal);
+  --magenta:var(--fuchsia);
+  --sky:var(--teal);
+  --grad:linear-gradient(90deg,var(--teal) 0%,var(--fuchsia) 100%);
+  --grad-quiet:linear-gradient(135deg,rgba(18,199,199,.08),rgba(240,6,120,.06));
+  --ink:var(--navy);
+  --ink-2:#102A62;
+  --slate:#53647D;
+  --slate-2:#64748B;
+  --muted:#71819A;
+  --soft:#99A7BA;
+  --hush:#DDE6F1;
+  --line:#E3EAF3;
+  --line-soft:#EFF4F8;
+  --paper:var(--impact-bg);
+  --paper-2:#FFFFFF;
+  --paper-3:#EEF7F8;
+  --white:#FFFFFF;
+}
+body{background:var(--impact-bg);color:var(--navy)}
+.deck{background:linear-gradient(180deg,#fff 0%,var(--impact-bg) 100%)}
+.progress-fill{background:linear-gradient(90deg,var(--teal),var(--fuchsia))}
+.deck::before{
+  content:"";
+  position:absolute;
+  inset:8vh auto auto -9vw;
+  width:min(520px,42vw);
+  aspect-ratio:1/1.23;
+  background:url('../public/brand/impact-fingerprint-scroll-teal.png') center/contain no-repeat;
+  opacity:.045;
+  pointer-events:none;
+  z-index:0;
+  transform:rotate(-9deg);
+}
+.slide{background:transparent}
+.slide::before{background:linear-gradient(180deg,transparent,var(--line),transparent)}
+.slide::after{
+  content:"";
+  position:absolute;
+  left:clamp(34px,5vw,90px);
+  bottom:clamp(48px,7vh,96px);
+  width:min(260px,21vw);
+  aspect-ratio:1/1.23;
+  background:url('../public/brand/impact-fingerprint-scroll-teal.png') center/contain no-repeat;
+  opacity:.035;
+  pointer-events:none;
+  z-index:0;
+  transform:rotate(-12deg);
+}
+.title-slide::after{
+  top:auto;
+  right:auto;
+  left:-110px;
+  bottom:-160px;
+  width:620px;
+  height:620px;
+  background:url('../public/brand/impact-fingerprint-scroll-fuchsia.png') center/contain no-repeat;
+  opacity:.055;
+  filter:none;
+}
+.logo-row svg.logo-mark,.title-logo svg.logo-mark{display:none}
+.deck-topbar{
+  top:0;
+  right:0;
+  left:0;
+  height:74px;
+  padding:0 var(--gutter);
+  background:rgba(255,255,255,.86);
+  border-bottom:1px solid rgba(6,30,79,.08);
+  backdrop-filter:blur(14px);
+  display:block;
+  overflow:hidden;
+}
+.is-title .deck-topbar{
+  display:block;
+}
+.deck-topbar::after{
+  content:"";
+  position:absolute;
+  right:var(--gutter);
+  left:var(--gutter);
+  bottom:0;
+  height:2px;
+  background:linear-gradient(90deg,rgba(18,199,199,.05),rgba(18,199,199,.9),rgba(240,6,120,.8),rgba(240,6,120,.05));
+  opacity:.55;
+}
+.logo-row,.title-logo{align-items:center}
+.title-logo::before{
+  content:"";
+  flex:0 0 auto;
+  width:38px;
+  aspect-ratio:1/1.23;
+  background:url('../public/brand/impact-fingerprint-official-color.png') center/contain no-repeat;
+}
+.deck-topbar .logo-row::before{
+  content:"";
+  display:block!important;
+  width:clamp(190px,18vw,250px);
+  aspect-ratio:1236/392;
+  background:url('presentation-assets/impact-os-logo-official-transparent.png') center/contain no-repeat;
+}
+.brand-word{
+  display:inline-flex;
+  align-items:center;
+  gap:.28em;
+  direction:ltr;
+  font-family:"Inter","Heebo",Arial,sans-serif;
+  font-weight:900;
+  letter-spacing:.035em;
+  line-height:1;
+}
+.brand-word .impact{color:var(--navy)}
+.brand-word .os{color:var(--fuchsia)}
+.brand-word::before{
+  content:"";
+  align-self:center;
+  width:52px;
+  aspect-ratio:1/1.23;
+  margin-right:8px;
+  background:url('../public/brand/impact-fingerprint-official-color.png') center/contain no-repeat;
+  opacity:.95;
+}
+.title-logo::before{width:44px}
+.logo-row .name,.title-logo .name{
+  color:var(--navy);
+  background:none;
+  -webkit-text-fill-color:currentColor;
+  font-family:"Inter","Heebo",Arial,sans-serif;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+.logo-row .name{
+  display:block;
+  font-size:20px;
+  line-height:1;
+}
+.deck-topbar .logo-row .name.brand-word{
+  display:none!important;
+}
+.deck-topbar .logo-row .name.brand-word .os{
+  margin-left:.12em;
+}
+.deck-topbar .logo-row .product{
+  display:none!important;
+}
+.logo-row{
+  position:absolute;
+  top:50%;
+  right:var(--gutter);
+  transform:translateY(-50%);
+  text-align:right;
+  justify-content:flex-end;
+}
+.brand-date{
+  display:none!important;
+}
+.brand-date::before{
+  display:none!important;
+}
+.slide-marker{
+  display:none!important;
+}
+.logo-row .product,.title-logo .product{display:none!important}
+.title-logo{display:none}
+.title-logo .name{
+  display:block;
+  font-size:22px;
+  line-height:1;
+}
+.title-logo .product{
+  font-size:11px;
+  margin-top:4px;
+}
+.title-slide .slide-shell{padding-top:clamp(112px,14vh,150px)}
+.kicker{
+  position:fixed;
+  top:25px;
+  left:var(--gutter);
+  z-index:82;
+  color:var(--teal);
+  letter-spacing:2px;
+  font-size:13px;
+  margin:0;
+  gap:0;
+  display:flex!important;
+  align-items:center;
+  min-height:30px;
+  padding:0 2px;
+  background:rgba(255,255,255,.72);
+  font-family:"Heebo",Arial,sans-serif;
+  font-weight:900;
+  text-transform:none;
+}
+.kicker::before{display:none!important}
+.title-slide .kicker{
+  position:static;
+  display:inline-flex;
+  padding:12px 26px;
+  border:1px solid rgba(18,199,199,.35);
+  border-radius:999px;
+  background:rgba(18,199,199,.08);
+  font-family:"Heebo",Arial,sans-serif;
+  font-size:clamp(15px,1.35vw,20px);
+  font-weight:900;
+  letter-spacing:0;
+  color:var(--teal);
+  margin:0 auto 54px;
+}
+.title-slide .kicker::before{
+  display:block!important;
+  order:2;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:rgba(18,199,199,.55);
+}
+.title-slide .body-grid{
+  justify-items:center;
+  text-align:center;
+}
+.title-slide .title-h1{
+  max-width:1100px;
+  text-align:center;
+}
+.title-slide .lede{
+  max-width:880px;
+  text-align:center;
+  font-size:clamp(18px,1.45vw,23px);
+  line-height:1.75;
+}
+.accent{
+  color:var(--fuchsia);
+  background:none;
+  -webkit-text-fill-color:currentColor;
+}
+.quiet{color:var(--navy)}
+h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Arial,sans-serif;letter-spacing:0}
+.lede,.card p,.metric p,.proof-card p{color:var(--impact-gray)}
+.card,.metric,.proof-card,.mini-dashboard,.decision,.layer,.flow-step,.teacher-panel,.student-card{
+  border-color:rgba(6,30,79,.08)!important;
+  box-shadow:0 16px 42px rgba(6,30,79,.06)!important;
+  border-radius:22px!important;
+}
+.card.dark,.proof-card.dark{
+  background:var(--navy)!important;
+  color:#fff;
+}
+.card.dark::after,
+.proof-card.dark::after,
+.quote-panel::after{
+  display:none!important;
+}
+.quote-panel,
+.decision .quote-panel{
+  background:var(--navy)!important;
+  border-color:rgba(6,30,79,.18)!important;
+}
+.quote-panel .small,
+.quote-panel .quote,
+.quote-panel p{
+  color:#fff!important;
+}
+.check,
+.pill,
+.path-card .tag,
+.insight{
+  background:rgba(18,199,199,.10)!important;
+  border-color:rgba(18,199,199,.18)!important;
+  color:var(--navy)!important;
+}
+.flow-step::after{
+  background:rgba(6,30,79,.28)!important;
+}
+.card.dark h3,.proof-card.dark h3,.card.dark p,.proof-card.dark p{color:#fff!important}
+.card.tinted,.proof-card.tinted{background:linear-gradient(135deg,rgba(18,199,199,.09),rgba(240,6,120,.045))!important}
+.nav{
+  background:rgba(255,255,255,.92);
+  border-color:rgba(6,30,79,.10);
+  box-shadow:0 18px 44px rgba(6,30,79,.12);
+}
+.nav button{color:var(--navy)}
+.nav button:hover{background:rgba(18,199,199,.10)}
+.counter .current,.slide-marker .current{
+  color:var(--fuchsia);
+  background:none;
+  -webkit-text-fill-color:currentColor;
+}
+.slide-marker .divider{background:var(--teal)}
+.title-meta span{color:var(--navy);border-color:var(--line)}
+@media(max-width:920px){
+  .deck::before{width:360px;opacity:.035;left:-150px;top:120px}
+  .slide::after{width:190px;opacity:.03}
+  .logo-row::before{width:150px}
+  .title-logo::before{width:260px}
+}
+
+/* === Final Impact OS deck refinements === */
+.slide-head > div:first-child{
+  width:100%;
+}
+.slide-title{
+  max-width:none!important;
+  width:100%;
+  font-size:clamp(30px,3vw,52px);
+  line-height:1.05;
+}
+.slide[data-slide="4"] .slide-title,
+.slide[data-slide="11"] .slide-title,
+.slide[data-slide="19"] .slide-title{
+  white-space:nowrap;
+  font-size:clamp(30px,2.8vw,48px);
+}
+.card.dark,
+.proof-card.dark,
+.quote-panel,
+.decision .quote-panel{
+  background:#061E4F!important;
+  background-image:none!important;
+  color:#fff!important;
+}
+.card.dark::after,
+.proof-card.dark::after,
+.quote-panel::after{
+  display:none!important;
+}
+.card.dark h3,
+.card.dark p,
+.card.dark li,
+.proof-card.dark h3,
+.proof-card.dark p,
+.quote-panel .small,
+.quote-panel .quote,
+.quote-panel p{
+  color:#fff!important;
+}
+.metric-value,
+.metric-label,
+.thank-you,
+.path-level,
+.vs{
+  color:#061E4F!important;
+}
+.flow-num,
+.avatar{
+  background:#061E4F!important;
+  color:#fff!important;
+}
+.check,
+.pill,
+.path-card .tag,
+.insight{
+  background:rgba(18,199,199,.10)!important;
+  border-color:rgba(18,199,199,.18)!important;
+  color:#061E4F!important;
+}
+.pill.alt,
+.pill.warn{
+  background:rgba(18,199,199,.10)!important;
+  color:#061E4F!important;
+}
+.flow-step::after{
+  background:rgba(6,30,79,.24)!important;
+}
+
+.slide[data-slide="6"] .flow,
+.slide[data-slide="9"] .flow{
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:12px;
+  align-items:stretch;
+}
+.slide[data-slide="6"] .flow-step,
+.slide[data-slide="9"] .flow-step{
+  padding:16px 14px;
+  border-radius:18px!important;
+  min-height:190px;
+  display:grid;
+  align-content:start;
+  gap:8px;
+}
+.slide[data-slide="6"] .flow-num,
+.slide[data-slide="9"] .flow-num{
+  width:30px;
+  height:30px;
+  margin-bottom:4px;
+  font-size:13px;
+}
+.slide[data-slide="6"] .flow-step h3,
+.slide[data-slide="9"] .flow-step h3{
+  font-size:clamp(15px,1.15vw,18px);
+  margin:0;
+}
+.slide[data-slide="6"] .flow-step p,
+.slide[data-slide="9"] .flow-step p{
+  font-size:clamp(12px,.86vw,14px);
+  line-height:1.32;
+}
+
+.slide[data-slide="8"] .skill-map{
+  grid-template-columns:1.15fr .85fr;
+  gap:18px;
+  align-items:stretch;
+}
+.slide[data-slide="8"] .skill-cloud{
+  padding:18px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  align-content:center;
+}
+.slide[data-slide="8"] .pill{
+  justify-content:center;
+  min-height:38px;
+  padding:8px 10px;
+  font-size:clamp(12px,.9vw,14px);
+  text-align:center;
+}
+.slide[data-slide="8"] .quote-panel{
+  min-height:0;
+  padding:24px;
+}
+.slide[data-slide="8"] .quote-panel .quote{
+  font-size:clamp(22px,2.1vw,32px);
+}
+.slide[data-slide="8"] .quote-panel p{
+  font-size:clamp(13px,.95vw,15px);
+}
+
+.slide[data-slide="10"] .experience-layout{
+  gap:12px;
+}
+.slide[data-slide="10"] .body-grid.cols-4{
+  gap:12px;
+}
+.slide[data-slide="10"] .card{
+  padding:16px;
+  border-radius:18px!important;
+  min-height:132px;
+  gap:8px;
+}
+.slide[data-slide="10"] .card h3{
+  font-size:clamp(17px,1.3vw,21px);
+}
+.slide[data-slide="10"] .card p{
+  font-size:clamp(12px,.88vw,14px);
+  line-height:1.32;
+}
+.slide[data-slide="10"] .screenshot-strip{
+  gap:12px;
+}
+.slide[data-slide="10"] .screen-card{
+  max-width:420px;
+  padding:10px;
+  gap:8px;
+}
+.slide[data-slide="10"] .screen-frame{
+  aspect-ratio:16/7.2;
+}
+.slide[data-slide="10"] .screen-caption{
+  font-size:clamp(12px,.85vw,14px);
+}
+
+.slide[data-slide="6"] .slide-shell{
+  gap:16px;
+}
+.slide[data-slide="6"] .slide-title{
+  font-size:clamp(28px,2.65vw,44px);
+  max-width:34ch!important;
+}
+.slide[data-slide="6"] .lede{
+  max-width:86ch;
+  font-size:clamp(13.5px,1vw,16px);
+  line-height:1.45;
+}
+.slide[data-slide="6"] .flow{
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  gap:10px!important;
+  align-items:stretch!important;
+}
+.slide[data-slide="6"] .flow-step{
+  min-height:150px!important;
+  padding:14px 12px!important;
+  border-radius:16px!important;
+  box-shadow:0 10px 24px rgba(6,30,79,.055)!important;
+}
+.slide[data-slide="6"] .flow-step::after{
+  display:none!important;
+}
+.slide[data-slide="6"] .flow-num{
+  width:26px!important;
+  height:26px!important;
+  margin-bottom:2px!important;
+  font-size:12px!important;
+}
+.slide[data-slide="6"] .flow-step h3{
+  font-size:clamp(14px,1vw,17px)!important;
+  line-height:1.15!important;
+}
+.slide[data-slide="6"] .flow-step p{
+  font-size:clamp(11.5px,.78vw,13px)!important;
+  line-height:1.28!important;
+}
+
+/* === Compact one-screen slide pass === */
+.deck-topbar{
+  top:18px!important;
+  padding-bottom:10px;
+  border-bottom:1px solid rgba(18,199,199,.16);
+}
+.deck-topbar::after{
+  content:"";
+  position:absolute;
+  right:0;
+  left:0;
+  bottom:-2px;
+  height:2px;
+  background:linear-gradient(90deg,rgba(18,199,199,.7),rgba(240,6,120,.45),rgba(18,199,199,.05));
+}
+.top-kicker{
+  position:absolute;
+  left:0;
+  top:50%;
+  transform:translateY(-50%);
+  color:#12c7c7;
+  font-family:"Heebo","Rubik",Arial,sans-serif;
+  font-size:clamp(12px,.95vw,15px);
+  font-weight:900;
+  letter-spacing:2.8px;
+  white-space:nowrap;
+}
+.top-kicker:empty{display:none}
+.top-kicker::after{
+  content:"";
+  display:inline-block;
+  width:34px;
+  height:2px;
+  margin-inline-start:14px;
+  vertical-align:middle;
+  background:#12c7c7;
+  opacity:.85;
+}
+.slide{
+  padding-top:clamp(82px,9vh,96px)!important;
+  padding-bottom:clamp(62px,6vh,78px)!important;
+}
+.slide .kicker{
+  position:absolute!important;
+  width:1px!important;
+  height:1px!important;
+  overflow:hidden!important;
+  clip:rect(0 0 0 0)!important;
+  white-space:nowrap!important;
+  margin:0!important;
+  padding:0!important;
+}
+.slide-head{
+  margin-bottom:0!important;
+}
+.slide-shell{
+  max-width:1480px!important;
+  gap:clamp(10px,1.4vh,16px)!important;
+}
+.slide-title{
+  font-size:clamp(30px,3.05vw,48px)!important;
+  line-height:1.04!important;
+}
+.slide .lede{
+  font-size:clamp(14px,1.05vw,17px)!important;
+  line-height:1.38!important;
+  margin-top:10px!important;
+}
+.footer-note{display:none!important}
+
+.card.dark *,
+.quote-panel *,
+.proof-card.dark *,
+.card.dark .appendix-label,
+.proof-card.dark .appendix-label{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+.proof-card.dark .appendix-label,
+.card.dark .appendix-label{
+  background:rgba(255,255,255,.14)!important;
+  border:1px solid rgba(255,255,255,.18)!important;
+}
+
+.slide[data-slide="8"] .slide-title{
+  font-size:clamp(30px,3vw,45px)!important;
+  max-width:32ch!important;
+}
+.slide[data-slide="8"] .skill-map{
+  grid-template-columns:.82fr 1.18fr!important;
+  gap:22px!important;
+  align-items:stretch!important;
+  min-height:0!important;
+}
+.slide[data-slide="8"] .skill-map > .quote-panel,
+.slide[data-slide="8"] .skill-map > .skill-cloud{
+  min-height:0!important;
+  height:auto!important;
+  align-self:stretch!important;
+}
+.slide[data-slide="8"] .quote-panel{
+  padding:28px 30px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  border-radius:28px!important;
+}
+.slide[data-slide="8"] .quote-panel .small{
+  font-size:clamp(14px,1vw,17px)!important;
+  margin-bottom:18px!important;
+}
+.slide[data-slide="8"] .quote-panel .quote{
+  font-size:clamp(26px,2.45vw,38px)!important;
+  line-height:1.18!important;
+  margin-bottom:22px!important;
+}
+.slide[data-slide="8"] .quote-panel p{
+  font-size:clamp(14px,1.08vw,17px)!important;
+  line-height:1.45!important;
+}
+.slide[data-slide="8"] .skill-cloud{
+  padding:26px!important;
+  border-radius:26px!important;
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-auto-rows:minmax(52px,auto)!important;
+  gap:12px!important;
+  align-content:center!important;
+}
+.slide[data-slide="8"] .pill{
+  min-height:52px!important;
+  padding:10px 12px!important;
+  border-radius:999px!important;
+  font-size:clamp(13px,1vw,16px)!important;
+  line-height:1.2!important;
+}
+
+.slide[data-slide="9"] .slide-shell,
+.slide[data-slide="10"] .slide-shell,
+.slide[data-slide="11"] .slide-shell,
+.slide[data-slide="12"] .slide-shell{
+  gap:12px!important;
+}
+.slide[data-slide="9"] .slide-title{
+  font-size:clamp(30px,3.1vw,46px)!important;
+}
+.slide[data-slide="9"] .lede{
+  max-width:92ch!important;
+}
+.slide[data-slide="9"] .flow{
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  gap:22px!important;
+  margin-top:14px!important;
+}
+.slide[data-slide="9"] .flow-step{
+  min-height:250px!important;
+  padding:26px 18px!important;
+  align-content:start!important;
+  justify-items:center!important;
+  text-align:center!important;
+  gap:13px!important;
+}
+.slide[data-slide="9"] .flow-step h3{
+  font-size:clamp(18px,1.55vw,24px)!important;
+}
+.slide[data-slide="9"] .flow-step p{
+  font-size:clamp(14px,1.02vw,16px)!important;
+  line-height:1.42!important;
+}
+
+.slide[data-slide="10"] .slide-title{
+  font-size:clamp(30px,2.9vw,43px)!important;
+}
+.slide[data-slide="10"] .experience-layout{
+  display:grid!important;
+  grid-template-columns:1.05fr .95fr!important;
+  gap:18px!important;
+  align-items:stretch!important;
+}
+.slide[data-slide="10"] .body-grid.cols-4{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:12px!important;
+}
+.slide[data-slide="10"] .card{
+  min-height:118px!important;
+  padding:18px!important;
+  border-radius:18px!important;
+}
+.slide[data-slide="10"] .card h3{
+  font-size:clamp(17px,1.45vw,22px)!important;
+}
+.slide[data-slide="10"] .card p{
+  font-size:clamp(12.5px,.96vw,15px)!important;
+}
+.slide[data-slide="10"] .screenshot-strip{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:12px!important;
+  align-self:stretch!important;
+}
+.slide[data-slide="10"] .screen-card{
+  max-width:none!important;
+  padding:10px!important;
+  border-radius:18px!important;
+}
+.slide[data-slide="10"] .screen-frame{
+  aspect-ratio:4/3!important;
+}
+
+.slide[data-slide="11"] .slide-title{
+  white-space:normal!important;
+  font-size:clamp(30px,2.95vw,44px)!important;
+}
+.slide[data-slide="11"] .student-journey{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:14px!important;
+  align-items:stretch!important;
+  margin-top:6px!important;
+}
+.slide[data-slide="11"] .path-card{
+  min-height:255px!important;
+  padding:20px 18px!important;
+  border-radius:20px!important;
+  display:grid!important;
+  grid-template-rows:auto auto 1fr auto!important;
+  gap:12px!important;
+}
+.slide[data-slide="11"] .path-level{
+  font-size:clamp(11px,.82vw,13px)!important;
+}
+.slide[data-slide="11"] .path-card h3{
+  font-size:clamp(24px,2vw,32px)!important;
+}
+.slide[data-slide="11"] .path-card p{
+  font-size:clamp(13px,.96vw,15px)!important;
+  line-height:1.38!important;
+}
+.slide[data-slide="11"] .path-card .tag{
+  align-self:end!important;
+  justify-self:start!important;
+  font-size:clamp(12px,.9vw,14px)!important;
+  padding:8px 12px!important;
+}
+
+.slide[data-slide="12"] .slide-title{
+  font-size:clamp(30px,2.95vw,44px)!important;
+}
+.slide[data-slide="12"] .mini-dashboard{
+  grid-template-columns:.92fr 1.08fr!important;
+  gap:16px!important;
+  align-items:stretch!important;
+  margin-top:4px!important;
+}
+.slide[data-slide="12"] .dashboard-card{
+  padding:18px!important;
+  border-radius:20px!important;
+  min-height:0!important;
+}
+.slide[data-slide="12"] .dashboard-card h3{
+  font-size:clamp(20px,1.5vw,26px)!important;
+  margin-bottom:12px!important;
+}
+.slide[data-slide="12"] .student-row{
+  padding:10px 12px!important;
+  gap:10px!important;
+  min-height:54px!important;
+}
+.slide[data-slide="12"] .avatar{
+  width:34px!important;
+  height:34px!important;
+  font-size:13px!important;
+}
+.slide[data-slide="12"] .student-name{
+  font-size:clamp(13px,.95vw,15px)!important;
+}
+.slide[data-slide="12"] .student-meta,
+.slide[data-slide="12"] .status{
+  font-size:clamp(11px,.82vw,13px)!important;
+}
+.slide[data-slide="12"] .insight-list{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:10px!important;
+}
+.slide[data-slide="12"] .insight{
+  padding:12px!important;
+  font-size:clamp(12px,.9vw,14px)!important;
+  line-height:1.35!important;
+}
+
+.slide[data-slide="17"] .body-grid.cols-3,
+.slide[data-slide="22"] .proof-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:14px!important;
+}
+.slide[data-slide="17"] .card,
+.slide[data-slide="22"] .proof-card{
+  min-height:150px!important;
+  padding:18px!important;
+  border-radius:18px!important;
+}
+.slide[data-slide="17"] .card h3,
+.slide[data-slide="22"] .proof-card h3{
+  font-size:clamp(16px,1.25vw,20px)!important;
+}
+.slide[data-slide="17"] .card p,
+.slide[data-slide="22"] .proof-card p{
+  font-size:clamp(12px,.88vw,14px)!important;
+  line-height:1.35!important;
+}
+.slide[data-slide="22"] .appendix-label{
+  font-size:clamp(10px,.78vw,12px)!important;
+  line-height:1.1!important;
+  padding:7px 10px!important;
+}
+
+.slide[data-slide="19"] .closing-wrap{
+  width:100%!important;
+  display:grid!important;
+  grid-template-columns:1.12fr .88fr!important;
+  gap:18px!important;
+  align-items:stretch!important;
+}
+.slide[data-slide="19"] .closing-wrap .quote-panel{
+  padding:34px!important;
+  min-height:360px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+}
+.slide[data-slide="19"] .closing-cards{
+  width:100%!important;
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:14px!important;
+  margin:0!important;
+}
+.slide[data-slide="19"] .closing-cards .card{
+  min-height:0!important;
+  padding:22px!important;
+}
+.slide[data-slide="19"] .thank-you{
+  grid-column:1 / -1;
+  margin:0!important;
+  font-size:clamp(28px,2.6vw,42px)!important;
+}
+
+/* === Latest compact fixes for slides 3, 19, 20 and 22 === */
+.slide[data-slide="3"] .body-grid.cols-2{
+  grid-template-columns:.9fr 1.1fr!important;
+  gap:18px!important;
+  align-items:stretch!important;
+}
+.slide[data-slide="3"] .quote-panel{
+  min-height:0!important;
+  padding:28px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+}
+.slide[data-slide="3"] .body-grid.cols-2 > .body-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:16px!important;
+  align-content:stretch!important;
+}
+.slide[data-slide="3"] .metric{
+  min-height:0!important;
+  padding:26px 22px!important;
+  border-radius:22px!important;
+  display:grid!important;
+  align-content:center!important;
+  gap:10px!important;
+}
+.slide[data-slide="3"] .metric-value{
+  font-size:clamp(54px,6vw,92px)!important;
+  color:#f00678!important;
+  line-height:.9!important;
+}
+.slide[data-slide="3"] .metric-label{
+  font-size:clamp(18px,1.7vw,26px)!important;
+}
+.slide[data-slide="3"] .metric-desc{
+  font-size:clamp(13px,1vw,16px)!important;
+  line-height:1.35!important;
+}
+
+.slide[data-slide="19"] .slide-title{
+  white-space:normal!important;
+  text-align:center!important;
+  font-size:clamp(30px,3vw,46px)!important;
+}
+.slide[data-slide="19"] .closing-wrap{
+  grid-template-columns:1fr!important;
+  gap:14px!important;
+}
+.slide[data-slide="19"] .closing-wrap .quote-panel{
+  min-height:0!important;
+  padding:28px 36px!important;
+  border-radius:24px!important;
+}
+.slide[data-slide="19"] .quote-panel .small{
+  font-size:clamp(15px,1.1vw,18px)!important;
+  margin-bottom:12px!important;
+}
+.slide[data-slide="19"] .quote-panel .quote{
+  font-size:clamp(28px,2.8vw,44px)!important;
+  line-height:1.16!important;
+  margin-bottom:14px!important;
+}
+.slide[data-slide="19"] .quote-panel p{
+  font-size:clamp(15px,1.15vw,18px)!important;
+  line-height:1.45!important;
+}
+.slide[data-slide="19"] .closing-cards{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:14px!important;
+}
+.slide[data-slide="19"] .closing-cards .card{
+  padding:20px 22px!important;
+  min-height:130px!important;
+}
+.slide[data-slide="19"] .thank-you{
+  display:none!important;
+}
+
+.slide[data-slide="20"] .teacher-day-layout{
+  grid-template-columns:1fr!important;
+  gap:14px!important;
+}
+.slide[data-slide="20"] .teacher-day-layout .demo-shot{
+  display:none!important;
+}
+.slide[data-slide="20"] .teacher-day-layout > .body-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:18px!important;
+  align-items:stretch!important;
+}
+.slide[data-slide="20"] .teacher-day-layout .card{
+  min-height:245px!important;
+  padding:32px!important;
+  display:flex!important;
+  justify-content:center!important;
+  border-radius:26px!important;
+}
+.slide[data-slide="20"] .teacher-day-layout .card h3{
+  font-size:clamp(24px,2.15vw,34px)!important;
+}
+.slide[data-slide="20"] .teacher-day-layout .card p{
+  font-size:clamp(16px,1.25vw,20px)!important;
+  line-height:1.5!important;
+}
+
+.slide[data-slide="22"] .slide-title{
+  font-size:clamp(28px,2.7vw,42px)!important;
+  line-height:1.04!important;
+}
+.slide[data-slide="22"] .lede{
+  font-size:clamp(13px,.92vw,15px)!important;
+  line-height:1.35!important;
+  max-width:100ch!important;
+}
+.slide[data-slide="22"] .proof-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:12px!important;
+  align-items:stretch!important;
+}
+.slide[data-slide="22"] .proof-card{
+  min-height:188px!important;
+  padding:18px 18px 16px!important;
+  border-radius:18px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-start!important;
+}
+.slide[data-slide="22"] .appendix-label{
+  display:none!important;
+}
+.slide[data-slide="22"] .proof-card h3{
+  font-size:clamp(16px,1.28vw,20px)!important;
+  line-height:1.22!important;
+  margin-bottom:8px!important;
+}
+.slide[data-slide="22"] .proof-card p{
+  font-size:clamp(11.5px,.84vw,13.5px)!important;
+  line-height:1.34!important;
+}
+.slide[data-slide="22"] .card.dark,
+.slide[data-slide="22"] .proof-card.dark{
+  background:#061E4F!important;
+}
+.slide[data-slide="22"] .proof-card.dark h3,
+.slide[data-slide="22"] .proof-card.dark p{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* === Visual reset for the stubborn dense slides === */
+.slide[data-slide="8"] .slide-shell,
+.slide[data-slide="10"] .slide-shell,
+.slide[data-slide="11"] .slide-shell{
+  grid-template-rows:auto auto!important;
+  align-content:start!important;
+}
+.slide[data-slide="8"] .slide-head,
+.slide[data-slide="10"] .slide-head,
+.slide[data-slide="11"] .slide-head{
+  margin-bottom:10px!important;
+}
+.slide[data-slide="8"] .slide-title{
+  font-size:clamp(28px,2.65vw,40px)!important;
+  line-height:1.04!important;
+  max-width:34ch!important;
+}
+.slide[data-slide="8"] .skill-map{
+  display:grid!important;
+  grid-template-columns:.72fr 1.28fr!important;
+  gap:20px!important;
+  align-items:start!important;
+  min-height:0!important;
+}
+.slide[data-slide="8"] .quote-panel{
+  min-height:0!important;
+  height:auto!important;
+  padding:24px 26px!important;
+  border-radius:24px!important;
+  align-self:start!important;
+}
+.slide[data-slide="8"] .quote-panel .small{
+  margin-bottom:12px!important;
+  font-size:14px!important;
+}
+.slide[data-slide="8"] .quote-panel .quote{
+  font-size:clamp(24px,2.15vw,33px)!important;
+  line-height:1.12!important;
+  margin-bottom:14px!important;
+}
+.slide[data-slide="8"] .quote-panel p{
+  font-size:clamp(13px,.95vw,15px)!important;
+  line-height:1.42!important;
+}
+.slide[data-slide="8"] .skill-cloud{
+  min-height:0!important;
+  height:auto!important;
+  padding:24px!important;
+  border-radius:24px!important;
+  align-self:start!important;
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(150px,1fr))!important;
+  gap:10px!important;
+  align-content:start!important;
+  background:linear-gradient(135deg,rgba(18,199,199,.075),rgba(240,6,120,.035))!important;
+}
+.slide[data-slide="8"] .skill-cloud .pill{
+  min-height:44px!important;
+  padding:8px 12px!important;
+  border-radius:15px!important;
+  justify-content:center!important;
+  font-size:clamp(12px,.88vw,14px)!important;
+  line-height:1.15!important;
+  box-shadow:none!important;
+}
+
+.slide[data-slide="9"] .flow{
+  margin-top:34px!important;
+}
+
+.slide[data-slide="10"] .experience-layout{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:14px!important;
+}
+.slide[data-slide="10"] .body-grid.cols-4{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:12px!important;
+}
+.slide[data-slide="10"] .body-grid.cols-4 .card{
+  min-height:132px!important;
+  padding:18px 16px!important;
+  border-radius:18px!important;
+  justify-content:flex-start!important;
+}
+.slide[data-slide="10"] .body-grid.cols-4 .card h3{
+  font-size:clamp(17px,1.35vw,21px)!important;
+  line-height:1.12!important;
+}
+.slide[data-slide="10"] .body-grid.cols-4 .card p{
+  font-size:clamp(12px,.9vw,14px)!important;
+  line-height:1.32!important;
+}
+.slide[data-slide="10"] .screenshot-strip{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:14px!important;
+}
+.slide[data-slide="10"] .screen-card{
+  max-width:none!important;
+  padding:8px!important;
+  border-radius:16px!important;
+  gap:8px!important;
+}
+.slide[data-slide="10"] .screen-frame{
+  aspect-ratio:16/6.8!important;
+}
+.slide[data-slide="10"] .screen-caption{
+  font-size:12px!important;
+  line-height:1.2!important;
+}
+
+.slide[data-slide="11"] .slide-title{
+  font-size:clamp(28px,2.65vw,40px)!important;
+  line-height:1.04!important;
+}
+.slide[data-slide="11"] .lede{
+  font-size:clamp(13px,.92vw,15px)!important;
+  line-height:1.32!important;
+  margin-top:8px!important;
+}
+.slide[data-slide="11"] .student-journey{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:12px!important;
+  align-items:stretch!important;
+  margin-top:14px!important;
+}
+.slide[data-slide="11"] .student-journey .path-card{
+  min-height:224px!important;
+  height:auto!important;
+  padding:16px 14px!important;
+  border-radius:18px!important;
+  display:grid!important;
+  grid-template-rows:auto auto 1fr auto!important;
+  gap:9px!important;
+}
+.slide[data-slide="11"] .path-level{
+  font-size:11px!important;
+  line-height:1.15!important;
+}
+.slide[data-slide="11"] .path-card h3{
+  font-size:clamp(21px,1.75vw,28px)!important;
+  line-height:1.05!important;
+}
+.slide[data-slide="11"] .path-card p{
+  font-size:clamp(11.5px,.84vw,13.5px)!important;
+  line-height:1.28!important;
+}
+.slide[data-slide="11"] .path-card .tag{
+  padding:7px 10px!important;
+  font-size:clamp(11px,.78vw,12.5px)!important;
+  line-height:1.1!important;
+  border-radius:999px!important;
+}
+
+/* === One-screen fixes for slides 12 and 17 === */
+.slide[data-slide="12"],
+.slide[data-slide="17"]{
+  overflow:hidden!important;
+}
+.slide[data-slide="12"] .slide-shell,
+.slide[data-slide="17"] .slide-shell{
+  grid-template-rows:auto 1fr!important;
+  gap:10px!important;
+}
+.slide[data-slide="12"] .slide-head,
+.slide[data-slide="17"] .slide-head{
+  min-height:0!important;
+}
+.slide[data-slide="12"] .slide-title,
+.slide[data-slide="17"] .slide-title{
+  font-size:clamp(25px,2.45vw,36px)!important;
+  line-height:1.03!important;
+  max-width:100%!important;
+}
+.slide[data-slide="12"] .lede{
+  max-width:92ch!important;
+  font-size:clamp(12px,.82vw,13.5px)!important;
+  line-height:1.25!important;
+  margin-top:6px!important;
+}
+.slide[data-slide="12"] .mini-dashboard{
+  display:grid!important;
+  grid-template-columns:.86fr 1.14fr!important;
+  gap:12px!important;
+  align-items:stretch!important;
+  min-height:0!important;
+  height:100%!important;
+  margin-top:0!important;
+}
+.slide[data-slide="12"] .dashboard-card{
+  min-height:0!important;
+  height:auto!important;
+  padding:14px!important;
+  border-radius:18px!important;
+  overflow:hidden!important;
+}
+.slide[data-slide="12"] .dashboard-card h3{
+  font-size:clamp(18px,1.28vw,22px)!important;
+  margin-bottom:8px!important;
+}
+.slide[data-slide="12"] .student-row{
+  min-height:42px!important;
+  padding:7px 8px!important;
+  gap:8px!important;
+  border-radius:12px!important;
+}
+.slide[data-slide="12"] .avatar{
+  width:28px!important;
+  height:28px!important;
+  font-size:11px!important;
+}
+.slide[data-slide="12"] .student-name{
+  font-size:clamp(12px,.8vw,13px)!important;
+  line-height:1.1!important;
+}
+.slide[data-slide="12"] .student-meta,
+.slide[data-slide="12"] .status{
+  font-size:clamp(10px,.72vw,11.5px)!important;
+  line-height:1.1!important;
+}
+.slide[data-slide="12"] .status{
+  padding:5px 8px!important;
+  border-radius:999px!important;
+}
+.slide[data-slide="12"] .insight-list{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:8px!important;
+}
+.slide[data-slide="12"] .insight{
+  padding:10px!important;
+  border-radius:12px!important;
+  font-size:clamp(11px,.78vw,12.5px)!important;
+  line-height:1.26!important;
+}
+
+.slide[data-slide="17"] .body-grid.cols-3{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-auto-rows:minmax(132px,1fr)!important;
+  gap:12px!important;
+  align-items:stretch!important;
+  min-height:0!important;
+  height:100%!important;
+}
+.slide[data-slide="17"] .card{
+  min-height:0!important;
+  height:100%!important;
+  padding:16px!important;
+  border-radius:18px!important;
+  justify-content:flex-start!important;
+  gap:8px!important;
+}
+.slide[data-slide="17"] .card h3{
+  font-size:clamp(16px,1.25vw,20px)!important;
+  line-height:1.15!important;
+}
+.slide[data-slide="17"] .card p{
+  font-size:clamp(11.5px,.82vw,13px)!important;
+  line-height:1.28!important;
+}
+
+/* === Emergency global header clearance === */
+.deck-topbar{
+  top:0!important;
+  right:0!important;
+  left:0!important;
+  height:118px!important;
+  padding:12px var(--gutter) 14px!important;
+  box-sizing:border-box!important;
+  align-items:center!important;
+  background:rgba(255,255,255,.97)!important;
+  backdrop-filter:blur(10px)!important;
+  border-bottom:1px solid rgba(18,199,199,.20)!important;
+}
+.deck-topbar::after{
+  bottom:0!important;
+  right:var(--gutter)!important;
+  left:var(--gutter)!important;
+}
+.deck-topbar .logo-row::before{
+  width:clamp(190px,17vw,235px)!important;
+}
+.top-kicker{
+  left:var(--gutter)!important;
+  max-width:42vw!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.slide{
+  padding-top:150px!important;
+  padding-bottom:58px!important;
+}
+.slide::before{
+  top:150px!important;
+}
+.slide-shell{
+  max-height:calc(100vh - 208px)!important;
+}
+.slide-title{
+  margin-top:0!important;
+}
+.slide-head{
+  padding-top:0!important;
+}
+@media(max-height:820px){
+  .deck-topbar{height:104px!important}
+  .deck-topbar .logo-row::before{width:190px!important}
+  .slide{padding-top:130px!important}
+  .slide::before{top:130px!important}
+  .slide-shell{max-height:calc(100vh - 178px)!important}
+}
+
+/* === Final presentation polish: one quiet fingerprint + balanced cards === */
+.deck::before{
+  content:""!important;
+  position:fixed!important;
+  inset:auto auto -150px -120px!important;
+  width:min(560px,38vw)!important;
+  height:auto!important;
+  aspect-ratio:1/1.23!important;
+  background:url('../public/brand/impact-fingerprint-scroll-teal.png') center/contain no-repeat!important;
+  opacity:.032!important;
+  transform:rotate(-10deg)!important;
+  filter:none!important;
+  pointer-events:none!important;
+  z-index:0!important;
+}
+.slide::after,
+.title-slide::after{
+  display:none!important;
+}
+
+.slide[data-slide="17"] .body-grid.cols-3{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-auto-rows:minmax(155px,auto)!important;
+  gap:18px!important;
+  align-items:start!important;
+  align-content:start!important;
+  height:auto!important;
+  min-height:0!important;
+  margin-top:12px!important;
+}
+.slide[data-slide="17"] .card,
+.slide[data-slide="17"] .card.dark,
+.slide[data-slide="17"] .card.tinted{
+  background:rgba(255,255,255,.94)!important;
+  background-image:none!important;
+  color:#061E4F!important;
+  border:1px solid rgba(6,30,79,.10)!important;
+  box-shadow:0 14px 34px rgba(6,30,79,.055)!important;
+  min-height:0!important;
+  height:auto!important;
+  aspect-ratio:auto!important;
+  padding:22px 22px 24px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-start!important;
+  gap:10px!important;
+}
+.slide[data-slide="17"] .card *,
+.slide[data-slide="17"] .card.dark *,
+.slide[data-slide="17"] .card.tinted *{
+  color:#061E4F!important;
+  -webkit-text-fill-color:#061E4F!important;
+  opacity:1!important;
+}
+.slide[data-slide="17"] .card h3{
+  font-size:clamp(18px,1.45vw,23px)!important;
+  line-height:1.12!important;
+}
+.slide[data-slide="17"] .card p{
+  font-size:clamp(12.5px,.92vw,14.5px)!important;
+  line-height:1.34!important;
+}
+
+.slide[data-slide="19"] .quote-panel .small{
+  display:none!important;
+}
+
+.slide[data-slide="22"] .proof-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:16px!important;
+  align-items:stretch!important;
+  align-content:start!important;
+  height:auto!important;
+  min-height:0!important;
+}
+.slide[data-slide="22"] .proof-card,
+.slide[data-slide="22"] .proof-card.dark,
+.slide[data-slide="22"] .card.dark,
+.slide[data-slide="22"] .card.tinted{
+  background:rgba(255,255,255,.92)!important;
+  background-image:none!important;
+  color:#061E4F!important;
+  border:1px solid rgba(6,30,79,.10)!important;
+  box-shadow:0 14px 34px rgba(6,30,79,.06)!important;
+  min-height:0!important;
+  aspect-ratio:1.5/1!important;
+  padding:22px 20px!important;
+  border-radius:20px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-start!important;
+  visibility:visible!important;
+  opacity:1!important;
+}
+.slide[data-slide="22"] .proof-card *,
+.slide[data-slide="22"] .proof-card.dark *,
+.slide[data-slide="22"] .card.dark *{
+  color:#061E4F!important;
+  -webkit-text-fill-color:#061E4F!important;
+  opacity:1!important;
+}
+.slide[data-slide="22"] .appendix-label{
+  display:none!important;
+}
+.slide[data-slide="22"] .proof-card h3{
+  font-size:clamp(18px,1.45vw,23px)!important;
+  line-height:1.16!important;
+  margin-bottom:12px!important;
+}
+.slide[data-slide="22"] .proof-card p{
+  font-size:clamp(12.5px,.92vw,14.5px)!important;
+  line-height:1.38!important;
+}
+.slide[data-slide="22"] .proof-card.dark h3,
+.slide[data-slide="22"] .proof-card.dark p,
+.slide[data-slide="22"] .card.dark h3,
+.slide[data-slide="22"] .card.dark p{
+  color:#061E4F!important;
+  -webkit-text-fill-color:#061E4F!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+
+.slide[data-slide="23"] .slide-shell{
+  place-items:center!important;
+  text-align:center!important;
+}
+.thanks-slide .thanks-wrap{
+  width:min(920px,86vw);
+  margin-inline:auto;
+  display:grid;
+  place-items:center;
+  gap:26px;
+}
+.thanks-slide .thanks-title{
+  margin:0;
+  font-size:clamp(58px,7vw,104px);
+  line-height:1;
+  color:#061E4F;
+  letter-spacing:0;
+}
+.thanks-slide .thanks-copy{
+  max-width:820px;
+  margin:0;
+  color:#061E4F;
+  font-size:clamp(28px,3.1vw,48px);
+  line-height:1.18;
+  font-weight:800;
+}
+.thanks-slide .thanks-copy .line{
+  display:block;
+}
+.thanks-slide .thanks-copy .accent{
+  color:#f00678;
+  margin-top:10px;
+}
+.thanks-slide .thanks-logo{
+  width:min(460px,42vw);
+  aspect-ratio:1236/392;
+  background:url('presentation-assets/impact-os-logo-official-transparent.png') center/contain no-repeat;
+  margin-top:12px;
+}
+
+</style>
+</head>
+<body class="is-title">
+<div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="brand-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB"></stop>
+      <stop offset="50%" stop-color="#7C3AED"></stop>
+      <stop offset="100%" stop-color="#A21CAF"></stop>
+    </linearGradient>
+    <symbol id="logo-mark" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="26" stroke="url(#brand-grad)" stroke-width="2.5" fill="none"></circle>
+      <ellipse cx="32" cy="32" rx="18" ry="9" stroke="url(#brand-grad)" stroke-width="2.2" fill="none" transform="rotate(45 32 32)"></ellipse>
+      <ellipse cx="32" cy="32" rx="18" ry="9" stroke="url(#brand-grad)" stroke-width="2.2" fill="none" transform="rotate(-45 32 32)"></ellipse>
+      <circle cx="32" cy="32" r="4.5" fill="url(#brand-grad)"></circle>
+      <circle cx="32" cy="6" r="3" fill="#2563EB"></circle>
+      <circle cx="58" cy="32" r="3" fill="#7C3AED"></circle>
+      <circle cx="32" cy="58" r="3" fill="#A21CAF"></circle>
+      <circle cx="6" cy="32" r="3" fill="#2563EB"></circle>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="deck-topbar" aria-hidden="true">
+  <div class="brand-date">31.5.2026</div>
+  <div class="top-kicker" id="topKicker"></div>
+  <div class="logo-row">
+    <svg class="logo-mark"><use href="#logo-mark"></use></svg>
+    <div>
+      <div class="name brand-word"><span class="impact">IMPACT</span><span class="os">OS</span></div>
+      <div class="product">אבני יסוד · ועד מנהל מנח״י</div>
+    </div>
+  </div>
+  <div class="slide-marker">
+    <span class="current" id="topCurrentSlide">01</span><span class="divider"></span><span id="topTotalSlides">22</span>
+  </div>
+</div>
+
+<main class="deck" id="deck">
+  <section class="slide title-slide active" data-slide="1">
+    <div class="slide-shell">
+      <div class="title-logo">
+        <svg class="logo-mark"><use href="#logo-mark"></use></svg>
+        <div>
+          <div class="name brand-word"><span class="impact">IMPACT</span><span class="os">OS</span></div>
+          <div class="product">טכנולוגיה יוצרת אימפקט</div>
+        </div>
+      </div>
+      <div class="body-grid" style="align-content:center;">
+        <div class="kicker">טכנולוגיה עם טביעת אצבע אנושית</div>
+        <h1 class="title-h1"><span class="quiet">מערכות חכמות</span><br>לארגונים <span class="accent">שמשנים מציאות</span></h1>
+        <p class="lede">
+          IMPACT OS בונה מערכות דיגיטליות מותאמות לארגונים חברתיים, חינוכיים וציבוריים, כדי להפוך ידע, תהליכים ונתונים לכלים שעובדים באמת בשטח.
+        </p>
+        <div class="title-meta">
+          <span>מצגת לוועד המנהל של מנח״י</span>
+          <span>תוכנית החומש להכלה</span>
+          <span>מאי 2026</span>
+        </div>
+      </div>
+      <div class="footer-note">01 / 22</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="2">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">החלטה אסטרטגית</div>
+          <h2 class="slide-title">ירושלים בחרה יעד אמיץ: <span class="accent">הכלה בתוך הכיתה הרגילה.</span></h2>
+          <p class="lede">תוכנית החומש מבקשת לצמצם מסגרות נפרדות ולחזק את בית הספר הרגיל כמקום שבו מגוון תלמידים מקבלים מענה.</p>
+        </div>
+        <div class="slide-num">02</div>
+      </div>
+      <div class="body-grid cols-3">
+        <article class="card">
+          <h3>פחות הוצאה החוצה</h3>
+          <p>המענה צריך להינתן בתוך סביבת הלמידה הטבעית של הילד, בתוך הקהילה, ובתוך הכיתה הרגילה.</p>
+        </article>
+        <article class="card tinted">
+          <h3>יותר מסוגלות בכיתה</h3>
+          <p>הכיתה הרגילה צריכה להפוך למרחב שמחזיק שונות פדגוגית, רגשית וחברתית בלי להוריד ציפיות.</p>
+        </article>
+        <article class="card dark">
+          <h3>השאלה המעשית</h3>
+          <p>איך מורה אחת עושה את זה ביום שלישי בבוקר, מול 28 תלמידים, בלי להפוך את ההכלה למשימה בלתי אפשרית?</p>
+        </article>
+      </div>
+      <div class="footer-note">02 / 22</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="3">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">הפער בין חזון לביצוע</div>
+          <h2 class="slide-title">החזון נכון. הכיתה מורכבת יותר ממה שמורה אחת יכולה להחזיק לבד.</h2>
+        </div>
+        <div class="slide-num">03</div>
+      </div>
+      <div class="body-grid cols-2">
+        <div class="quote-panel">
+          <div class="small">הבעיה אינה חוסר רצון</div>
+          <div class="quote">הבעיה היא עומס קוגניטיבי ותפעולי בלתי אפשרי.</div>
+          <p>המורה צריכה ללמד, לזהות, לתווך, לעקוב, לדווח ולהתאים. בלי תשתית, הדיפרנציאליות נשארת תלויה בגבורה אישית.</p>
+        </div>
+        <div class="body-grid">
+          <article class="metric">
+            <div class="metric-value">28</div>
+            <div class="metric-label">תלמידים בכיתה אחת</div>
+            <div class="metric-desc">רמות מוכנות שונות, קצבים שונים, צרכים שונים.</div>
+          </article>
+          <article class="metric">
+            <div class="metric-value">1</div>
+            <div class="metric-label">מורה אחת</div>
+            <div class="metric-desc">צריכה לדעת מי מתקשה, במה בדיוק, ומה נכון לעשות עכשיו.</div>
+          </article>
+        </div>
+      </div>
+      <div class="footer-note">03 / 22</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="4">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">התקרה של החלוקה לקבוצות</div>
+          <h2 class="slide-title">קבוצות הן התחלה. הן לא מספיקות ל<span class="accent">דיפרנציאליות אמיתית.</span></h2>
+          <p class="lede">חלוקה קבוצתית ידנית עוזרת למורה לפעול, אבל היא לא יכולה ללוות כל תלמיד ברציפות, בזמן אמת, וברזולוציה של תת-מיומנות.</p>
+        </div>
+        <div class="slide-num">04</div>
+      </div>
+      <div class="compare">
+        <div class="compare-col">
+          <h3>קבוצתית ידנית</h3>
+          <ul>
+            <li><span class="check">!</span><span>מתבססת על חלוקה גסה יחסית לקבוצות עבודה.</span></li>
+            <li><span class="check">!</span><span>כשהמורה עם קבוצה אחת, האחרות עובדות בלי ליווי צמוד בזמן אמת.</span></li>
+            <li><span class="check">!</span><span>הקשב הכיתתי נמשך לצורך הדחוף, ולעיתים בא על חשבון החזקים והממוצע.</span></li>
+            <li><span class="check">!</span><span>לא רואה בכל רגע היסוס, רמז, זמן תגובה או דפוס טעות אישי.</span></li>
+          </ul>
+        </div>
+        <div class="vs">VS</div>
+        <div class="compare-col good">
+          <h3>פרסונלית טכנולוגית</h3>
+          <ul>
+            <li><span class="check">✓</span><span>כל תלמיד מקבל תרגול חי גם כשהמורה עובדת עם תלמיד אחר.</span></li>
+            <li><span class="check">✓</span><span>המערכת מזהה אבני יסוד חסרות בתוך החומר הנלמד.</span></li>
+            <li><span class="check">✓</span><span>התרגיל הבא מותאם לקושי המדויק, לקצב ולסוג התמיכה שהתלמיד צריך.</span></li>
+            <li><span class="check">✓</span><span>המורה מקבלת מיקוד: מי באמת צריך אותה עכשיו, ובמה.</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-note">04 / 22</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="5">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">העמדה הפדגוגית</div>
+          <h2 class="slide-title">לא מחליפים את העבודה הקבוצתית. <span class="accent">מוסיפים לה שכבת עומק.</span></h2>
+        </div>
+        <div class="slide-num">05</div>
+      </div>
+      <div class="layer-stack">
+        <div class="layer">
+          <div class="layer-name">פעולת מורה</div>
+          <p>המורה עדיין עובדת עם קבוצות, מפעילה שיקול דעת, מאשרת המלצות, בוחרת התערבות ומובילה את ההוראה.</p>
+        </div>
+        <div class="layer">
+          <div class="layer-name">שכבת נתונים</div>
+          <p>המערכת אוספת רצף של תגובות, טעויות, רמזים, זמני תגובה ועקביות כדי להבין איפה כל תלמיד נמצא בפועל.</p>
+        </div>
+        <div class="layer">
+          <div class="layer-name">תרגול אישי</div>
+          <p>כל תלמיד מקבל את התרגול הבא שמתאים לאבן היסוד שחסרה לו כרגע, גם אם מבחוץ הוא נראה דומה לחבריו לקבוצה.</p>
+        </div>
+      </div>
+      <div class="footer-note">05 / 22</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="6">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">התאמה למנח״י</div>
+          <h2 class="slide-title">מנח״י קובעת את הפדגוגיה. <span class="accent">המערכת מתרגמת אותה למסלולים אישיים.</span></h2>
+          <p class="lede">המערכת אינה מביאה תוכנית חיצונית. היא מתחברת לרצף השיעורים, לחומרים ולדגשים שמנח״י בחרה, ומפרקת אותם למיומנויות ולרמות תמיכה.</p>
+        </div>
+        <div class="slide-num">06</div>
+      </div>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-num">1</div>
+          <h3>תוכנית מאושרת</h3>
+          <p>הרצף הפדגוגי, הנושאים והחומר הנלמד נקבעים על ידי מנח״י והצוות המקצועי.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <h3>פירוק לאבנים</h3>
+          <p>כל נושא מפורק לאבני יסוד: תת-מיומנויות, קדם-ידע, דפוסי קושי וסוגי תמיכה.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <h3>תרגול מתויג</h3>
+          <p>כל פעילות יודעת איזו מיומנות היא מחזקת, באיזה קושי, ובאיזה סוג תמיכה.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">4</div>
+          <h3>פרופיל חי</h3>
+          <p>המערכת בונה תמונת שליטה דינמית לכל תלמיד לפי שימוש בפועל.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">5</div>
+          <h3>פעולה בכיתה</h3>
+          <p>המורה מקבלת תובנה: מה לתרגל, עם מי לעבוד, ואיפה נדרשת התערבות.</p>
+        </div>
+      </div>
+      <div class="footer-note">06 / 22</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="7">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">המסר המרכזי</div>
+          <h2 class="slide-title">המערכת לא מתייגת תלמיד. <span class="accent">היא ממפה את אבני היסוד שלו.</span></h2>
+          <p class="lede">זו לא שאלה של “מתקשה” או “שולט”. זו שאלה של איזו אבן יסוד חסרה לו עכשיו כדי להצליח בחומר שהכיתה לומדת.</p>
+        </div>
+        <div class="slide-num">07</div>
+      </div>
+      <div class="body-grid cols-2">
+        <article class="card dark">
+          <h3>לא פרופיל קבוע</h3>
+          <p>תלמיד יכול לשלוט בזיהוי אותיות, להתקשות בצליל פותח, ולהיות באמצע הדרך בפענוח הברות. לכן אין “ילד חלש”. יש תמונת מצב רב-ממדית.</p>
+        </article>
+        <article class="card tinted">
+          <h3>כן מיפוי חי</h3>
+          <p>כל תגובה מעדכנת את ההבנה: מה הילד יודע, איפה הוא צריך עוד תרגול, והאם הוא מוכן לעלות שלב בלי לאבד את הקו הכיתתי.</p>
+        </article>
+      </div>
+      <div class="footer-note">07 / 22</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="8">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">אבני היסוד של הקריאה</div>
+          <h2 class="slide-title">“קושי בקריאה” הוא לא קושי אחד. לכן גם המענה לא יכול להיות אחד.</h2>
+        </div>
+        <div class="slide-num">08</div>
+      </div>
+      <div class="skill-map">
+        <div class="skill-cloud">
+          <span class="pill">מודעות פונולוגית</span>
+          <span class="pill alt">קשר אות-צליל</span>
+          <span class="pill warn">הבחנה בין אותיות דומות</span>
+          <span class="pill">ניקוד ותנועות</span>
+          <span class="pill alt">בניית הברה</span>
+          <span class="pill warn">קריאת מילים</span>
+          <span class="pill">שטף</span>
+          <span class="pill alt">הבנה</span>
+          <span class="pill warn">דפוסי טעות</span>
+          <span class="pill">שימוש ברמזים</span>
+          <span class="pill alt">עקביות לאורך זמן</span>
+        </div>
+        <div class="quote-panel">
+          <div class="small">המשמעות הפדגוגית</div>
+          <div class="quote">לא “עוד תרגול”. התרגול הנכון.</div>
+          <p>המטרה היא לזהות בדיוק איזו אבן יסוד חסרה לתלמיד, לחזק אותה, ולהחזיר אותו בטוח יותר אל החומר הכיתתי.</p>
+        </div>
+      </div>
+      <div class="footer-note">08 / 22</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="9">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">לולאת סגירת פער</div>
+          <h2 class="slide-title">המסלול האישי נועד <span class="accent">ליישר קו עם החומר הכיתתי</span>, לא להוציא ממנו.</h2>
+          <p class="lede">הפרסונליזציה אינה מסלול נפרד מהכיתה. היא הדרך שמחזירה את התלמיד אל היעד המשותף.</p>
+        </div>
+        <div class="slide-num">09</div>
+      </div>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-num">1</div>
+          <h3>מזהה</h3>
+          <p>איזו אבן יסוד חסרה ביחס לנושא שהכיתה לומדת עכשיו.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <h3>מתרגלת</h3>
+          <p>מוסיפה פריטים מדויקים ולא חזרה כללית על חומר רחב מדי.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <h3>מתווכת</h3>
+          <p>נותנת רמז, פירוק, הקראה או הדגמה לפי סוג הקושי.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">4</div>
+          <h3>בודקת שוב</h3>
+          <p>לא מסתפקת בהצלחה חד-פעמית. מחפשת שליטה עקבית.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">5</div>
+          <h3>מעלה שלב</h3>
+          <p>כשהאבן מתחזקת, הילד מתקדם בתוך הרצף הכיתתי.</p>
+        </div>
+      </div>
+      <div class="footer-note">09 / 22</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="10">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">חוויית תלמיד</div>
+          <h2 class="slide-title">כדי שילד בכיתה א׳ יתרגל כל יום, זה חייב להרגיש כמו <span class="accent">משחק.</span></h2>
+          <p class="lede">ההתאמה לגיל אינה קישוט. היא תנאי לשימוש עקבי, למוטיבציה, ולתחושת מסוגלות.</p>
+        </div>
+        <div class="slide-num">10</div>
+      </div>
+      <div class="experience-layout">
+        <div class="body-grid cols-4">
+          <article class="card">
+            <h3>קצר</h3>
+            <p>סשנים קצרים של תרגול יומי שמתאימים לטווח קשב של א׳-ב׳.</p>
+          </article>
+          <article class="card tinted">
+            <h3>מובן</h3>
+            <p>ממשק פשוט, הוראות קוליות, משימות ברורות והפחתת עומס קריאה.</p>
+          </article>
+          <article class="card">
+            <h3>משחקי</h3>
+            <p>הילד רואה מסע, משימה והתקדמות. לא מבחן ולא “רמה נמוכה”.</p>
+          </article>
+          <article class="card dark">
+            <h3>בונה מסוגלות</h3>
+            <p>רמזים מדורגים מאפשרים להצליח בלי להישבר ובלי לצאת מהכיתה.</p>
+          </article>
+        </div>
+        <div class="screenshot-strip">
+          <figure class="screen-card">
+            <div class="screen-frame">
+              <img src="avnei-board-assets/game-phonological.png" alt="מסך משחק אבני יסוד — מודעות פונולוגית">
+            </div>
+            <figcaption class="screen-caption">מודעות פונולוגית <span>תרגול קצר, חזותי ומונחה</span></figcaption>
+          </figure>
+          <figure class="screen-card">
+            <div class="screen-frame">
+              <img src="avnei-board-assets/game-shell.png" alt="מסך משחק אבני יסוד — הצדף הקסום">
+            </div>
+            <figcaption class="screen-caption">אותיות וצלילים <span>משימה משחקית בתוך רצף הלמידה</span></figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="footer-note">10 / 22</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="11">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">אותו שיעור, מסלולים אישיים</div>
+          <h2 class="slide-title">4 רמות תמיכה עם <span class="accent">מסלול אישי מדויק לכל תלמיד.</span></h2>
+          <p class="lede">רמת התמיכה קובעת כמה עזרה הילד מקבל. אבני היסוד קובעות מה בדיוק הוא יתרגל.</p>
+        </div>
+        <div class="slide-num">11</div>
+      </div>
+      <div class="student-journey">
+        <article class="path-card">
+          <div class="path-level"><span>תמיכה נמוכה</span><span>01</span></div>
+          <h3>רוני</h3>
+          <p>שולטת בבסיס החיריק. מקבלת אתגר עם מילים ומשפטים מורכבים יותר.</p>
+          <div class="tag">אתגר והעמקה</div>
+        </article>
+        <article class="path-card">
+          <div class="path-level"><span>תרגול רגיל</span><span>02</span></div>
+          <h3>דניאל</h3>
+          <p>מתקדם עם החומר הכיתתי, אבל מקבל רמזים זמינים כשזמן התגובה מתארך.</p>
+          <div class="tag">תרגול רציף</div>
+        </article>
+        <article class="path-card">
+          <div class="path-level"><span>תמיכה ממוקדת</span><span>03</span></div>
+          <h3>מאיה</h3>
+          <p>מתקשה בהבחנה בין צלילים דומים. מקבלת חזרה קצרה לאבן יסוד פונולוגית לפני החיריק.</p>
+          <div class="tag">חיזוק אבן יסוד</div>
+        </article>
+        <article class="path-card">
+          <div class="path-level"><span>תמיכה מוגברת</span><span>04</span></div>
+          <h3>תמר</h3>
+          <p>מתקשה בקשר אות-צליל. מקבלת פירוק חזותי ושמיעתי לפני שהיא חוזרת לנושא הכיתתי.</p>
+          <div class="tag">חזרה מדורגת למסלול</div>
+        </article>
+      </div>
+      <div class="footer-note">11 / 22</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="12">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">חוויית מורה</div>
+          <h2 class="slide-title">המורה רואה גם את כל הכיתה <span class="accent">וגם כל תלמיד לעומק.</span></h2>
+          <p class="lede">המערכת הופכת נתוני תרגול לפעולה פדגוגית ברורה: מי מתקדם, מי נעצר, איפה יש קושי, ומה לעשות מחר בבוקר.</p>
+        </div>
+        <div class="slide-num">12</div>
+      </div>
+      <div class="mini-dashboard">
+        <div class="dashboard-card">
+          <h3>תמונת כיתה</h3>
+          <div class="student-row">
+            <div class="avatar">ר</div>
+            <div><div class="student-name">רוני</div><div class="student-meta">חיריק · אתגר מתקדם</div></div>
+            <div class="status">מתקדמת</div>
+          </div>
+          <div class="student-row">
+            <div class="avatar">ד</div>
+            <div><div class="student-name">דניאל</div><div class="student-meta">חיריק · רמזים זמינים</div></div>
+            <div class="status">בקצב</div>
+          </div>
+          <div class="student-row">
+            <div class="avatar">מ</div>
+            <div><div class="student-name">מאיה</div><div class="student-meta">חיזוק צליל פותח</div></div>
+            <div class="status">מעקב</div>
+          </div>
+          <div class="student-row">
+            <div class="avatar">ת</div>
+            <div><div class="student-name">תמר</div><div class="student-meta">אות-צליל · תמיכה מוגברת</div></div>
+            <div class="status">התערבות</div>
+          </div>
+        </div>
+        <div class="dashboard-card">
+          <h3>כרטיס תלמיד</h3>
+          <div class="insight-list">
+            <div class="insight"><strong>איפה בחומר:</strong> מתרגלת את נושא החיריק מתוך רצף החודש.</div>
+            <div class="insight"><strong>איפה הקושי:</strong> לפני החיריק חסרה יציבות בקשר אות-צליל.</div>
+            <div class="insight"><strong>מה נוסה:</strong> רמז קולי עזר, פירוק חזותי עדיין נדרש.</div>
+            <div class="insight"><strong>המלצה:</strong> 8 דקות תרגול אישי + בדיקת מורה קצרה בסוף הסשן.</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-note">12 / 22</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="13">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">מדאטה לפעולה</div>
+          <h2 class="slide-title">המערכת לא אומרת רק “מי חלש”. <span class="accent">היא אומרת מה עושים מחר בבוקר.</span></h2>
+        </div>
+        <div class="slide-num">13</div>
+      </div>
+      <div class="body-grid cols-2">
+        <div class="quote-panel">
+          <div class="small">שינוי שפה</div>
+          <div class="quote">מ”יש פערים” ל”זו הפעולה הבאה”.</div>
+          <p>המורה לא מקבלת עוד דוח לקרוא. היא מקבלת נקודת פתיחה לשיעור, לקבוצה קצרה או להתערבות פרטנית.</p>
+        </div>
+        <div class="body-grid">
+          <div class="insight">5 תלמידים מתקשים בזיהוי צליל פותח. מומלץ תרגול קבוצתי קצר של 8 דקות.</div>
+          <div class="insight">3 תלמידים מבלבלים בין אותיות דומות. מומלץ משחק הבחנה חזותית לפני המשך החיריק.</div>
+          <div class="insight">תלמידה מצליחה רק עם רמזים. לא להעביר שלב עדיין.</div>
+          <div class="insight">יש קושי רוחבי בניקוד. מומלץ חיזוק כיתתי קצר בתחילת השיעור.</div>
+        </div>
+      </div>
+      <div class="footer-note">13 / 22</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="14">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">מדידה עירונית</div>
+          <h2 class="slide-title">לדבר גם בשפת <span class="accent">מבדקי ראמ״ה.</span></h2>
+          <p class="lede">לא מספיק לדעת שהילד תרגל. צריך לחבר בין התרגול היומיומי, תמונת הכיתה, ומבדקי רוחב שמאפשרים למטה לראות התקדמות, פערים ואפקטיביות.</p>
+        </div>
+        <div class="slide-num">14</div>
+      </div>
+      <div class="measurement-layout">
+        <div class="body-grid">
+          <article class="card dark">
+            <h3>שפה משותפת למורה, למנהלת ולמטה</h3>
+            <p>מבדקי רוחב כמו ראמ״ה יכולים להפוך מנקודת בדיקה תקופתית לשכבת בקרה שמחוברת לתרגול, להמלצות ולשיפור ההוראה.</p>
+          </article>
+          <article class="card tinted">
+            <h3>מדידה שאינה מנותקת מהכיתה</h3>
+            <p>אותן אבני יסוד שמופיעות בתרגול ובדשבורד יכולות להופיע גם בתמונת הרוחב: מי התקדם, איפה נשאר פער, ואיזה מענה עבד.</p>
+          </article>
+        </div>
+        <figure class="demo-shot clean-shot">
+          <div class="demo-frame">
+            <img src="avnei-board-assets/rama-dashboard-clean.png" alt="דשבורד מורה — מבדק ראמ״ה">
+          </div>
+        </figure>
+      </div>
+      <div class="footer-note">14 / 22</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="15">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">מכפיל כוח אדם</div>
+          <h2 class="slide-title">המערכת עושה את מה שכוח אדם נוסף <span class="accent">לא יכול לעשות לבד.</span></h2>
+          <p class="lede">כוח אדם מומחה הוא קריטי להתערבות עמוקה. אבל אין מספיק עיניים לראות כל תגובה של כל ילד בכל רגע. הטכנולוגיה נותנת רציפות.</p>
+        </div>
+        <div class="slide-num">15</div>
+      </div>
+      <div class="body-grid cols-3">
+        <article class="card">
+          <h3>התרגול היומיומי</h3>
+          <p>כל תלמיד מקבל עוד ועוד הזדמנויות מדויקות במקום שבו הוא צריך אותן, גם כשהמורה עובדת עם תלמיד אחר.</p>
+        </article>
+        <article class="card tinted">
+          <h3>איסוף הנתונים</h3>
+          <p>המערכת זוכרת כל דפוס. לא מתוך טפסים ידניים, אלא מתוך מה שהילד עושה בפועל.</p>
+        </article>
+        <article class="card dark">
+          <h3>מיקוד האדם</h3>
+          <p>המורה, המלווה והרכזת מופנים אל המקום שבו המגע האנושי הכי חשוב: התערבות, קשר, שיקול דעת.</p>
+        </article>
+      </div>
+      <div class="footer-note">15 / 22</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="16">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">ערך למטה מנח״י</div>
+          <h2 class="slide-title">מה שלא נמדד, קשה לנהל. <span class="accent">מה שנמדד חי, אפשר לשפר.</span></h2>
+          <p class="lede">המערכת נותנת למנח״י תמונת מצב על יישום הדיפרנציאליות, לא רק על הצהרת כוונות.</p>
+        </div>
+        <div class="slide-num">16</div>
+      </div>
+      <div class="layer-stack">
+        <div class="layer">
+          <div class="layer-name">מורה</div>
+          <p>איך הכיתה שלי מתקדמת, מי צריך אותי היום, ואיזה תרגול נכון לכל תלמיד.</p>
+        </div>
+        <div class="layer">
+          <div class="layer-name">בית ספר</div>
+          <p>איפה יש קושי רוחבי, אילו מענים עובדים, ואילו כיתות צריכות ליווי ממוקד.</p>
+        </div>
+        <div class="layer">
+          <div class="layer-name">מטה מנח״י</div>
+          <p>צמצום פערים, אפקטיביות מענים, איתור מוקדם, והחלטות משאבים על בסיס נתונים מצטברים.</p>
+        </div>
+      </div>
+      <div class="footer-note">16 / 22</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="17">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">חיבור לתוכנית החומש</div>
+          <h2 class="slide-title">אבני יסוד יושבת בדיוק במקום שבו החומש צריך <span class="accent">תשתית ביצוע.</span></h2>
+        </div>
+        <div class="slide-num">17</div>
+      </div>
+      <div class="body-grid cols-3">
+        <article class="card tinted">
+          <h3>השתנות הלמידה</h3>
+          <p>פחות “מורה-לוח-כיתה אחת”, יותר למידה מותאמת בתוך אותו שיעור ואותו יעד פדגוגי.</p>
+        </article>
+        <article class="card">
+          <h3>מענים תוספתיים</h3>
+          <p>שכבת מומחיות דיגיטלית באוריינות שמפעילה תרגול רציף ומפנה כוח אדם להתערבות עמוקה.</p>
+        </article>
+        <article class="card">
+          <h3>ליווי מבוסס נתונים</h3>
+          <p>מלווה בית הספר ורכזת ההכלה רואים איפה נדרש סיוע, לא רק שומעים תחושת עומס.</p>
+        </article>
+        <article class="card">
+          <h3>מסוגלות מורות</h3>
+          <p>המורה לא נדרשת להחזיק הכל בראש. היא מקבלת תמונת מצב והמלצות בשפה אנושית.</p>
+        </article>
+        <article class="card">
+          <h3>רצף בקהילה</h3>
+          <p>הילד מקבל חיזוק בתוך הכיתה הרגילה, עם פחות צורך לצאת למסגרת נפרדת.</p>
+        </article>
+        <article class="card dark">
+          <h3>יעד תשפ״ט</h3>
+          <p>אם הכיתה הרגילה היא הפתרון, היא חייבת לקבל תשתית שמאפשרת לה לראות כל תלמיד.</p>
+        </article>
+      </div>
+      <div class="footer-note">17 / 22</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="18">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">למה להתחיל בא׳-ב׳</div>
+          <h2 class="slide-title">קריאה מוקדמת היא המקום שבו הכלה יכולה <span class="accent">להצליח או להישבר.</span></h2>
+          <p class="lede">רכישת הקריאה היא נקודת מינוף: מוקדמת, מדידה, קריטית להמשך הדרך, ומשפיעה על תחושת מסוגלות של הילד.</p>
+        </div>
+        <div class="slide-num">18</div>
+      </div>
+      <div class="body-grid cols-3">
+        <article class="card">
+          <h3>פער קטן נהיה גדול</h3>
+          <p>קושי לא מטופל בא׳-ב׳ מתרחב במהירות ומשפיע על כל מקצוע שנשען על קריאה.</p>
+        </article>
+        <article class="card tinted">
+          <h3>האיתור אפשרי מוקדם</h3>
+          <p>קריאה מאפשרת פירוק ברור לאבני יסוד ומדידה חוזרת לאורך השנה.</p>
+        </article>
+        <article class="card dark">
+          <h3>ההשפעה מערכתית</h3>
+          <p>ככל שסוגרים פערים מוקדם יותר, קטן הצורך במענים כבדים ומסגרות נפרדות בהמשך.</p>
+        </article>
+      </div>
+      <div class="footer-note">18 / 22</div>
+    </div>
+  </section>
+
+  <section class="slide closing-slide" data-slide="19">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">לסיכום</div>
+          <h2 class="slide-title">הבחירה: <span class="accent">לתת לפדגוגיה תשתית.</span></h2>
+        </div>
+        <div class="slide-num">19</div>
+      </div>
+      <div class="closing-wrap">
+        <div class="quote-panel">
+          <div class="small">לסיכום</div>
+          <div class="quote">הכלה אמיתית מתחילה כשהכיתה הרגילה יודעת לראות כל תלמיד.</div>
+          <p>ירושלים יכולה להפוך את תוכנית החומש לדגם עירוני מדיד: כל תלמיד במסלול אישי, כל מורה עם תובנות, וכל מערכת עם יכולת להשתפר.</p>
+        </div>
+        <div class="closing-cards">
+          <article class="card">
+            <h3>בלי תשתית</h3>
+            <p>דיפרנציאליות נשענת על זמן, כוח אדם, זיכרון אישי ותכנון ידני. היא אפשרית נקודתית, אבל קשה להבטיח עקביות וסקייל.</p>
+          </article>
+          <article class="card tinted">
+            <h3>עם תשתית</h3>
+            <p>התרגול הופך אישי, המדידה הופכת רציפה, והמורה מקבלת נקודת פתיחה מדויקת לפעולה. הדיפרנציאליות מקבלת יכולת ביצוע יומיומית.</p>
+          </article>
+        </div>
+        <div class="thank-you">תודה</div>
+      </div>
+      <div class="footer-note">19 / 22</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="20">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">נספח · שגרת מורה</div>
+          <h2 class="slide-title">הדיפרנציאליות צריכה להפוך ל<span class="accent">פעולת בוקר ברורה.</span></h2>
+          <p class="lede">המורה לא צריכה לפענח דוחות או לזכור הכול לבד. היא צריכה לפתוח את היום עם תמונת מצב: מי מתקדם, מי נעצר, ומה נכון לעשות עכשיו.</p>
+        </div>
+        <div class="slide-num">20</div>
+      </div>
+      <div class="teacher-day-layout">
+        <figure class="demo-shot clean-shot teacher-shot">
+          <div class="demo-frame">
+            <img src="avnei-board-assets/teacher-day-groups-main.png" alt="דשבורד קבוצות ותכנון יום למורה">
+          </div>
+        </figure>
+        <div class="body-grid">
+          <article class="card tinted">
+            <h3>תמונת כיתה אחת</h3>
+            <p>קבוצות התערבות, תלמידים שדורשים תשומת לב, והתקדמות אישית מרוכזים למסך פעולה אחד.</p>
+          </article>
+          <article class="card">
+            <h3>המלצה שאפשר לבצע</h3>
+            <p>במקום עוד שכבת מידע, המורה מקבלת סדר עדיפויות: עם מי לעבוד, מה לחזק, ואיפה מספיק תרגול עצמאי.</p>
+          </article>
+        </div>
+      </div>
+      <div class="footer-note">20 / 22</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="21">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">נספח · מה כבר קיים</div>
+          <h2 class="slide-title">לא מצגת על רעיון. <span class="accent">יש כבר תשתית שאפשר לבחון.</span></h2>
+          <p class="lede">הערך אינו רק בתפיסה. קיימים רכיבי מערכת שממחישים את החוויה לתלמיד, את התמונה למורה, ואת הדרך להתאמה לרצף מנח״י.</p>
+        </div>
+        <div class="slide-num">21</div>
+      </div>
+      <div class="body-grid cols-4">
+        <article class="card tinted">
+          <h3>חוויית תלמיד</h3>
+          <p>משחקי תרגול לגילאי א׳-ב׳, משימות קצרות, הוראות ברורות, רמזים מדורגים וחוויית הצלחה שאינה מרגישה כמו מבחן.</p>
+        </article>
+        <article class="card">
+          <h3>דשבורד מורה</h3>
+          <p>תמונת כיתה, כרטיס תלמיד, זיהוי נקודות קושי, והמלצות פעולה שמתרגמות נתונים להחלטות הוראה.</p>
+        </article>
+        <article class="card">
+          <h3>התאמה למנח״י</h3>
+          <p>מיפוי רצף השיעורים, פירוק לאבני יסוד, התאמת רמות תמיכה, וחיבור לשפה הפדגוגית של התוכנית.</p>
+        </article>
+        <article class="card dark">
+          <h3>שכבת נתונים</h3>
+          <p>איסוף תגובות, טעויות, שימוש ברמזים, זמן תגובה ועקביות כדי לבנות תמונת שליטה דינמית ולא צילום מצב חד-פעמי.</p>
+        </article>
+      </div>
+      <div class="footer-note">21 / 22</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="22">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">נספח · אמון והוכחות</div>
+          <h2 class="slide-title">הפתרון נשען על עקרונות שכבר הוכיחו את עצמם <span class="accent">בעולם הלמידה.</span></h2>
+          <p class="lede">אבני יסוד אינה מבקשת אמון עיוור. היא מחברת בין קריאה מבוססת מחקר, מעקב שליטה מתמשך, תרגול אדפטיבי ומורה שמקבלת החלטות מקצועיות.</p>
+        </div>
+        <div class="slide-num">22</div>
+      </div>
+      <div class="proof-grid">
+        <article class="card dark proof-card">
+          <div class="appendix-label">Science of Reading</div>
+          <h3>פירוק הקריאה לאבני יסוד</h3>
+          <p>המערכת אינה מודדת “קריאה” כמקשה אחת, אלא מפרקת למודעות פונולוגית, קשר אות-צליל, ניקוד, הברות, שטף והבנה.</p>
+        </article>
+        <article class="card proof-card">
+          <div class="appendix-label">Knowledge Tracing</div>
+          <h3>שליטה נבנית לאורך זמן</h3>
+          <p>הערכת מצב התלמיד נשענת על רצף תגובות, טעויות, רמזים ועקביות. לא על תשובה אחת ולא על מבחן חד-פעמי.</p>
+        </article>
+        <article class="card tinted proof-card">
+          <div class="appendix-label">Adaptive Practice</div>
+          <h3>התרגול הבא מותאם לצורך</h3>
+          <p>כשהמערכת מזהה אבן יסוד חסרה, היא מוסיפה תרגול, רמז או פירוק מתאים, ומחזירה את הילד בהדרגה לרצף הכיתתי.</p>
+        </article>
+        <article class="card proof-card">
+          <div class="appendix-label">MTSS</div>
+          <h3>תמיכה מדורגת בתוך הכיתה</h3>
+          <p>הטכנולוגיה מספקת שכבת תגבור רציפה, והמורה מופנית למקומות שבהם נדרש מגע אנושי, שיקול דעת וקשר אישי.</p>
+        </article>
+        <article class="card proof-card">
+          <div class="appendix-label">Teacher in the Loop</div>
+          <h3>לא מחליפים מורה</h3>
+          <p>המערכת מציעה מיקוד, אבל המורה נשארת בעלת המקצוע: מאשרת, מתעדפת, מתערבת ומפרשת את ההקשר הכיתתי.</p>
+        </article>
+        <article class="card dark proof-card">
+          <div class="appendix-label">Measured Scale</div>
+          <h3>אמון נבנה דרך נתונים</h3>
+          <p>במקום להתרשם רק ממסכים, אפשר לבחון שימוש בפועל, התקדמות תלמידים, איכות המלצות, ועומס מורה לאורך זמן.</p>
+        </article>
+      </div>
+      <div class="footer-note">22 / 22</div>
+    </div>
+  </section>
+
+  <section class="slide thanks-slide" data-slide="23">
+    <div class="slide-shell">
+      <div class="thanks-wrap">
+        <div class="kicker">תודה רבה</div>
+        <h2 class="thanks-title">תודה רבה</h2>
+        <p class="thanks-copy"><span class="line">מחכים לבנות יחד איתכם את</span><span class="line accent">טביעת האצבע שלכם</span></p>
+        <div class="thanks-logo" aria-label="IMPACT OS"></div>
+      </div>
+      <div class="footer-note">23 / 23</div>
+    </div>
+  </section>
+</main>
+
+<div class="nav" aria-label="ניווט מצגת">
+  <button id="next" aria-label="הבא">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
+  </button>
+  <div class="counter"><span class="current" id="currentSlide">01</span> / <span id="totalSlides">22</span></div>
+  <button id="prev" aria-label="הקודם">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+  </button>
+</div>
+
+<script>
+const slides = Array.from(document.querySelectorAll(".slide"));
+const total = slides.length;
+const currentEl = document.getElementById("currentSlide");
+const totalEl = document.getElementById("totalSlides");
+const topCurrentEl = document.getElementById("topCurrentSlide");
+const topTotalEl = document.getElementById("topTotalSlides");
+const topKickerEl = document.getElementById("topKicker");
+const progress = document.getElementById("progressFill");
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
+let current = 0;
+
+totalEl.textContent = String(total).padStart(2, "0");
+topTotalEl.textContent = String(total).padStart(2, "0");
+
+function showSlide(index) {
+  current = Math.max(0, Math.min(total - 1, index));
+  slides.forEach((slide, i) => slide.classList.toggle("active", i === current));
+  currentEl.textContent = String(current + 1).padStart(2, "0");
+  topCurrentEl.textContent = String(current + 1).padStart(2, "0");
+  const activeKicker = slides[current]?.querySelector(".kicker");
+  if (topKickerEl && activeKicker) topKickerEl.textContent = activeKicker.textContent.trim();
+  progress.style.width = `${((current + 1) / total) * 100}%`;
+  prevBtn.disabled = current === 0;
+  nextBtn.disabled = current === total - 1;
+  document.body.classList.toggle("is-title", current === 0);
+  history.replaceState(null, "", `#${current + 1}`);
+}
+
+prevBtn.addEventListener("click", () => showSlide(current - 1));
+nextBtn.addEventListener("click", () => showSlide(current + 1));
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "ArrowLeft" || event.key === "PageDown" || event.key === " ") {
+    event.preventDefault();
+    showSlide(current + 1);
+  }
+  if (event.key === "ArrowRight" || event.key === "PageUp") {
+    event.preventDefault();
+    showSlide(current - 1);
+  }
+  if (event.key === "Home") showSlide(0);
+  if (event.key === "End") showSlide(total - 1);
+});
+
+const initial = Number.parseInt(location.hash.replace("#", ""), 10);
+showSlide(Number.isFinite(initial) ? initial - 1 : 0);
+</script>
+
+
+</body></html>
