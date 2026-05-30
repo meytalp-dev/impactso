@@ -2802,6 +2802,167 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
   margin-top:12px;
 }
 
+/* ============ English Chativa summary slide (scoped .ec-*) ============ */
+.ec-summary { display: grid; grid-template-rows: auto auto; gap: clamp(20px, 2.4vh, 28px); align-content: start; }
+.ec-dual { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(18px, 2vw, 28px); }
+.ec-dual-side {
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: var(--r-md); padding: clamp(16px, 1.8vw, 22px);
+  box-shadow: var(--sh-2);
+  display: flex; flex-direction: column;
+}
+.ec-side-label {
+  font-family: "Inter", "Rubik", sans-serif;
+  font-size: 11px; font-weight: 800;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--violet); margin-bottom: 6px;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.ec-side-label::before {
+  content: ""; width: 6px; height: 6px; border-radius: 999px;
+  background: var(--grad);
+}
+.ec-side-role {
+  font-family: "Rubik", "Heebo", sans-serif;
+  font-size: clamp(16px, 1.4vw, 20px); font-weight: 800;
+  color: var(--ink); margin-bottom: 4px;
+}
+.ec-side-desc { font-size: clamp(12px, 0.95vw, 13.5px); color: var(--muted); margin-bottom: 14px; line-height: 1.45; }
+
+.ec-mockup {
+  background: var(--paper-2); border: 1px solid var(--line);
+  border-radius: var(--r-sm); padding: 14px;
+  font-family: "Inter", sans-serif; direction: ltr;
+}
+.ec-mockup .ec-mk-top {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 10px; border-bottom: 1px solid var(--line); margin-bottom: 12px;
+}
+.ec-mockup .ec-mk-avatar {
+  width: 30px; height: 30px; border-radius: 999px;
+  background: var(--grad); color: white;
+  font-weight: 900; font-size: 12px;
+  display: grid; place-items: center;
+}
+.ec-mockup .ec-mk-name { font-size: 12px; font-weight: 700; color: var(--ink); }
+.ec-mockup .ec-mk-streak {
+  background: rgba(124,58,237,0.1); color: var(--violet);
+  padding: 3px 9px; border-radius: 999px;
+  font-size: 11px; font-weight: 700;
+}
+.ec-mockup .ec-mk-unit-label { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; }
+.ec-mockup .ec-mk-unit-title { font-size: 14px; font-weight: 800; color: var(--ink); margin-top: 2px; }
+.ec-mockup .ec-mk-bar { height: 3px; background: var(--line); border-radius: 999px; margin: 10px 0 6px; overflow: hidden; }
+.ec-mockup .ec-mk-bar-fill { height: 100%; width: 35%; border-radius: 999px; background: var(--grad); }
+.ec-mockup .ec-mk-bar-text { font-size: 10px; color: var(--muted); }
+.ec-mockup .ec-mk-chip {
+  display: inline-block; background: var(--line-soft); color: var(--slate);
+  padding: 3px 9px; border-radius: 999px;
+  font-size: 10px; font-weight: 700; margin: 12px 0 10px;
+}
+.ec-mockup .ec-mk-prompt {
+  font-size: 14px; font-weight: 600; color: var(--ink);
+  line-height: 1.4; margin-bottom: 12px;
+}
+.ec-mockup .ec-mk-opts { display: flex; flex-direction: column; gap: 6px; }
+.ec-mockup .ec-mk-opt {
+  background: var(--white); border: 1.5px solid var(--line);
+  border-radius: 8px; padding: 9px 12px;
+  font-size: 12.5px; font-weight: 500; color: var(--ink);
+  display: flex; align-items: center; gap: 8px;
+}
+.ec-mockup .ec-mk-opt.correct {
+  background: var(--grad-quiet);
+  border-color: var(--violet);
+  color: var(--indigo-dark); font-weight: 700;
+}
+.ec-mockup .ec-mk-opt-letter {
+  width: 18px; height: 18px; border-radius: 999px;
+  background: var(--line-soft); color: var(--muted);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 9px; font-weight: 700; flex-shrink: 0;
+}
+.ec-mockup .ec-mk-opt.correct .ec-mk-opt-letter { background: var(--grad); color: white; }
+.ec-mockup .ec-mk-meta {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  font-size: 9px; color: var(--muted);
+  margin-top: 12px; padding-top: 10px;
+  border-top: 1px solid var(--line);
+  text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700;
+}
+
+/* teacher mockup parts */
+.ec-mockup .ec-mk-greet { font-size: 14px; font-weight: 800; color: var(--ink); letter-spacing: -0.01em; }
+.ec-mockup .ec-mk-greet-sub { font-size: 10px; color: var(--muted); margin-bottom: 12px; }
+.ec-mockup .ec-mk-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 14px; }
+.ec-mockup .ec-mk-stat {
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: 8px; padding: 8px 10px;
+}
+.ec-mockup .ec-mk-stat-num {
+  font-size: 16px; font-weight: 800;
+  background: var(--grad);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: "Inter";
+}
+.ec-mockup .ec-mk-stat-label { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
+.ec-mockup .ec-mk-groups-title {
+  font-size: 10px; font-weight: 800; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px;
+}
+.ec-mockup .ec-mk-group {
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: 8px; padding: 10px 12px; margin-bottom: 6px;
+  border-left: 4px solid var(--indigo);
+  display: flex; align-items: center; gap: 10px;
+}
+.ec-mockup .ec-mk-group.advance { border-left-color: #0F766E; }
+.ec-mockup .ec-mk-group.practice { border-left-color: var(--violet); }
+.ec-mockup .ec-mk-group.attention { border-left-color: #B7791F; }
+.ec-mockup .ec-mk-grp-icon {
+  width: 26px; height: 26px; border-radius: 7px;
+  display: grid; place-items: center;
+  font-size: 13px; flex-shrink: 0;
+}
+.ec-mockup .ec-mk-group.advance .ec-mk-grp-icon { background: rgba(15,118,110,0.1); }
+.ec-mockup .ec-mk-group.practice .ec-mk-grp-icon { background: rgba(124,58,237,0.1); }
+.ec-mockup .ec-mk-group.attention .ec-mk-grp-icon { background: rgba(183,121,31,0.12); }
+.ec-mockup .ec-mk-grp-text { flex: 1; min-width: 0; }
+.ec-mockup .ec-mk-grp-name { font-size: 12px; font-weight: 700; color: var(--ink); }
+.ec-mockup .ec-mk-grp-students { font-size: 10px; color: var(--muted); margin-top: 2px; }
+.ec-mockup .ec-mk-approve {
+  background: var(--ink); color: white; border: none; border-radius: 999px;
+  padding: 4px 10px; font-size: 9.5px; font-weight: 700;
+  flex-shrink: 0; font-family: "Heebo";
+}
+
+.ec-foot-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.ec-foot-pill {
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: var(--r-sm); padding: 12px 16px;
+  box-shadow: var(--sh-1);
+}
+.ec-foot-label {
+  font-family: "Inter", "Rubik", sans-serif;
+  font-size: 10px; font-weight: 800;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
+}
+.ec-foot-val {
+  font-size: clamp(14px, 1.2vw, 16px); font-weight: 800; color: var(--ink);
+  margin-top: 4px; font-family: "Inter", "Rubik", sans-serif;
+}
+.ec-foot-val.gradient {
+  background: var(--grad);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media (max-width: 900px) {
+  .ec-dual { grid-template-columns: 1fr; }
+  .ec-foot-row { grid-template-columns: repeat(2, 1fr); }
+}
+
 </style>
 </head>
 <body class="is-title">
@@ -3585,7 +3746,145 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
     </div>
   </section>
 
-  <section class="slide thanks-slide" data-slide="23">
+  <section class="slide" data-slide="23">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">נספח · התרחבות חט״ב</div>
+          <h2 class="slide-title">אותו מנוע. <span class="accent">קהל יעד חדש: אנגלית כיתה ז׳.</span></h2>
+          <p class="lede">
+            <strong>English Chativa</strong> היא הצעד הבא בשכבת הביצוע של ImpactOS — מערכת תרגול דיפרנציאלית-אדפטיבית לאנגלית בחטיבת הביניים.
+            אותה מילה — ארבע דרכים, אחת לכל אחת. נבנית על מנוע אבני יסוד, ומשולבת לתוכנית הלימודים החדשה (Curriculum 2020) ולמסגרת המדידה של רמ״ה (תנופה).
+          </p>
+        </div>
+        <div class="slide-num">23</div>
+      </div>
+
+      <div class="ec-summary">
+        <div class="ec-dual">
+
+          <!-- STUDENT -->
+          <div class="ec-dual-side">
+            <div class="ec-side-label">View 1 · התלמיד.ה</div>
+            <div class="ec-side-role">Maya · בת 13 · Track 3 (A1)</div>
+            <div class="ec-side-desc">Maya חזקה בקריאה. רואה item של MCQ ברמת A1 על הפועל ‎'is'‎, בהקשר של Sarah שמטיילת בעולם.</div>
+
+            <div class="ec-mockup">
+              <div class="ec-mk-top">
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <div class="ec-mk-avatar">M</div>
+                  <div class="ec-mk-name">Maya</div>
+                </div>
+                <span class="ec-mk-streak">🔥 5</span>
+              </div>
+
+              <div class="ec-mk-unit-label">Unit 1 · About Me</div>
+              <div class="ec-mk-unit-title">Chapter 6 — Living in London</div>
+              <div class="ec-mk-bar"><div class="ec-mk-bar-fill"></div></div>
+              <div class="ec-mk-bar-text">Item 4 of 10 · Track 3 · A1</div>
+
+              <div class="ec-mk-chip">Sarah · London</div>
+              <div class="ec-mk-prompt">Sarah meets a kid in London. She says…</div>
+
+              <div class="ec-mk-opts">
+                <div class="ec-mk-opt correct">
+                  <span class="ec-mk-opt-letter">A</span>
+                  My name is Sarah. I'm from Tel Aviv.
+                </div>
+                <div class="ec-mk-opt">
+                  <span class="ec-mk-opt-letter">B</span>
+                  My name Sarah. I'm from Tel Aviv.
+                </div>
+                <div class="ec-mk-opt">
+                  <span class="ec-mk-opt-letter">C</span>
+                  My name is Sarah. I'm in Tel Aviv.
+                </div>
+                <div class="ec-mk-opt">
+                  <span class="ec-mk-opt-letter">D</span>
+                  My name is Sarah. I from Tel Aviv.
+                </div>
+              </div>
+
+              <div class="ec-mk-meta">
+                <span>Reading</span><span>MCQ</span><span>Presentation</span><span>Curriculum 2020</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- TEACHER -->
+          <div class="ec-dual-side">
+            <div class="ec-side-label">View 2 · המורה</div>
+            <div class="ec-side-role">Mrs. Cohen · בוקר · 07:40</div>
+            <div class="ec-side-desc">לפני הצלצול: 3 קבוצות מוצעות אוטומטית, בשפה אנושית — לא בטרמינולוגיה. 4 קליקים לאישור.</div>
+
+            <div class="ec-mockup">
+              <div class="ec-mk-greet">Good morning, Mrs. Cohen 🌅</div>
+              <div class="ec-mk-greet-sub">Wed · Oct 14 · 60-second class read</div>
+
+              <div class="ec-mk-stats">
+                <div class="ec-mk-stat"><div class="ec-mk-stat-num">24</div><div class="ec-mk-stat-label">Students</div></div>
+                <div class="ec-mk-stat"><div class="ec-mk-stat-num">62%</div><div class="ec-mk-stat-label">Avg mastery</div></div>
+                <div class="ec-mk-stat"><div class="ec-mk-stat-num">3</div><div class="ec-mk-stat-label">Groups</div></div>
+              </div>
+
+              <div class="ec-mk-groups-title">Today's suggested groups</div>
+
+              <div class="ec-mk-group advance">
+                <div class="ec-mk-grp-icon">🌱</div>
+                <div class="ec-mk-grp-text">
+                  <div class="ec-mk-grp-name">Ready to advance · T3 → T4</div>
+                  <div class="ec-mk-grp-students">Maya, Daniel, Tom · 3 students</div>
+                </div>
+                <button class="ec-mk-approve">Approve</button>
+              </div>
+
+              <div class="ec-mk-group practice">
+                <div class="ec-mk-grp-icon">📝</div>
+                <div class="ec-mk-grp-text">
+                  <div class="ec-mk-grp-name">Practicing 'is' / 'are'</div>
+                  <div class="ec-mk-grp-students">Tamar, Roni, +3 · 5 students</div>
+                </div>
+                <button class="ec-mk-approve">Approve</button>
+              </div>
+
+              <div class="ec-mk-group attention">
+                <div class="ec-mk-grp-icon">🤝</div>
+                <div class="ec-mk-grp-text">
+                  <div class="ec-mk-grp-name">Need 1:1 attention</div>
+                  <div class="ec-mk-grp-students">Adam, Yossi · 2 students</div>
+                </div>
+                <button class="ec-mk-approve">Approve</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="ec-foot-row">
+          <div class="ec-foot-pill">
+            <div class="ec-foot-label">Pedagogical base</div>
+            <div class="ec-foot-val">Curriculum 2020</div>
+          </div>
+          <div class="ec-foot-pill">
+            <div class="ec-foot-label">CEFR levels</div>
+            <div class="ec-foot-val gradient">Pre-A1 → B1</div>
+          </div>
+          <div class="ec-foot-pill">
+            <div class="ec-foot-label">Measurement</div>
+            <div class="ec-foot-val">Tnufa-aligned</div>
+          </div>
+          <div class="ec-foot-pill">
+            <div class="ec-foot-label">Adaptive engine</div>
+            <div class="ec-foot-val gradient">BKT + EPA</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-note">23 / 24</div>
+    </div>
+  </section>
+
+  <section class="slide thanks-slide" data-slide="24">
     <div class="slide-shell">
       <div class="thanks-wrap">
         <div class="kicker">תודה רבה</div>
@@ -3593,7 +3892,7 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
         <p class="thanks-copy"><span class="line">מחכים לבנות יחד איתכם את</span><span class="line accent">טביעת האצבע שלכם</span></p>
         <div class="thanks-logo" aria-label="IMPACT OS"></div>
       </div>
-      <div class="footer-note">23 / 23</div>
+      <div class="footer-note">24 / 24</div>
     </div>
   </section>
 </main>
