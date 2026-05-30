@@ -1577,10 +1577,7 @@ footer::after{
   position:absolute;
   inset:0;
   z-index:0;
-  background:
-    radial-gradient(circle at 50% 54%,rgba(18,199,199,.08),transparent 34%),
-    radial-gradient(circle at 58% 62%,rgba(240,6,120,.055),transparent 38%),
-    #FFFFFF;
+  background:#FFFFFF;
   pointer-events:none;
 }
 #isl-video-stage.video-fallback::after{
@@ -2599,7 +2596,7 @@ footer::after{
     }
     if(signature){
       var draw = Math.max(8, Math.round(progress * 100));
-      var opacity = 0.12 + (progress * 0.18);
+      var opacity = 0.08 + (progress * 0.10);
       signature.style.setProperty('--signature-draw', draw + '%');
       signature.style.setProperty('--signature-tint', signatureColors[sectionIndex]);
       signature.style.setProperty('--signature-image', signatureImages[sectionIndex]);
