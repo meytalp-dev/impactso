@@ -3083,19 +3083,21 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
   padding:20px 20px 24px;
   border-radius:22px;
   background:linear-gradient(150deg, #ffffff 0%, #f4f8ff 100%);
-  border:1px solid rgba(20, 60, 110, .12);
+  border:2px solid rgba(20, 60, 110, .12);
   box-shadow:0 18px 44px -22px rgba(20, 60, 110, .25), 0 4px 14px -8px rgba(20, 60, 110, .12);
   color:inherit;
   text-decoration:none;
   cursor:pointer;
   position:relative;
   overflow:hidden;
-  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  transition:box-shadow .18s ease, border-color .18s ease;
 }
 .slide.demo-slide .demo-link-card:hover{
-  transform:translateY(-3px);
   box-shadow:0 26px 56px -22px rgba(20, 60, 110, .35), 0 6px 18px -8px rgba(20, 60, 110, .18);
-  border-color:rgba(20, 110, 180, .35);
+  border-color:rgba(20, 110, 180, .55);
+}
+.slide.demo-slide .demo-link-card > *{
+  pointer-events:none;
 }
 .slide.demo-slide .demo-link-body{
   display:flex;
@@ -3117,7 +3119,6 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
 .slide.demo-slide .demo-link-preview-fig{
   width:100%;
   margin:0;
-  cursor:zoom-in;
   position:relative;
   border-radius:14px;
   overflow:hidden;
@@ -3135,26 +3136,21 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
   object-fit:cover;
   object-position:center;
   display:block;
-  transition:transform .25s ease;
-}
-.slide.demo-slide .demo-link-preview-fig:hover img{
-  transform:scale(1.03);
 }
 .slide.demo-slide .demo-shot-hint{
   position:absolute;
   bottom:10px;
   left:10px;
-  background:rgba(11, 30, 52, .82);
+  background:rgba(11, 30, 52, .92);
   color:#fff;
-  font-size:.75rem;
-  padding:5px 10px;
+  font-size:.78rem;
+  padding:6px 12px;
   border-radius:999px;
   pointer-events:none;
-  opacity:0;
-  transition:opacity .18s ease;
+  font-weight:600;
 }
-.slide.demo-slide .demo-link-preview-fig:hover .demo-shot-hint{
-  opacity:1;
+.slide.demo-slide .demo-link-card:hover .demo-shot-hint{
+  background:rgba(20, 110, 180, 1);
 }
 .slide.demo-slide .demo-link-cta{
   display:inline-block;
