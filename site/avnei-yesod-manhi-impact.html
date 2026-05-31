@@ -4544,6 +4544,28 @@ document.addEventListener("keydown", (event) => {
 const initial = Number.parseInt(location.hash.replace("#", ""), 10);
 showSlide(Number.isFinite(initial) ? initial - 1 : 0);
 
+// ===== Demo link cards — guarantee open in new tab =====
+// Some browsers / popup blockers were silently dropping the anchor
+// click for the map demo card. Force window.open with explicit
+// noopener,noreferrer; fall back to same-tab navigation if a popup
+// blocker returns null so the user actually gets to the demo.
+(function () {
+  const demoCards = document.querySelectorAll(".demo-link-card, .morning-demo-link, .rama-demo-pill");
+  demoCards.forEach(function (card) {
+    card.addEventListener("click", function (e) {
+      const url = card.href;
+      if (!url) return;
+      e.preventDefault();
+      e.stopPropagation();
+      const win = window.open(url, "_blank", "noopener,noreferrer");
+      if (!win || win.closed || typeof win.closed === "undefined") {
+        // Popup blocked — open in the same tab as a fallback
+        window.location.href = url;
+      }
+    });
+  });
+})();
+
 // ===== Draggable nav bar (so it never blocks slide content) =====
 (function () {
   const nav = document.getElementById("navBar");
