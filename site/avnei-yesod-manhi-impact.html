@@ -1124,6 +1124,32 @@ h3 {
   cursor: default;
 }
 
+.nav.is-dragged {
+  bottom: auto;
+  left: auto;
+  transform: none;
+}
+.nav.is-dragging {
+  cursor: grabbing !important;
+  user-select: none;
+}
+.nav-drag-handle {
+  cursor: grab;
+  color: rgba(15, 23, 42, 0.45);
+  width: 28px !important;
+  height: 36px !important;
+}
+.nav-drag-handle:hover {
+  color: rgba(15, 23, 42, 0.85);
+  background: var(--paper-2);
+}
+.nav-drag-handle:active {
+  cursor: grabbing;
+}
+.nav.is-dragging .nav-drag-handle {
+  cursor: grabbing;
+}
+
 .nav button svg {
   width: 16px;
   height: 16px;
@@ -4442,7 +4468,14 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
   </section>
 </main>
 
-<div class="nav" aria-label="ניווט מצגת">
+<div class="nav" id="navBar" aria-label="ניווט מצגת">
+  <button class="nav-drag-handle" id="navDragHandle" type="button" aria-label="גרירת סרגל ניווט (גרור כדי להזיז · קליק כפול לאיפוס)" title="גרור כדי להזיז · קליק כפול לאיפוס מיקום">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/>
+      <circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/>
+      <circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/>
+    </svg>
+  </button>
   <button id="next" aria-label="הבא">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
   </button>
@@ -4507,6 +4540,113 @@ document.addEventListener("keydown", (event) => {
 
 const initial = Number.parseInt(location.hash.replace("#", ""), 10);
 showSlide(Number.isFinite(initial) ? initial - 1 : 0);
+
+// ===== Draggable nav bar (so it never blocks slide content) =====
+(function () {
+  const nav = document.getElementById("navBar");
+  const handle = document.getElementById("navDragHandle");
+  if (!nav || !handle) return;
+
+  const STORAGE_KEY = "avnei-deck-nav-pos";
+
+  function applyPos(pos) {
+    if (!pos) return;
+    nav.classList.add("is-dragged");
+    nav.style.left = pos.left + "px";
+    nav.style.top = pos.top + "px";
+    nav.style.right = "auto";
+    nav.style.bottom = "auto";
+  }
+  function resetPos() {
+    nav.classList.remove("is-dragged");
+    nav.style.left = "";
+    nav.style.top = "";
+    nav.style.right = "";
+    nav.style.bottom = "";
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+  }
+
+  // Restore saved position
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
+    if (saved && typeof saved.left === "number" && typeof saved.top === "number") {
+      applyPos(saved);
+    }
+  } catch (e) {}
+
+  let dragging = false;
+  let startX = 0, startY = 0, startLeft = 0, startTop = 0;
+
+  function onPointerDown(e) {
+    // ignore right-clicks etc
+    if (e.button !== undefined && e.button !== 0) return;
+    dragging = true;
+    nav.classList.add("is-dragging");
+    const rect = nav.getBoundingClientRect();
+    if (!nav.classList.contains("is-dragged")) {
+      nav.classList.add("is-dragged");
+      nav.style.left = rect.left + "px";
+      nav.style.top = rect.top + "px";
+      nav.style.right = "auto";
+      nav.style.bottom = "auto";
+    }
+    startX = e.clientX;
+    startY = e.clientY;
+    startLeft = rect.left;
+    startTop = rect.top;
+    handle.setPointerCapture && e.pointerId !== undefined && handle.setPointerCapture(e.pointerId);
+    e.preventDefault();
+  }
+  function onPointerMove(e) {
+    if (!dragging) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    let newLeft = startLeft + dx;
+    let newTop = startTop + dy;
+    // Keep within viewport
+    const rect = nav.getBoundingClientRect();
+    const maxLeft = window.innerWidth - rect.width - 4;
+    const maxTop = window.innerHeight - rect.height - 4;
+    newLeft = Math.max(4, Math.min(maxLeft, newLeft));
+    newTop = Math.max(4, Math.min(maxTop, newTop));
+    nav.style.left = newLeft + "px";
+    nav.style.top = newTop + "px";
+  }
+  function onPointerUp(e) {
+    if (!dragging) return;
+    dragging = false;
+    nav.classList.remove("is-dragging");
+    const rect = nav.getBoundingClientRect();
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ left: rect.left, top: rect.top }));
+    } catch (e) {}
+  }
+
+  handle.addEventListener("pointerdown", onPointerDown);
+  document.addEventListener("pointermove", onPointerMove);
+  document.addEventListener("pointerup", onPointerUp);
+  document.addEventListener("pointercancel", onPointerUp);
+
+  // Double-click handle to reset to default position
+  handle.addEventListener("dblclick", resetPos);
+
+  // Clamp into viewport on window resize
+  window.addEventListener("resize", function () {
+    if (!nav.classList.contains("is-dragged")) return;
+    const rect = nav.getBoundingClientRect();
+    const maxLeft = window.innerWidth - rect.width - 4;
+    const maxTop = window.innerHeight - rect.height - 4;
+    if (rect.left > maxLeft || rect.top > maxTop) {
+      const newLeft = Math.max(4, Math.min(maxLeft, rect.left));
+      const newTop = Math.max(4, Math.min(maxTop, rect.top));
+      nav.style.left = newLeft + "px";
+      nav.style.top = newTop + "px";
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ left: newLeft, top: newTop }));
+      } catch (e) {}
+    }
+  });
+})();
 
 // ===== Image lightbox (event delegation) =====
 (function () {
