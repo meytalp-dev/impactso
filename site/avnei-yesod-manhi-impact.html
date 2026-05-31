@@ -3233,10 +3233,13 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
 .screen-card{
   cursor: zoom-in;
 }
+/* No transform on hover — moving the element during the click cancels
+   it on some browsers. Use a stable box-shadow/filter hover instead. */
 .demo-shot:hover .demo-frame,
 .screen-card:hover .screen-frame{
-  transform: translateY(-2px);
-  transition: transform .18s ease;
+  filter: brightness(1.04);
+  box-shadow: 0 18px 44px -18px rgba(11, 30, 52, .35), 0 4px 14px -6px rgba(11, 30, 52, .18);
+  transition: filter .15s ease, box-shadow .15s ease;
 }
 .lightbox-overlay{
   position: fixed;
