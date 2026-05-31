@@ -3303,21 +3303,20 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
 }
 
 
-/* ============ NEW · slide 15 ramah demo pill (matches slide 14 style) ============ */
-.slide[data-slide="15"] .slide-shell{
-  grid-template-rows:auto 1fr auto auto;
-  min-height:0;
-}
-.slide[data-slide="15"] .measurement-layout{
-  min-height:0;
-  overflow:hidden;
+/* ============ NEW · slide 15 ramah demo pill — absolutely positioned ============ */
+/* Was being squashed below the visible viewport when placed in slide-shell
+   grid. Anchored to the slide itself, just above the navbar zone. */
+.slide[data-slide="15"]{
+  position:relative;
 }
 .slide[data-slide="15"] .rama-demo-pill{
+  position:absolute;
+  bottom:96px;
+  left:50%;
+  transform:translateX(-50%);
   display:inline-flex;
   align-items:center;
   gap:10px;
-  align-self:center;
-  margin:14px auto 0;
   padding:10px 22px;
   border-radius:999px;
   background:linear-gradient(135deg, #12c7c7, #0d4a7a);
@@ -3327,8 +3326,8 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
   font-size:1rem;
   box-shadow:0 14px 32px -14px rgba(13,74,122,.45);
   transition:box-shadow .15s ease, filter .15s ease;
-  width:fit-content;
-  justify-self:center;
+  white-space:nowrap;
+  z-index:20;
 }
 .slide[data-slide="15"] .rama-demo-pill:hover{
   filter:brightness(1.06);
