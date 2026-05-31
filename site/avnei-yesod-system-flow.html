@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mockup · שקופיות פלו לאבני יסוד · 31.5.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&amp;family=Rubik:wght@400;500;600;700;800;900&amp;family=Inter:wght@500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #061E4F;
+  --teal: #12C7C7;
+  --fuchsia: #F00678;
+  --yellow: #F4B41B;
+  --green: #67C54B;
+  --impact-bg: #F7FAFD;
+  --impact-gray: #66758F;
+
+  --indigo: var(--navy);
+  --indigo-dark: var(--navy);
+  --violet: var(--teal);
+  --violet-soft: var(--teal);
+  --magenta: var(--fuchsia);
+  --sky: var(--teal);
+
+  --grad: linear-gradient(90deg, var(--teal) 0%, var(--fuchsia) 100%);
+  --grad-quiet: linear-gradient(135deg, rgba(18,199,199,.08), rgba(240,6,120,.06));
+
+  --ink: var(--navy);
+  --ink-2: #102A62;
+  --slate: #53647D;
+  --slate-2: #64748B;
+  --muted: #71819A;
+  --soft: #99A7BA;
+  --hush: #DDE6F1;
+  --line: #E3EAF3;
+  --line-soft: #EFF4F8;
+  --paper: var(--impact-bg);
+  --paper-2: #FFFFFF;
+  --paper-3: #EEF7F8;
+  --white: #FFFFFF;
+
+  --gutter: clamp(40px, 4.5vw, 80px);
+  --r-sm: 14px;
+  --r-md: 22px;
+  --spine: 1px;
+  --sh-1: 0 16px 42px rgba(6,30,79,.06);
+  --sh-2: 0 18px 44px rgba(6,30,79,.10);
+  --sh-3: 0 24px 56px rgba(6,30,79,.14);
+
+  --strand-1: var(--teal);
+  --strand-2: var(--fuchsia);
+  --strand-3: var(--yellow);
+  --strand-4: var(--green);
+  --strand-5: var(--navy);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--impact-bg);
+  color: var(--navy);
+  font-family: "Heebo", Arial, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.deck {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(180deg, #fff 0%, var(--impact-bg) 100%);
+}
+
+.deck::before {
+  content: "";
+  position: absolute;
+  inset: 8vh auto auto -9vw;
+  width: min(520px, 42vw);
+  aspect-ratio: 1/1.23;
+  background: url('https://meytalp-dev.github.io/impactso/public/brand/impact-fingerprint-scroll-teal.png') center/contain no-repeat;
+  opacity: .045;
+  pointer-events: none;
+  z-index: 0;
+  transform: rotate(-9deg);
+}
+
+.slide::after {
+  content: "";
+  position: absolute;
+  left: clamp(34px, 5vw, 90px);
+  bottom: clamp(48px, 7vh, 96px);
+  width: min(260px, 21vw);
+  aspect-ratio: 1/1.23;
+  background: url('https://meytalp-dev.github.io/impactso/public/brand/impact-fingerprint-scroll-teal.png') center/contain no-repeat;
+  opacity: .035;
+  pointer-events: none;
+  z-index: 0;
+  transform: rotate(-12deg);
+}
+
+.deck-topbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 75;
+  height: 74px;
+  padding: 0 var(--gutter);
+  background: rgba(255,255,255,0.86);
+  border-bottom: 1px solid rgba(6,30,79,0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: block;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.deck-topbar::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(18,199,199,.7), rgba(240,6,120,.45), rgba(18,199,199,.05));
+}
+
+.logo-row {
+  position: absolute;
+  top: 50%;
+  right: var(--gutter);
+  transform: translateY(-50%);
+  text-align: right;
+}
+
+.logo-row::before {
+  content: "";
+  display: block;
+  width: clamp(170px, 16vw, 220px);
+  aspect-ratio: 1236/392;
+  background: url('https://meytalp-dev.github.io/impactso/site/presentation-assets/impact-os-logo-official-transparent.png') center/contain no-repeat;
+}
+
+.logo-row .name, .logo-row .product { display: none !important; }
+
+.top-kicker {
+  position: absolute;
+  left: var(--gutter);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--teal);
+  font-family: "Heebo", "Rubik", Arial, sans-serif;
+  font-size: clamp(12px, .95vw, 15px);
+  font-weight: 900;
+  letter-spacing: 2.8px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.top-kicker:empty { display: none; }
+.top-kicker::after {
+  content: "";
+  display: inline-block;
+  width: 34px;
+  height: 2px;
+  background: var(--teal);
+  opacity: .85;
+}
+
+.slide-marker { display: none !important; }
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(78px, 10vh, 108px) var(--gutter) clamp(70px, 7vh, 88px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.55s cubic-bezier(0.2, 0.7, 0.2, 1),
+              transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1),
+              visibility 0s linear 0.55s;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 0.55s cubic-bezier(0.2, 0.7, 0.2, 1),
+              transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1),
+              visibility 0s;
+}
+
+.slide::before {
+  content: "";
+  position: absolute;
+  top: clamp(78px, 10vh, 108px);
+  bottom: clamp(70px, 7vh, 88px);
+  right: calc(var(--gutter) * 0.45);
+  width: var(--spine);
+  background: linear-gradient(180deg, transparent, var(--line), transparent);
+  z-index: 0;
+}
+
+.slide:first-child::before { display: none; }
+
+.slide .kicker {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.slide-shell {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  min-height: 0;
+  flex: 1;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: clamp(14px, 2vh, 22px);
+}
+
+.slide-head { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start; }
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Inter", "Rubik", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin: 0 0 12px;
+}
+.kicker::before {
+  content: "";
+  width: 22px;
+  height: 1.5px;
+  background: var(--grad);
+}
+
+h1, h2, h3 {
+  margin: 0;
+  font-family: "Rubik", "Heebo", sans-serif;
+  letter-spacing: 0;
+  line-height: 1.05;
+  color: var(--ink);
+}
+
+.slide-title {
+  font-size: clamp(28px, 3vw, 46px);
+  line-height: 1.05;
+  max-width: 38ch;
+  font-weight: 900;
+  color: var(--navy);
+  font-family: "Heebo", "Rubik", Arial, sans-serif;
+}
+
+.accent {
+  color: var(--fuchsia);
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+.lede {
+  margin: 12px 0 0;
+  max-width: 80ch;
+  color: var(--slate);
+  font-size: clamp(14px, 1.1vw, 16.5px);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.lede strong { color: var(--ink); font-weight: 900; }
+
+.footer-note {
+  font-family: "Inter", monospace;
+  font-size: 10.5px;
+  color: var(--soft);
+  letter-spacing: 2px;
+  text-align: left;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+  direction: ltr;
+}
+
+/* ─────────── nav ─────────── */
+.nav {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 90;
+  display: flex;
+  gap: 8px;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 10px;
+  box-shadow: var(--sh-2);
+  font-family: "Inter", monospace;
+}
+.nav button {
+  border: none;
+  background: transparent;
+  color: var(--slate);
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.nav button:hover { background: var(--paper-3); }
+.nav .label {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  padding: 4px 8px;
+}
+
+/* ─────────── SLIDE A — flow ─────────── */
+.flow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  position: relative;
+  align-items: start;
+}
+.flow-step {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-1);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  min-height: 0;
+}
+.flow-step::after {
+  content: "";
+  position: absolute;
+  left: -13px;
+  top: 38px;
+  width: 18px;
+  height: 2px;
+  background: rgba(6,30,79,0.24);
+}
+.flow-step:first-child::after { display: none; }
+
+.flow-step .flow-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  margin-bottom: 6px;
+  background: var(--navy);
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-weight: 900;
+  font-size: 14px;
+}
+.flow-step h3 {
+  font-size: clamp(16px, 1.35vw, 20px);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.flow-step p {
+  margin: 0;
+  color: var(--slate);
+  font-size: clamp(13px, 0.95vw, 15px);
+  line-height: 1.45;
+}
+.flow-step p strong { color: var(--ink); font-weight: 800; }
+.flow-step .meta {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.islands-strip {
+  margin-top: 18px;
+  padding: 16px 22px;
+  background: var(--grad-quiet);
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-1);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 22px;
+  align-items: center;
+}
+.islands-strip .label {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--ink);
+  text-align: center;
+  line-height: 1.3;
+}
+.islands-strip .label .num {
+  font-family: "Inter", monospace;
+  font-size: 24px;
+  font-weight: 900;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+}
+.islands-strip .dots {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.islands-strip .group {
+  display: flex;
+  gap: 4px;
+  padding: 5px 12px 5px 5px;
+  border-radius: 999px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  align-items: center;
+  box-shadow: var(--sh-1);
+}
+.islands-strip .dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 9px;
+  color: white;
+  font-family: "Inter", monospace;
+  font-weight: 700;
+}
+.islands-strip .group-name {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--slate);
+  margin-right: 4px;
+}
+
+.payoff {
+  margin-top: 14px;
+  padding: 18px 24px;
+  background: var(--navy);
+  color: white;
+  border-radius: var(--r-md);
+  font-size: clamp(14px, 1.15vw, 17px);
+  font-weight: 600;
+  line-height: 1.55;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--sh-1);
+}
+.payoff strong {
+  color: var(--teal);
+  font-weight: 900;
+}
+.payoff .text { position: relative; z-index: 1; }
+
+/* ─────────── SLIDE B — packs ─────────── */
+.packs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.pack-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-1);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pack-card.highlight {
+  background: white;
+  border-color: var(--violet);
+  box-shadow: 0 8px 28px rgba(124,58,237,0.12), 0 0 0 1px var(--violet);
+}
+.pack-month {
+  font-family: "Inter", monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--muted);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.pack-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.pack-section {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.pack-content {
+  font-size: 13px;
+  color: var(--slate);
+  line-height: 1.5;
+}
+.pack-content strong { color: var(--ink); font-weight: 700; }
+
+.strand-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.strand-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 32px;
+  gap: 8px;
+  align-items: center;
+  font-size: 11px;
+}
+.strand-row .name { color: var(--slate-2); font-weight: 600; }
+.strand-row .bar {
+  height: 6px;
+  background: var(--paper-3);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+.strand-row .fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.6s;
+}
+.strand-row .pct {
+  font-family: "Inter", monospace;
+  font-weight: 700;
+  color: var(--ink);
+  text-align: left;
+  font-size: 11px;
+}
+
+.pack-letters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.pack-letters .letter {
+  background: rgba(124,58,237,0.08);
+  color: var(--indigo-dark);
+  font-weight: 800;
+  font-size: 14px;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  font-family: "Heebo", sans-serif;
+}
+.pack-letters .letter.new {
+  background: var(--grad);
+  color: white;
+}
+.pack-letters .letter.final {
+  background: rgba(234,88,12,0.12);
+  color: #C2410C;
+  border: 1px dashed #FB923C;
+}
+.pack-letters .letter.empty {
+  background: transparent;
+  color: var(--muted);
+  font-style: italic;
+  width: auto;
+  padding: 0 6px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.pack-niqqud {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.pack-niqqud span {
+  background: rgba(8,145,178,0.1);
+  color: #0E7490;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.pack-islands {
+  font-size: 11.5px;
+  color: var(--slate-2);
+  font-weight: 600;
+}
+.pack-islands strong { color: var(--ink); font-weight: 800; }
+
+.pack-legend {
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: var(--paper-2);
+  border-radius: var(--r-sm);
+  display: flex;
+  gap: 22px;
+  font-size: 12px;
+  color: var(--slate);
+  align-items: center;
+  flex-wrap: wrap;
+}
+.pack-legend .item { display: flex; gap: 6px; align-items: center; }
+.pack-legend .swatch { width: 14px; height: 14px; border-radius: 4px; }
+
+/* ─────────── SLIDE C — 22 islands ─────────── */
+.islands-table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.strand-row-full {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-1);
+  padding: 16px 22px;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 18px;
+  align-items: start;
+}
+.strand-meta { display: flex; flex-direction: column; gap: 4px; }
+.strand-meta .strand-name {
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.strand-meta .strand-when {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 600;
+}
+.strand-meta .strand-tag {
+  display: inline-flex;
+  align-self: flex-start;
+  margin-top: 4px;
+  font-family: "Inter", monospace;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  color: white;
+}
+.strand-meta .strand-count {
+  font-size: 11px;
+  color: var(--slate);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.island-tiles {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 6px;
+}
+.island-tile {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 9px 10px;
+  background: var(--paper-2);
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  min-height: 64px;
+  transition: all 0.2s;
+}
+.island-tile:hover {
+  border-color: var(--violet-soft);
+  background: var(--white);
+  transform: translateY(-1px);
+  box-shadow: var(--sh-1);
+}
+.island-tile .num {
+  font-family: "Inter", monospace;
+  font-weight: 900;
+  font-size: 14px;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  color: white;
+  flex: none;
+}
+.island-tile .body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.island-tile .name {
+  font-size: 11.5px;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.island-tile .desc {
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.3;
+  font-weight: 500;
+}
+
+.islands-footer {
+  margin-top: 12px;
+  padding: 12px 18px;
+  background: var(--grad-quiet);
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  font-size: 12.5px;
+  color: var(--slate);
+}
+.islands-footer .item strong { color: var(--ink); display: block; font-weight: 800; font-size: 13px; }
+
+/* ─────────── SLIDE D — single child profile ─────────── */
+.child-profile {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.child-block {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-1);
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.child-block h3 {
+  font-size: clamp(15px, 1.4vw, 18px);
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.child-block .sub {
+  font-size: 10.5px;
+  color: var(--muted);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-family: "Inter", monospace;
+}
+
+.axis-list { display: flex; flex-direction: column; gap: 8px; margin-top: 2px; }
+
+.axis {
+  display: grid;
+  grid-template-columns: 88px 1fr 138px;
+  gap: 10px;
+  align-items: center;
+  font-size: 11.5px;
+}
+
+.axis .name {
+  font-weight: 800;
+  color: var(--ink);
+  text-align: right;
+}
+
+.axis .track {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  height: 24px;
+  padding: 0 6px;
+  background: var(--paper-2);
+  border-radius: 999px;
+  border: 1px solid var(--line);
+}
+
+.axis .pip {
+  flex: 1;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--hush);
+  transition: all 0.2s;
+}
+
+.axis .pip.done {
+  background: currentColor;
+  opacity: 0.45;
+}
+
+.axis .pip.current {
+  height: 18px;
+  background: currentColor;
+  box-shadow: 0 0 0 3px white, 0 0 0 4.5px currentColor;
+}
+
+.axis .where {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.axis .where .num {
+  color: currentColor;
+  font-family: "Inter", monospace;
+  font-weight: 900;
+  margin-left: 4px;
+}
+
+/* session timeline */
+.session-time {
+  font-family: "Inter", monospace;
+  font-size: 10.5px;
+  color: var(--muted);
+  letter-spacing: 1.4px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.session-bar {
+  display: flex;
+  height: 38px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  margin-top: 2px;
+}
+
+.session-seg {
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  text-align: center;
+  padding: 0 4px;
+  line-height: 1.2;
+}
+
+.session-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  font-size: 11px;
+  color: var(--slate);
+  margin-top: 4px;
+}
+
+.session-legend .item {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.session-legend .swatch {
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+}
+
+.session-note {
+  margin: 6px 0 0;
+  color: var(--slate);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.session-note strong { color: var(--ink); font-weight: 800; }
+
+.profile-payoff {
+  background: var(--navy);
+  color: white;
+  padding: 16px 24px;
+  border-radius: var(--r-md);
+  font-size: clamp(13.5px, 1.05vw, 16px);
+  font-weight: 600;
+  line-height: 1.55;
+  position: relative;
+  overflow: hidden;
+  margin-top: 4px;
+  box-shadow: var(--sh-1);
+}
+
+.profile-payoff strong { color: var(--teal); font-weight: 900; }
+.profile-payoff .text { position: relative; z-index: 1; }
+
+/* ─────────── SLIDE E — failure handling ─────────── */
+.mistake-stack {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.mistake-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-1);
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.mistake-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 4px;
+  background: var(--teal);
+  opacity: 0.45;
+}
+.mistake-card.lvl-2::before { background: var(--yellow); opacity: 0.65; }
+.mistake-card.lvl-3::before { background: var(--fuchsia); opacity: 0.65; }
+
+.mistake-card .level {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Heebo", sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.mistake-card .level-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: rgba(18,199,199,0.12);
+  color: var(--teal);
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+}
+.mistake-card.lvl-2 .level-num { background: rgba(244,180,27,0.18); color: #B8860B; }
+.mistake-card.lvl-3 .level-num { background: rgba(240,6,120,0.14); color: var(--fuchsia); }
+
+.mistake-card h3 {
+  font-size: clamp(16px, 1.35vw, 19px);
+  font-weight: 900;
+  line-height: 1.2;
+  color: var(--navy);
+  margin: 0;
+}
+
+.mistake-card .detail {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 7px;
+  color: var(--slate);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.mistake-card .detail li {
+  position: relative;
+  padding-right: 14px;
+}
+.mistake-card .detail li::before {
+  content: "•";
+  position: absolute;
+  right: 0;
+  color: var(--teal);
+  font-weight: 900;
+}
+.mistake-card.lvl-2 .detail li::before { color: #B8860B; }
+.mistake-card.lvl-3 .detail li::before { color: var(--fuchsia); }
+
+.mistake-card .visual {
+  margin-top: auto;
+  padding: 11px 14px;
+  background: var(--paper-3);
+  border-radius: 10px;
+  font-size: 12px;
+  color: var(--slate-2);
+  font-weight: 600;
+  text-align: center;
+  border: 1px dashed rgba(6,30,79,0.08);
+}
+
+.flags-divider {
+  margin: 18px 0 10px;
+  padding: 12px 20px;
+  background: var(--grad-quiet);
+  border-radius: 12px;
+  border-right: 3px solid var(--teal);
+  font-size: 14.5px;
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1.4;
+}
+
+.flags-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.flag-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--sh-1);
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+.flag-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  background: var(--yellow);
+}
+
+.flag-card .flag-tag {
+  font-family: "Inter", monospace;
+  font-size: 9.5px;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.flag-card h4 {
+  font-size: 13.5px;
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.flag-card p {
+  font-size: 11.5px;
+  color: var(--slate);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ─────────── responsive ─────────── */
+@media (max-width: 1100px) {
+  .island-tiles { grid-template-columns: repeat(4, 1fr); }
+  .packs-grid, .flow { grid-template-columns: repeat(2, 1fr); }
+  .strand-row-full { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+  <div class="deck-topbar">
+    <div class="top-kicker" id="topKicker"></div>
+    <div class="logo-row"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SLIDE A — איך זה עובד (flow + 22 איים)
+       ═══════════════════════════════════════════════════════════════ -->
+  <section class="slide active" data-slide="1">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">איך זה עובד בפועל</div>
+          <h2 class="slide-title">מערכת שמתאימה את עצמה <span class="accent">לכל ילדה</span> — בלי שהמורה צריכה להגדיר כלום.</h2>
+          <p class="lede">תוכן חודשי תואם תוכנית הלימודים נכנס מוכן. המערכת לומדת כל ילדה תוך דקות, בוחרת את הפריט הבא לפי הרמה שלה, והמורה יוצאת מהשיעור עם <strong>שורות פעולה ברורות במקום ערימת ניירות</strong>.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="flow">
+          <div class="flow-step">
+            <div class="flow-num">1</div>
+            <h3>תוכן חודשי מוכן</h3>
+            <p>כל חודש נטענת <strong>תוכנית החודש</strong> — מותאמת ללימודים בכיתה: אותיות השבוע, ניקוד, חלוקה בין 5 צירי-לימוד, ומשימות ראמ״ה.</p>
+            <div class="meta">המורה לא בונה תוכן.</div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-num">2</div>
+            <h3>22 איים · חמישה צירים</h3>
+            <p>22 אבני-דרך הוראתיות מאורגנות ב<strong>חמישה צירי-לימוד מקבילים</strong> (פענוח, מורפולוגיה, שפה דבורה, הבנת הנקרא, כתיבה). כל אי = סביבת משחק עם נוני התמנון ומיומנות אחת ברורה.</p>
+            <div class="meta">חמישה מסלולים, רצים יחד.</div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-num">3</div>
+            <h3>בחירה פר-ילדה</h3>
+            <p>אחרי 2-3 פריטים המערכת יודעת: באיזה ציר חזקה, איפה תקועה, באיזו רמת תמיכה צריכה. <strong>אותה כיתה — שלושה מסכים שונים באותו רגע.</strong></p>
+            <div class="meta">אדפטיביות אמיתית.</div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-num">4</div>
+            <h3>תובנות למורה</h3>
+            <p>דשבורד חי בשפה פשוטה: <strong>"מאיה מוכנה לאתגר"</strong>, <strong>"יוסי טועה באמצע מילים"</strong>, <strong>"נועה חדשה — תני לה עוד יום"</strong>.</p>
+            <div class="meta">פעולה, לא ציונים.</div>
+          </div>
+        </div>
+
+        <div class="islands-strip">
+          <div class="label">
+            <span class="num">22</span>
+            איים<br><span style="font-size:10.5px;color:var(--slate-2);font-weight:600;line-height:1.4;display:block;margin-top:2px">חמישה צירים<br>מקבילים</span>
+          </div>
+          <div class="dots">
+            <div class="group">
+              <span class="group-name">פונולוגיה ופענוח</span>
+              <span class="dot" style="background:var(--strand-1)">1</span>
+              <span class="dot" style="background:var(--strand-1)">2</span>
+              <span class="dot" style="background:var(--strand-1)">3</span>
+              <span class="dot" style="background:var(--strand-1)">4</span>
+              <span class="dot" style="background:var(--strand-1)">5</span>
+              <span class="dot" style="background:var(--strand-1)">6</span>
+              <span class="dot" style="background:var(--strand-1)">7</span>
+              <span class="dot" style="background:var(--strand-1)">8</span>
+            </div>
+            <div class="group">
+              <span class="group-name">מורפולוגיה</span>
+              <span class="dot" style="background:var(--strand-2)">9</span>
+              <span class="dot" style="background:var(--strand-2)">10</span>
+              <span class="dot" style="background:var(--strand-2)">11</span>
+            </div>
+            <div class="group">
+              <span class="group-name">שפה דבורה</span>
+              <span class="dot" style="background:var(--strand-3)">12</span>
+              <span class="dot" style="background:var(--strand-3)">13</span>
+              <span class="dot" style="background:var(--strand-3)">14</span>
+            </div>
+            <div class="group">
+              <span class="group-name">הבנת הנקרא</span>
+              <span class="dot" style="background:var(--strand-4)">15</span>
+              <span class="dot" style="background:var(--strand-4)">16</span>
+              <span class="dot" style="background:var(--strand-4)">17</span>
+              <span class="dot" style="background:var(--strand-4)">18</span>
+            </div>
+            <div class="group">
+              <span class="group-name">כתיבה</span>
+              <span class="dot" style="background:var(--strand-5)">19</span>
+              <span class="dot" style="background:var(--strand-5)">20</span>
+              <span class="dot" style="background:var(--strand-5)">21</span>
+              <span class="dot" style="background:var(--strand-5)">22</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="payoff">
+          <span class="text">התוצאה — <strong>25 דקות תרגול ביום</strong> שבהן כל ילדה עובדת ברמה שלה, והמורה מקבלת בסוף השיעור <strong>3 שורות פעולה ברורות</strong> במקום 25 ניירות.</span>
+        </div>
+      </div>
+
+      <div class="footer-note">SLIDE A · FLOW + ISLANDS MAP · mockup 31.5.2026</div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SLIDE B — תוכנית החודש (התפתחות לאורך השנה)
+       ═══════════════════════════════════════════════════════════════ -->
+  <section class="slide" data-slide="2">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">תוכן · תוכנית החודש</div>
+          <h2 class="slide-title">כל חודש — <span class="accent">תוכנית חדשה</span> שמתפתחת עם הילדה.ה לאורך השנה</h2>
+          <p class="lede">תוכנית החודש מתאימה את עצמה לחומר הנלמד בכיתה ולשלב ההתפתחותי. ההרכב משתנה כל חודש — לא נוסחה קבועה.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="packs-grid">
+          <!-- September -->
+          <div class="pack-card">
+            <div class="pack-month">חודש 1</div>
+            <div class="pack-title">ספטמבר<br><span style="font-weight:500;color:var(--muted);font-size:13px">פתיחה</span></div>
+
+            <div class="pack-section">11 אותיות חדשות</div>
+            <div class="pack-letters">
+              <span class="letter new">ת</span><span class="letter new">מ</span><span class="letter new">ר</span>
+              <span class="letter new">ב</span><span class="letter new">ק</span><span class="letter new">א</span>
+              <span class="letter new">י</span><span class="letter new">ל</span><span class="letter new">ש</span>
+              <span class="letter new">ח</span><span class="letter new">נ</span>
+            </div>
+
+            <div class="pack-section">ניקוד</div>
+            <div class="pack-niqqud"><span>בלי ניקוד עדיין</span></div>
+
+            <div class="pack-section">חלוקת זמן</div>
+            <div class="strand-bars">
+              <div class="strand-row"><span class="name">פונולוגיה</span><span class="bar"><span class="fill" style="width:73%;background:var(--strand-1)"></span></span><span class="pct">73%</span></div>
+              <div class="strand-row"><span class="name">מורפולוגיה</span><span class="bar"><span class="fill" style="width:4%;background:var(--strand-2)"></span></span><span class="pct">4%</span></div>
+              <div class="strand-row"><span class="name">שפה דבורה</span><span class="bar"><span class="fill" style="width:14%;background:var(--strand-3)"></span></span><span class="pct">14%</span></div>
+              <div class="strand-row"><span class="name">הבנת הנקרא</span><span class="bar"><span class="fill" style="width:0%;background:var(--strand-4)"></span></span><span class="pct">0%</span></div>
+              <div class="strand-row"><span class="name">כתיבה</span><span class="bar"><span class="fill" style="width:9%;background:var(--strand-5)"></span></span><span class="pct">9%</span></div>
+            </div>
+
+            <div class="pack-islands">איים פעילים: <strong>3</strong> בלבד</div>
+          </div>
+
+          <!-- October -->
+          <div class="pack-card">
+            <div class="pack-month">חודש 2</div>
+            <div class="pack-title">אוקטובר<br><span style="font-weight:500;color:var(--muted);font-size:13px">השלמת אותיות</span></div>
+
+            <div class="pack-section">11 אותיות נוספות</div>
+            <div class="pack-letters">
+              <span class="letter new">ד</span><span class="letter new">פ</span><span class="letter new">ה</span>
+              <span class="letter new">ס</span><span class="letter new">ג</span><span class="letter new">ע</span>
+              <span class="letter new">כ</span><span class="letter new">צ</span><span class="letter new">ט</span>
+              <span class="letter new">ז</span><span class="letter new">ו</span>
+              <span class="letter empty">22 בסך הכל</span>
+            </div>
+
+            <div class="pack-section">ניקוד חדש</div>
+            <div class="pack-niqqud"><span>קמץ + פתח · /a/</span></div>
+
+            <div class="pack-section">חלוקת זמן</div>
+            <div class="strand-bars">
+              <div class="strand-row"><span class="name">פונולוגיה</span><span class="bar"><span class="fill" style="width:70%;background:var(--strand-1)"></span></span><span class="pct">70%</span></div>
+              <div class="strand-row"><span class="name">מורפולוגיה</span><span class="bar"><span class="fill" style="width:5%;background:var(--strand-2)"></span></span><span class="pct">5%</span></div>
+              <div class="strand-row"><span class="name">שפה דבורה</span><span class="bar"><span class="fill" style="width:15%;background:var(--strand-3)"></span></span><span class="pct">15%</span></div>
+              <div class="strand-row"><span class="name">הבנת הנקרא</span><span class="bar"><span class="fill" style="width:0%;background:var(--strand-4)"></span></span><span class="pct">0%</span></div>
+              <div class="strand-row"><span class="name">כתיבה</span><span class="bar"><span class="fill" style="width:10%;background:var(--strand-5)"></span></span><span class="pct">10%</span></div>
+            </div>
+
+            <div class="pack-islands">איים פעילים: <strong>3, 4</strong></div>
+          </div>
+
+          <!-- November -->
+          <div class="pack-card highlight">
+            <div class="pack-month">חודש 3 · נקודת מפנה</div>
+            <div class="pack-title">נובמבר<br><span style="font-weight:500;color:var(--muted);font-size:13px">מילים שלמות + אותיות סופיות</span></div>
+
+            <div class="pack-section">בלי אותיות חדשות</div>
+            <div class="pack-letters">
+              <span class="letter empty">22 ביסוס</span>
+              <span class="letter final">ם</span>
+              <span class="letter final">ן</span>
+              <span class="letter empty">סופיות בהקשר</span>
+            </div>
+
+            <div class="pack-section">ניקוד פעיל</div>
+            <div class="pack-niqqud"><span>/a/ במילים שלמות</span></div>
+
+            <div class="pack-section">חלוקת זמן · משתנה!</div>
+            <div class="strand-bars">
+              <div class="strand-row"><span class="name">פונולוגיה</span><span class="bar"><span class="fill" style="width:60%;background:var(--strand-1)"></span></span><span class="pct">60%</span></div>
+              <div class="strand-row"><span class="name">מורפולוגיה</span><span class="bar"><span class="fill" style="width:10%;background:var(--strand-2)"></span></span><span class="pct">10%</span></div>
+              <div class="strand-row"><span class="name">שפה דבורה</span><span class="bar"><span class="fill" style="width:15%;background:var(--strand-3)"></span></span><span class="pct">15%</span></div>
+              <div class="strand-row"><span class="name">הבנת הנקרא</span><span class="bar"><span class="fill" style="width:0%;background:var(--strand-4)"></span></span><span class="pct">0%</span></div>
+              <div class="strand-row"><span class="name">כתיבה</span><span class="bar"><span class="fill" style="width:15%;background:var(--strand-5)"></span></span><span class="pct">15%</span></div>
+            </div>
+
+            <div class="pack-islands">איים פעילים: <strong>3, 4, 5</strong></div>
+          </div>
+
+          <!-- February -->
+          <div class="pack-card">
+            <div class="pack-month">חודש 6</div>
+            <div class="pack-title">פברואר<br><span style="font-weight:500;color:var(--muted);font-size:13px">הבנת הנקרא מצטרפת</span></div>
+
+            <div class="pack-section">בלי אותיות חדשות</div>
+            <div class="pack-letters">
+              <span class="letter empty">22 + 4 סופיות</span>
+              <span class="letter final">ם</span><span class="letter final">ן</span><span class="letter final">ך</span><span class="letter final">ף</span>
+            </div>
+
+            <div class="pack-section">ניקוד מצטבר</div>
+            <div class="pack-niqqud">
+              <span>קמץ/פתח</span><span>חיריק</span><span>חולם</span><span>שווא</span>
+            </div>
+
+            <div class="pack-section">חלוקת זמן · מתאזנת</div>
+            <div class="strand-bars">
+              <div class="strand-row"><span class="name">פונולוגיה</span><span class="bar"><span class="fill" style="width:45%;background:var(--strand-1)"></span></span><span class="pct">45%</span></div>
+              <div class="strand-row"><span class="name">מורפולוגיה</span><span class="bar"><span class="fill" style="width:15%;background:var(--strand-2)"></span></span><span class="pct">15%</span></div>
+              <div class="strand-row"><span class="name">שפה דבורה</span><span class="bar"><span class="fill" style="width:15%;background:var(--strand-3)"></span></span><span class="pct">15%</span></div>
+              <div class="strand-row"><span class="name">הבנת הנקרא</span><span class="bar"><span class="fill" style="width:15%;background:var(--strand-4)"></span></span><span class="pct">15%</span></div>
+              <div class="strand-row"><span class="name">כתיבה</span><span class="bar"><span class="fill" style="width:10%;background:var(--strand-5)"></span></span><span class="pct">10%</span></div>
+            </div>
+
+            <div class="pack-islands">איים פעילים: <strong>5-10, 12-15</strong></div>
+          </div>
+        </div>
+
+        <div class="pack-legend">
+          <div class="item"><span class="swatch" style="background:var(--grad)"></span>אות חדשה בחודש</div>
+          <div class="item"><span class="swatch" style="background:rgba(234,88,12,0.12);border:1px dashed #FB923C"></span>אות סופית בהקשר</div>
+          <div class="item"><span class="swatch" style="background:rgba(124,58,237,0.08)"></span>אות בביסוס</div>
+          <div class="item" style="margin-right:auto;color:var(--muted);font-style:italic">5 צירי-לימוד רצים במקביל מהיום הראשון — ההרכב משתנה כל חודש</div>
+        </div>
+      </div>
+
+      <div class="footer-note">SLIDE B · MONTHLY PACK STRUCTURE · mockup 31.5.2026</div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SLIDE C — 22 איים מפורט
+       ═══════════════════════════════════════════════════════════════ -->
+  <section class="slide" data-slide="3">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">22 איים · מפת המיומנויות</div>
+          <h2 class="slide-title">כל אי = מיומנות אחת ברורה. <span class="accent">חמישה צירים מקבילים</span> מ"לא קוראת" ל"קוראת ומבינה".</h2>
+          <p class="lede">22 אבני-דרך הוראתיות, מאומתות מחקרית, מאורגנות בחמישה צירי-לימוד שרצים <strong>במקביל מהיום הראשון</strong>. ילדה אינה מטפסת מאי 1 לאי 22 — היא נוכחת ב<strong>חמישה איים בו-זמנית</strong>, אחד לכל ציר, ומתקדמת בכל אחד לפי הקצב שלה.</p>
+        </div>
+      </div>
+
+      <div class="islands-table">
+
+        <div class="strand-row-full">
+          <div class="strand-meta">
+            <span class="strand-tag" style="background:var(--strand-1)">STRAND 1</span>
+            <span class="strand-name">פונולוגיה ופענוח</span>
+            <span class="strand-when">ספטמבר → אפריל · 8 איים</span>
+            <span class="strand-count">הליבה — בלי זה אין קריאה</span>
+          </div>
+          <div class="island-tiles">
+            <div class="island-tile"><span class="num" style="background:var(--strand-1)">1</span><div class="body"><span class="name">הברות</span><span class="desc">מילים = חלקים. ספירה ומיזוג.</span></div></div>
+            <div class="island-tile"><span class="num" style="background:var(--strand-1)">2</span><div class="body"><span class="name">צלילים</span><span class="desc">צליל ראשון, אחרון, מיזוג.</span></div></div>
+            <div class="island-tile"><span class="num" style="background:var(--strand-1)">3</span><div class="body"><span class="name">זיהוי אותיות</span><span class="desc">צורה + שם + צליל.</span></div></div>
+            <div class="island-tile"><span class="num" style="background:var(--strand-1)">4</span><div class="body"><span class="name">אות+ניקוד</span><span class="desc">בָּ, בִּ, בּוּ — צירוף CV.</span></div></div>
+            <div class="island-tile"><span class="num" style="background:var(--strand-1)">5</span><div class="body"><span class="name">מיזוג למילים</span><span class="desc">צירוף+צירוף = מילה.</span></div></div>
+            <div class="island-tile"><span class="num" style="background:var(--strand-1)">6</span><div class="body"><span class="name">שטף</span><span class="desc">קריאה אוטומטית, מהירה.</span></div></div>
+            <div class="island-tile"><span class="num" style="background:var(--strand-1)">7</span><div class="body"><span class="name">מילים ארוכות</span><span class="desc">תבניות וצרורות.</span></div></div>
+            <div class="island-tile"><span class="num" style="background:var(--strand-1)">8</span><div class="body"><span class="name">Sight Words</span><span class="desc">מילים שכיחות — בבת אחת.</span></div></div>
+          </div>
+        </div>
+
+        <div class="strand-row-full">
+          <div class="strand-meta">
+            <span class="strand-tag" style="background:var(--strand-2)">STRAND 2</span>
+            <span class="strand-name">מורפולוגיה</span>
+            <span class="strand-when">דצמבר → מאי · 3 איים</span>
+            <span class="strand-count">המבנה של עברית</span>
+          </div>
+          <div class="island-tiles">
+            <div class="island-tile"><span class="num" style="background:var(--strand-2)">9</span><div class="body"><span class="name">שורש ותבנית</span><span class="desc">3 אותיות שחוזרות במשפחה.</span></div></div>
+            <div class="island-tile"><span class="num" style="background:var(--strand-2)">10</span><div class="body"><span class="name">תחיליות וסיומות</span><span class="desc">ו-, ה-, ב-, -ים, -ות.</span></div></div>
+            <div class="island-tile"><span class="num" style="background:var(--strand-2)">11</span><div class="body"><span class="name">מילות פונקציה</span><span class="desc">של, את, עם, אבל, כי.</span></div></div>
+          </div>
+        </div>
+
+        <div class="strand-row-full">
+          <div class="strand-meta">
+            <span class="strand-tag" style="background:var(--strand-3)">STRAND 3</span>
+            <span class="strand-name">שפה דבורה והבנת הנשמע</span>
+            <span class="strand-when">ספטמבר → יוני · 3 איים</span>
+            <span class="strand-count">לא תלוי בקריאה</span>
+          </div>
+          <div class="island-tiles">
+            <div class="island-tile"><span class="num" style="background:var(--strand-3)">12</span><div class="body"><span class="name">אוצר מילים</span><span class="desc">משמעות בהקשר.</span></div></div>
+            <div class="island-tile"><span class="num" style="background:var(--strand-3)">13</span><div class="body"><span class="name">הבנת הנשמע</span><span class="desc">סיפור → סרט בראש.</span></div></div>
+            <div class="island-tile"><span class="num" style="background:var(--strand-3)">14</span><div class="body"><span class="name">גשר לקריאה</span><span class="desc">אותן אסטרטגיות, בכתב.</span></div></div>
+          </div>
+        </div>
+
+        <div class="strand-row-full">
+          <div class="strand-meta">
+            <span class="strand-tag" style="background:var(--strand-4)">STRAND 4</span>
+            <span class="strand-name">הבנת הנקרא</span>
+            <span class="strand-when">דצמבר → יוני · 4 איים</span>
+            <span class="strand-count">המטרה הסופית</span>
+          </div>
+          <div class="island-tiles">
+            <div class="island-tile"><span class="num" style="background:var(--strand-4)">15</span><div class="body"><span class="name">הבנת משפט</span><span class="desc">מי עשה מה.</span></div></div>
+            <div class="island-tile"><span class="num" style="background:var(--strand-4)">16</span><div class="body"><span class="name">פסקה</span><span class="desc">משפט ועוד משפט = מידע חדש.</span></div></div>
+            <div class="island-tile"><span class="num" style="background:var(--strand-4)">17</span><div class="body"><span class="name">טקסט + הסקה</span><span class="desc">מדוע? איך יודעים?</span></div></div>
+            <div class="island-tile"><span class="num" style="background:var(--strand-4)">18</span><div class="body"><span class="name">שטף + הבנה</span><span class="desc">קריאה חוזרת, סיכום, כותרת.</span></div></div>
+          </div>
+        </div>
+
+        <div class="strand-row-full">
+          <div class="strand-meta">
+            <span class="strand-tag" style="background:var(--strand-5)">STRAND 5</span>
+            <span class="strand-name">כתיבה</span>
+            <span class="strand-when">נובמבר → יוני · 4 איים</span>
+            <span class="strand-count">קריאה ⇄ כתיבה</span>
+          </div>
+          <div class="island-tiles">
+            <div class="island-tile"><span class="num" style="background:var(--strand-5)">19</span><div class="body"><span class="name">כתב יד</span><span class="desc">כיוון, גודל, מרווחים.</span></div></div>
+            <div class="island-tile"><span class="num" style="background:var(--strand-5)">20</span><div class="body"><span class="name">איות</span><span class="desc">צליל → רצף אותיות.</span></div></div>
+            <div class="island-tile"><span class="num" style="background:var(--strand-5)">21</span><div class="body"><span class="name">דיקטה</span><span class="desc">מילה ומשפט קצר.</span></div></div>
+            <div class="island-tile"><span class="num" style="background:var(--strand-5)">22</span><div class="body"><span class="name">חיבור משפטים</span><span class="desc">תמונה → משפט שלם.</span></div></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="islands-footer">
+        <div class="item"><strong>מפה, לא רצף</strong>ילדה אינה "מסיימת אי 7 ועוברת לאי 8". היא נוכחת בחמישה איים במקביל, אחד לכל ציר, ומתקדמת בכל אחד בקצב נפרד.</div>
+        <div class="item"><strong>מעבר לפי שליטה</strong>בכל ציר — מעבר לאי הבא רק כש"שולטת באמת" (90%+ דיוק, יציבות בשני סשנים). לא לפי לוח שנה.</div>
+        <div class="item"><strong>תוקף מחקרי</strong>בהתבסס על Share & Bar-On 2018, Ravid 2012, Kim IDL 2022, ראמ״ה 2025, משה״ח תשפ״ו.</div>
+      </div>
+
+      <div class="footer-note">SLIDE C · 22 ISLANDS DETAIL · mockup 31.5.2026</div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SLIDE D — פרופיל ילדה אחת ברגע אחד
+       ═══════════════════════════════════════════════════════════════ -->
+  <section class="slide" data-slide="4">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">דוגמה קונקרטית · ילדה אחת ברגע אחד</div>
+          <h2 class="slide-title">מאיה בפברואר — <span class="accent">חמישה מיקומים בו-זמנית</span> על המפה</h2>
+          <p class="lede">המספור 1→22 אינו רצף שמטפסים בו. כל ילדה נוכחת ב<strong>חמישה איים במקביל</strong>, אחד לכל ציר-לימוד. בכל סשן של 25 דקות היא מתרגלת על-פני <strong>3-4 צירים שונים</strong>, ולא "על אי אחד".</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="child-profile">
+
+          <div class="child-block">
+            <div class="sub">היכן מאיה נמצאת</div>
+            <h3>חמישה איים בו-זמנית · אחד לכל ציר</h3>
+
+            <div class="axis-list">
+              <div class="axis" style="color:var(--strand-1)">
+                <span class="name">פונולוגיה</span>
+                <div class="track">
+                  <span class="pip done"></span><span class="pip done"></span><span class="pip done"></span>
+                  <span class="pip done"></span><span class="pip done"></span><span class="pip current"></span>
+                  <span class="pip"></span><span class="pip"></span>
+                </div>
+                <span class="where">שטף<span class="num">אי 6</span></span>
+              </div>
+
+              <div class="axis" style="color:var(--strand-2)">
+                <span class="name">מורפולוגיה</span>
+                <div class="track">
+                  <span class="pip current"></span><span class="pip"></span><span class="pip"></span>
+                </div>
+                <span class="where">משפחות מילים<span class="num">אי 9</span></span>
+              </div>
+
+              <div class="axis" style="color:var(--strand-3)">
+                <span class="name">שפה דבורה</span>
+                <div class="track">
+                  <span class="pip done"></span><span class="pip current"></span><span class="pip"></span>
+                </div>
+                <span class="where">הבנת הנשמע<span class="num">אי 13</span></span>
+              </div>
+
+              <div class="axis" style="color:var(--strand-4)">
+                <span class="name">הבנת הנקרא</span>
+                <div class="track">
+                  <span class="pip current"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span>
+                </div>
+                <span class="where">הבנת משפט<span class="num">אי 15</span></span>
+              </div>
+
+              <div class="axis" style="color:var(--strand-5)">
+                <span class="name">כתיבה</span>
+                <div class="track">
+                  <span class="pip current"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span>
+                </div>
+                <span class="where">כתב יד<span class="num">אי 19</span></span>
+              </div>
+            </div>
+
+            <p class="session-note" style="margin-top:8px">
+              <strong>תלמידה אחרת באותה כיתה — חמישה מיקומים אחרים.</strong> המערכת בוחרת לכל אחת את הצירוף הנכון לה כרגע.
+            </p>
+          </div>
+
+          <div class="child-block">
+            <div class="sub">סשן אחד · 25 דקות</div>
+            <h3>בכל סשן, מאיה נוגעת ב-3-4 צירים</h3>
+
+            <div class="session-time">יום שלישי · בוקר · 25 דקות</div>
+            <div class="session-bar">
+              <div class="session-seg" style="background:var(--strand-1);width:28%">פענוח<br>7 דק'</div>
+              <div class="session-seg" style="background:var(--strand-3);width:20%">הקשבה<br>5 דק'</div>
+              <div class="session-seg" style="background:var(--strand-1);width:16%">שטף<br>4 דק'</div>
+              <div class="session-seg" style="background:var(--strand-5);width:16%">כתיבה<br>4 דק'</div>
+              <div class="session-seg" style="background:var(--strand-4);width:12%">הבנה<br>3 דק'</div>
+              <div class="session-seg" style="background:var(--strand-2);width:8%">מילים<br>2 דק'</div>
+            </div>
+
+            <div class="session-legend">
+              <div class="item"><span class="swatch" style="background:var(--strand-1)"></span>פונולוגיה</div>
+              <div class="item"><span class="swatch" style="background:var(--strand-2)"></span>מורפולוגיה</div>
+              <div class="item"><span class="swatch" style="background:var(--strand-3)"></span>שפה דבורה</div>
+              <div class="item"><span class="swatch" style="background:var(--strand-4)"></span>הבנת הנקרא</div>
+              <div class="item"><span class="swatch" style="background:var(--strand-5)"></span>כתיבה</div>
+            </div>
+
+            <p class="session-note">
+              המערכת לא קובעת "היום עוסקים באי 6". היא מאזנת בין הצירים <strong>לפי מה שמאיה צריכה כרגע</strong> ולפי משקלי תוכנית החודש. סדר הפעילויות והמינונים משתנים מסשן לסשן.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="profile-payoff">
+          <span class="text">הגרסה הקצרה — המספור 1→22 הוא <strong>מפת מיומנויות</strong>, לא רצף שמטפסים בו. <strong>ילדה אחת = חמישה מסלולים מקבילים</strong>, שכל אחד מתקדם בקצב שלו, ומשתלבים יחד בכל סשן.</span>
+        </div>
+      </div>
+
+      <div class="footer-note">SLIDE D · ONE CHILD, ONE MOMENT · mockup 31.5.2026</div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SLIDE E — מה קורה כשמאיה טועה (כשלים + דגלים אוטומטיים)
+       ═══════════════════════════════════════════════════════════════ -->
+  <section class="slide" data-slide="5">
+    <div class="slide-shell">
+      <div class="slide-head">
+        <div>
+          <div class="kicker">דיפרנציאליות · תגובה לכשל</div>
+          <h2 class="slide-title">מה קורה כש<span class="accent">מאיה טועה?</span></h2>
+          <p class="lede">"דיפרנציאלי" זה לא רק תוכן שונה לכל ילדה. זה גם <strong>תגובה שונה לכשל</strong>. המערכת מגדילה את התמיכה בהדרגה — ומתחילה לקרוא למורה רק כשהדפוס חוזר.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="mistake-stack">
+          <div class="mistake-card lvl-1">
+            <div class="level"><span class="level-num">1</span>טעות ראשונה</div>
+            <h3>רעידה רכה — ללא הסבר</h3>
+            <ul class="detail">
+              <li>אין תמיכה מילולית</li>
+              <li>הילדה מנסה שוב לבד</li>
+              <li>מקום לחוסן וניסיון עצמאי</li>
+            </ul>
+            <div class="visual">הבועה זזה רגע · בלי הוראה נוספת</div>
+          </div>
+
+          <div class="mistake-card lvl-2">
+            <div class="level"><span class="level-num">2</span>טעות שנייה</div>
+            <h3>רמז ויזואלי + שמיעה</h3>
+            <ul class="detail">
+              <li>רמז ויזואלי על התשובה הנכונה</li>
+              <li>השמעת הצליל הרלוונטי</li>
+              <li>נוני מצביע ומכוון</li>
+            </ul>
+            <div class="visual">glow על האפשרות הנכונה + audio</div>
+          </div>
+
+          <div class="mistake-card lvl-3">
+            <div class="level"><span class="level-num">3</span>טעות שלישית ומעלה</div>
+            <h3>"הקש פה" — הצבעה ישירה</h3>
+            <ul class="detail">
+              <li>הצבעה ישירה על מה ללחוץ</li>
+              <li>הוראה מודרכת שלב-אחר-שלב</li>
+              <li>הילדה לא נשארת תקועה</li>
+            </ul>
+            <div class="visual">סמן מצביע + הוראה ברורה</div>
+          </div>
+        </div>
+
+        <div class="flags-divider">
+          ⚐ ואם הדפוס חוזר — המערכת מסמנת דגל אוטומטי למורה
+        </div>
+
+        <div class="flags-grid">
+          <div class="flag-card">
+            <div class="flag-tag">דגל 1</div>
+            <h4>תגובה איטית</h4>
+            <p>דיוק גבוה אבל זמן תגובה ארוך מ-5 שניות.</p>
+          </div>
+          <div class="flag-card">
+            <div class="flag-tag">דגל 2</div>
+            <h4>רמז חוזר</h4>
+            <p>שימוש ברמז ב-3 פריטים או יותר ברצף.</p>
+          </div>
+          <div class="flag-card">
+            <div class="flag-tag">דגל 3</div>
+            <h4>פער צורה-צליל</h4>
+            <p>מזהה את האות אבל מתבלבלת בצליל שלה.</p>
+          </div>
+          <div class="flag-card">
+            <div class="flag-tag">דגל 4</div>
+            <h4>קושי בקונטקסט</h4>
+            <p>מזהה אות בידוד אבל לא מוצאת אותה במילה.</p>
+          </div>
+          <div class="flag-card">
+            <div class="flag-tag">דגל 5</div>
+            <h4>נופלת בתמיכה</h4>
+            <p>שתי נפילות גם ברמת התמיכה הגבוהה ביותר.</p>
+          </div>
+        </div>
+
+        <div class="payoff">
+          <span class="text">המערכת לא רק נותנת תוכן. <strong>היא מגיבה לכשל ברגע אמת, מגדילה תמיכה בהדרגה</strong>, ומתחילה לקרוא למורה רק כשצריך התערבות אמיתית.</span>
+        </div>
+      </div>
+
+      <div class="footer-note">SLIDE E · FAILURE HANDLING · mockup 31.5.2026</div>
+    </div>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button id="prev">◄</button>
+  <span class="label" id="navLabel">SLIDE A · FLOW</span>
+  <button id="next">►</button>
+</nav>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const topKicker = document.getElementById('topKicker');
+const navLabel = document.getElementById('navLabel');
+const labels = ['SLIDE A · FLOW', 'SLIDE B · תוכנית החודש', 'SLIDE C · 22 ISLANDS', 'SLIDE D · ONE CHILD', 'SLIDE E · FAILURES'];
+let current = 0;
+
+function show(i) {
+  current = Math.max(0, Math.min(slides.length - 1, i));
+  slides.forEach((s, idx) => s.classList.toggle('active', idx === current));
+  const activeKicker = slides[current].querySelector('.kicker');
+  topKicker.textContent = activeKicker ? activeKicker.textContent.trim() : '';
+  navLabel.textContent = labels[current];
+}
+
+document.getElementById('next').addEventListener('click', () => show(current + 1));
+document.getElementById('prev').addEventListener('click', () => show(current - 1));
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowLeft') show(current + 1);
+  if (e.key === 'ArrowRight') show(current - 1);
+  if (e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); show(current + 1); }
+  if (e.key === 'ArrowUp') show(current - 1);
+});
+
+show(0);
+</script>
+
+</body>
+</html>
