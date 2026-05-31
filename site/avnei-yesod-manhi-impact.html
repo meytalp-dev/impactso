@@ -3270,6 +3270,46 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
 }
 
 
+/* ============ NEW · slide 15 ramah demo link card ============ */
+.slide[data-slide="15"] .rama-demo-link{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  text-decoration:none;
+  color:inherit;
+  background:linear-gradient(135deg, rgba(18,199,199,.10), rgba(13,74,122,.08))!important;
+  border:2px dashed rgba(13,74,122,.32)!important;
+  cursor:pointer;
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  position:relative;
+}
+.slide[data-slide="15"] .rama-demo-link:hover{
+  transform:translateY(-2px);
+  border-color:rgba(13,74,122,.6)!important;
+  box-shadow:0 14px 32px -14px rgba(13,74,122,.28);
+}
+.slide[data-slide="15"] .rama-demo-tag{
+  display:inline-block;
+  align-self:flex-start;
+  background:rgba(13,74,122,.12);
+  color:#0d4a7a;
+  font-size:.78rem;
+  font-weight:700;
+  padding:4px 12px;
+  border-radius:999px;
+  margin-bottom:4px;
+}
+.slide[data-slide="15"] .rama-demo-link h3{
+  color:#0b1e34;
+  margin:2px 0 4px;
+}
+.slide[data-slide="15"] .rama-demo-link p{
+  color:#3b4b63;
+  font-size:.9rem;
+  line-height:1.5;
+  margin:0;
+}
+
 /* ============ NEW · slide 14 full dashboard image ============ */
 .slide.dashboard-full-slide{
   overflow:hidden;
@@ -3846,6 +3886,11 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
             <h3>מדידה שאינה מנותקת מהכיתה</h3>
             <p>אותן אבני יסוד שמופיעות בתרגול ובדשבורד יכולות להופיע גם בתמונת הרוחב: מי התקדם, איפה נשאר פער, ואיזה מענה עבד.</p>
           </article>
+          <a class="card rama-demo-link" href="https://impact-os.app/avnei-yesod/underwater-app/teacher-rama.html?guest=1&presentation=1" target="_blank" rel="noopener">
+            <div class="rama-demo-tag">🔗 דמו חי</div>
+            <h3>דשבורד ראמ״ה — לחיצה לדמו</h3>
+            <p>פתיחה של דשבורד ראמ״ה האמיתי בלשונית חדשה.</p>
+          </a>
         </div>
         <figure class="demo-shot clean-shot">
           <div class="demo-frame">
