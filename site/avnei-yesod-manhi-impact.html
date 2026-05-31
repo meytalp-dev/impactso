@@ -3079,26 +3079,21 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
 .slide.demo-slide .demo-link-card{
   display:flex;
   flex-direction:column;
-  gap:10px;
-  padding:28px 26px;
-  cursor:pointer;
-  pointer-events:auto;
-  position:relative;
-  z-index:5;
+  gap:14px;
+  padding:20px 20px 24px;
   border-radius:22px;
   background:linear-gradient(150deg, #ffffff 0%, #f4f8ff 100%);
   border:1px solid rgba(20, 60, 110, .12);
   box-shadow:0 18px 44px -22px rgba(20, 60, 110, .25), 0 4px 14px -8px rgba(20, 60, 110, .12);
   color:inherit;
-  text-decoration:none;
-  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
   position:relative;
   overflow:hidden;
 }
-.slide.demo-slide .demo-link-card:hover{
-  transform:translateY(-3px);
-  box-shadow:0 26px 56px -22px rgba(20, 60, 110, .35), 0 6px 18px -8px rgba(20, 60, 110, .18);
-  border-color:rgba(20, 110, 180, .35);
+.slide.demo-slide .demo-link-body{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  padding:0 6px;
 }
 .slide.demo-slide .demo-link-tag{
   display:inline-block;
@@ -3111,16 +3106,22 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
   background:rgba(20, 110, 180, .12);
   color:#0d4a7a;
 }
-.slide.demo-slide .demo-link-preview{
+.slide.demo-slide .demo-link-preview-fig{
   width:100%;
-  aspect-ratio:16/10;
-  border-radius:12px;
+  margin:0;
+  cursor:zoom-in;
+  position:relative;
+  border-radius:14px;
   overflow:hidden;
   background:#eaf3fb;
   border:1px solid rgba(20, 60, 110, .08);
-  margin-bottom:6px;
 }
-.slide.demo-slide .demo-link-preview img{
+.slide.demo-slide .demo-link-preview-fig .demo-frame{
+  width:100%;
+  aspect-ratio:16/10;
+  overflow:hidden;
+}
+.slide.demo-slide .demo-link-preview-fig img{
   width:100%;
   height:100%;
   object-fit:cover;
@@ -3128,8 +3129,41 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
   display:block;
   transition:transform .25s ease;
 }
-.slide.demo-slide .demo-link-card:hover .demo-link-preview img{
+.slide.demo-slide .demo-link-preview-fig:hover img{
   transform:scale(1.03);
+}
+.slide.demo-slide .demo-shot-hint{
+  position:absolute;
+  bottom:10px;
+  left:10px;
+  background:rgba(11, 30, 52, .82);
+  color:#fff;
+  font-size:.75rem;
+  padding:5px 10px;
+  border-radius:999px;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .18s ease;
+}
+.slide.demo-slide .demo-link-preview-fig:hover .demo-shot-hint{
+  opacity:1;
+}
+.slide.demo-slide .demo-link-cta{
+  display:inline-block;
+  margin-top:8px;
+  align-self:flex-start;
+  padding:8px 16px;
+  border-radius:999px;
+  background:linear-gradient(135deg, #12c7c7, #0d4a7a);
+  color:#fff !important;
+  text-decoration:none;
+  font-weight:600;
+  font-size:.95rem;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.slide.demo-slide .demo-link-cta:hover{
+  transform:translateY(-1px);
+  box-shadow:0 10px 22px -8px rgba(13, 74, 122, .45);
 }
 .slide.demo-slide .demo-link-card h3{
   font-size:1.35rem;
@@ -3141,14 +3175,6 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
   line-height:1.6;
   color:#3b4b63;
   margin:0;
-}
-.slide.demo-slide .demo-link-cta{
-  margin-top:auto;
-  align-self:flex-start;
-  font-weight:600;
-  color:#0d4a7a;
-  font-size:.98rem;
-  letter-spacing:.02em;
 }
 @media (max-width: 900px){
   .slide.demo-slide .demo-links-grid{
@@ -4047,24 +4073,34 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
         <div class="slide-num">22</div>
       </div>
       <div class="demo-links-grid">
-        <a class="demo-link-card" href="https://impact-os.app/avnei-yesod/underwater-app/map.html?guest=1&presentation=1" target="_blank" rel="noopener">
-          <div class="demo-link-preview">
-            <img src="avnei-board-assets/demo-map-islands.png" alt="תצוגה מקדימה: מפת איים — אבני יסוד">
+        <div class="demo-link-card">
+          <figure class="demo-shot demo-link-preview-fig">
+            <div class="demo-frame">
+              <img src="avnei-board-assets/demo-map-islands.png" alt="תצוגה מקדימה: מפת איים — אבני יסוד">
+            </div>
+            <figcaption class="demo-shot-hint">🔍 לחיצה להגדלה</figcaption>
+          </figure>
+          <div class="demo-link-body">
+            <div class="demo-link-tag">אבני יסוד · כיתה א׳</div>
+            <h3>מפת איים — מסלול תלמיד.ה</h3>
+            <p>14 איים, מסלול אישי, אותיות וצלילים, משחקים.</p>
+            <a class="demo-link-cta" href="https://impact-os.app/avnei-yesod/underwater-app/map.html?guest=1&presentation=1" target="_blank" rel="noopener">פתח דמו ←</a>
           </div>
-          <div class="demo-link-tag">אבני יסוד · כיתה א׳</div>
-          <h3>מפת איים — מסלול תלמיד.ה</h3>
-          <p>14 איים, מסלול אישי, אותיות וצלילים, משחקים.</p>
-          <div class="demo-link-cta">פתח דמו ←</div>
-        </a>
-        <a class="demo-link-card" href="https://impact-os.app/inclusion/pulse-demo.html" target="_blank" rel="noopener">
-          <div class="demo-link-preview">
-            <img src="avnei-board-assets/demo-pulse-opening.png" alt="תצוגה מקדימה: דף הפתיחה של פולס נוני">
+        </div>
+        <div class="demo-link-card">
+          <figure class="demo-shot demo-link-preview-fig">
+            <div class="demo-frame">
+              <img src="avnei-board-assets/demo-pulse-opening.png" alt="תצוגה מקדימה: דף הפתיחה של פולס נוני">
+            </div>
+            <figcaption class="demo-shot-hint">🔍 לחיצה להגדלה</figcaption>
+          </figure>
+          <div class="demo-link-body">
+            <div class="demo-link-tag">פולס נוני · כיתה א׳</div>
+            <h3>פולס רגשי — שאלון 60 שניות</h3>
+            <p>4 מימדים רגש-חברתיים, גרירת נוני בין 3 פנים, דשבורד מחנכת.</p>
+            <a class="demo-link-cta" href="https://impact-os.app/inclusion/pulse-demo.html" target="_blank" rel="noopener">פתח דמו ←</a>
           </div>
-          <div class="demo-link-tag">פולס נוני · כיתה א׳</div>
-          <h3>פולס רגשי — שאלון 60 שניות</h3>
-          <p>4 מימדים רגש-חברתיים, גרירת נוני בין 3 פנים, דשבורד מחנכת.</p>
-          <div class="demo-link-cta">פתח דמו ←</div>
-        </a>
+        </div>
       </div>
       <div class="footer-note">22 / 25</div>
     </div>
