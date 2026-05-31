@@ -3319,7 +3319,7 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
   overflow:hidden;
 }
 .slide.three-shot-slide .slide-shell{
-  grid-template-rows:auto 1fr;
+  grid-template-rows:auto 1fr auto auto;
   min-height:0;
 }
 .slide.three-shot-slide .three-shot-grid{
@@ -3389,6 +3389,41 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
     grid-template-columns:1fr;
     overflow-y:auto;
   }
+}
+.slide.three-shot-slide .morning-demo-link{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  align-self:center;
+  margin:14px auto 0;
+  padding:10px 22px;
+  border-radius:999px;
+  background:linear-gradient(135deg, #12c7c7, #0d4a7a);
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  font-size:1rem;
+  box-shadow:0 14px 32px -14px rgba(13,74,122,.45);
+  transition:box-shadow .15s ease, filter .15s ease;
+  width:fit-content;
+  justify-self:center;
+}
+.slide.three-shot-slide .morning-demo-link:hover{
+  filter:brightness(1.06);
+  box-shadow:0 18px 40px -14px rgba(13,74,122,.55);
+}
+.slide.three-shot-slide .morning-demo-link > *{
+  pointer-events:none;
+}
+.slide.three-shot-slide .morning-demo-tag{
+  background:rgba(255,255,255,.22);
+  padding:3px 10px;
+  border-radius:999px;
+  font-size:.78rem;
+  font-weight:700;
+}
+.slide.three-shot-slide .morning-demo-arrow{
+  font-size:1.15rem;
 }
 
 </style>
@@ -3920,6 +3955,11 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
           <figcaption><span class="three-shot-step">3</span> מבנה השיעור + בסיס מחקרי</figcaption>
         </figure>
       </div>
+      <a class="morning-demo-link" href="https://impact-os.app/avnei-yesod/underwater-app/teacher-action.html?guest=1&amp;presentation=1" target="_blank" rel="noopener noreferrer">
+        <span class="morning-demo-tag">🔗 דמו חי</span>
+        <span class="morning-demo-text">דשבורד פעולת הבוקר — לחיצה לדמו</span>
+        <span class="morning-demo-arrow">←</span>
+      </a>
       <div class="footer-note">14 / 25</div>
     </div>
   </section>
@@ -4493,7 +4533,7 @@ showSlide(Number.isFinite(initial) ? initial - 1 : 0);
     lightboxCaption.textContent = "";
   }
 
-  // Event delegation — survives any DOM weirdness
+  // Event delegation — primary handler
   document.addEventListener("click", function (e) {
     // Lightbox close handling
     if (lightbox.classList.contains("is-open")) {
@@ -4511,6 +4551,19 @@ showSlide(Number.isFinite(initial) ? initial - 1 : 0);
     const cap = fig.querySelector("figcaption, .screen-caption");
     openLightbox(img, cap ? cap.textContent.trim() : "");
   }, true);
+
+  // Backup: attach direct listeners to every .demo-shot / .screen-card.
+  // Belt-and-suspenders for cases where the capture-phase delegated handler
+  // is blocked by some sibling JS or browser quirk.
+  document.querySelectorAll(".demo-shot, .screen-card").forEach(function (fig) {
+    fig.addEventListener("click", function (e) {
+      if (lightbox.classList.contains("is-open")) return;
+      const img = fig.querySelector("img");
+      if (!img) return;
+      const cap = fig.querySelector("figcaption, .screen-caption");
+      openLightbox(img, cap ? cap.textContent.trim() : "");
+    });
+  });
 
   document.addEventListener("keydown", function (event) {
     if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
