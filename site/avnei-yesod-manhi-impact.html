@@ -3314,42 +3314,76 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
   margin:0;
 }
 
-/* ============ NEW · slide 14 full dashboard image ============ */
-.slide.dashboard-full-slide{
+/* ============ NEW · slide 14 three F21E dashboard images ============ */
+.slide.three-shot-slide{
   overflow:hidden;
 }
-.slide.dashboard-full-slide .slide-shell{
+.slide.three-shot-slide .slide-shell{
   grid-template-rows:auto 1fr;
   min-height:0;
 }
-.slide.dashboard-full-slide .dashboard-fullshot{
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-  margin:0;
-  width:100%;
+.slide.three-shot-slide .three-shot-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:18px;
+  align-items:start;
   min-height:0;
-  min-width:0;
-  overflow:hidden;
+  width:100%;
+  padding-top:8px;
 }
-.slide.dashboard-full-slide .dashboard-fullshot .demo-frame{
-  max-width:min(1240px, 100%);
-  max-height:100%;
-  width:auto;
-  height:auto;
-  border-radius:18px;
-  overflow:hidden;
-  box-shadow:0 24px 64px -22px rgba(11,30,52,.38), 0 6px 22px -8px rgba(11,30,52,.20);
-  background:#fff;
+.slide.three-shot-slide .three-shot{
+  margin:0;
   display:flex;
+  flex-direction:column;
+  gap:10px;
+  min-width:0;
 }
-.slide.dashboard-full-slide .dashboard-fullshot img{
+.slide.three-shot-slide .three-shot .demo-frame{
+  width:100%;
+  max-height:62vh;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 18px 44px -20px rgba(11,30,52,.32), 0 4px 14px -6px rgba(11,30,52,.18);
+  background:#fff;
+  border:1px solid rgba(11,30,52,.08);
+}
+.slide.three-shot-slide .three-shot img{
   display:block;
-  max-width:100%;
-  max-height:100%;
-  width:auto;
+  width:100%;
   height:auto;
-  object-fit:contain;
+  object-fit:cover;
+  object-position:top center;
+  max-height:62vh;
+}
+.slide.three-shot-slide .three-shot figcaption{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  text-align:center;
+  font-size:.92rem;
+  font-weight:600;
+  color:#0d4a7a;
+  line-height:1.35;
+}
+.slide.three-shot-slide .three-shot-step{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:26px;
+  height:26px;
+  border-radius:50%;
+  background:linear-gradient(135deg, #12c7c7, #0d4a7a);
+  color:#fff;
+  font-size:.85rem;
+  font-weight:800;
+  flex-shrink:0;
+}
+@media (max-width: 1100px){
+  .slide.three-shot-slide .three-shot-grid{
+    grid-template-columns:1fr;
+    overflow-y:auto;
+  }
 }
 
 </style>
@@ -3851,20 +3885,36 @@ h1,h2,h3,.title-h1,.slide-title{color:var(--navy);font-family:"Heebo","Rubik",Ar
     </div>
   </section>
 
-  <section class="slide dashboard-full-slide" data-slide="14">
+  <section class="slide three-shot-slide" data-slide="14">
     <div class="slide-shell">
       <div class="slide-head">
         <div>
-          <div class="kicker">חוויית מורה · רוחב מסך</div>
-          <h2 class="slide-title">דשבורד המורה — <span class="accent">תמונה מלאה.</span></h2>
+          <div class="kicker">חוויית מורה · מהדאטה לפעולה</div>
+          <h2 class="slide-title">דשבורד המורה — <span class="accent">מהתצפית להוראה ב-3 שלבים.</span></h2>
+          <p class="lede">לחיצה על תמונה — להגדלה.</p>
         </div>
         <div class="slide-num">14</div>
       </div>
-      <figure class="demo-shot dashboard-fullshot">
-        <div class="demo-frame">
-          <img src="avnei-board-assets/teacher-day-groups-main.png" alt="דשבורד מורה — תמונה מלאה של המסך הראשי">
-        </div>
-      </figure>
+      <div class="three-shot-grid">
+        <figure class="demo-shot three-shot">
+          <div class="demo-frame">
+            <img src="avnei-board-assets/teacher-f21e-dashboard.png" alt="דשבורד F21E — קבוצות בוקר, התראות, ותלמידים ללא קבוצה">
+          </div>
+          <figcaption><span class="three-shot-step">1</span> תמונת בוקר — מה קורה היום בכיתה</figcaption>
+        </figure>
+        <figure class="demo-shot three-shot">
+          <div class="demo-frame">
+            <img src="avnei-board-assets/teacher-f21e-modal-top.png" alt="המלצת הוראה — חיזוק 3 אותיות חלשות לקבוצה של 3 תלמידים">
+          </div>
+          <figcaption><span class="three-shot-step">2</span> המלצת הוראה — מה ללמד ולמי</figcaption>
+        </figure>
+        <figure class="demo-shot three-shot">
+          <div class="demo-frame">
+            <img src="avnei-board-assets/teacher-f21e-modal-bottom.png" alt="מבנה השיעור המוצע — Model · Guided · Independent · Check + בסיס מחקרי">
+          </div>
+          <figcaption><span class="three-shot-step">3</span> מבנה השיעור + בסיס מחקרי</figcaption>
+        </figure>
+      </div>
       <div class="footer-note">14 / 25</div>
     </div>
   </section>
